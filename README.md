@@ -1,45 +1,35 @@
 # deep-learning-map
 Map of deep learning and notes from papers.
 
-Idea: Write (or link to) paper summaries, blog posts or articles that will help people with limited experience:
+#### README contents:
+
+0. Vision for the Deep Learning Map
+1. Summaries
+2. Topics to cover (in the DL map)
+3. Recommended Deep Learning Resources
+4. Existing repositories with summaries of papers on machine learning 
+5. Newsletters
+6. Development notes
+
+---
+## 0. Vision for the Deep Learning Map
+The idea is to write (or link to) paper summaries, blog posts or articles that will help people with limited experience:
 
 - Understand what different models or terms mean
 	- Know what the state-of-the-art results are in each domain
 	- Be able to look up known advantages and disadvantages of key models and approaches
 - See how different concepts connect with each other
 
-It is crucial that 
+It is thus crucial that 
 - these summaries are presented in a way that makes the relationships between different concepts clear (hence this being a 'map'), and that
 - materials are chosen selectively so as not to overwhelm the reader.
 
-#### README contents:
+Let me know if you'd like to contribute or have suggestions.
 
-1. Development notes
-2. Topics to cover (in the DL map)
-3. Recommended Deep Learning Resources
-4. Existing repositories with summaries of papers on machine learning 
-5. Newsletters
+## 1. Summaries
 
----
-
-## 1. Development Notes
-
-#### 9 Dec 2017
-- Add brainstormed list of topics to cover. The idea is to write (or link to) paper summaries, good blog posts or articles that will help people with limited experience get a better idea of what is going on in the field. This means:
-	- Understanding what different models or terms mean
-		- Knowing what the state-of-the-art results are in each domain
-		- Being able to look up known advantages and disadvantages of key models and approaches
-	- Seeing how different concepts connect with each other
-- The target audience is not currently experienced researchers, but the hope is that researchers will eventually benefit from this as well.
-- I will also be going through Goodfellow et. al's book 'Deep Learning' and may add insights or summaries from the book (referencing those appropriately.)
-- Difficulties: it is hard to know how to connect concepts with each other initially, so I will first 
-	- (1) write paper summaries,
-	- (2) write a list of summaries of key terminology, and
-	- (2) build a spreadsheet trying to list connections in parallel.
-		- The spreadsheet is important: I believe that it will be greatly beneficial to have a visual map and not just a list of papers because the latter is much harder to digest.
-- Everything will likely be scattered at first, but I hope the pieces will start coming together after the first month.
-- Sample use case:
-	- I want to
+- [Population-based training of Neural Networks](https://github.com/jessicayung/deep-learning-map/blob/master/paper-summaries/population-based-training-of-neural-networks.md)
+- [Leave no Trace: Learning to Reset for Safe and Autonomous Reinforcement Learning](https://github.com/jessicayung/deep-learning-map/blob/master/paper-summaries/leave-no-trace.md)
 
 ## 2. Topics to cover
 
@@ -129,4 +119,22 @@ Have added a :star: to the ones I find particularly helpful.
 		- Posts, Articles, Tutorials 
 		- Code, Projects & Data
 	- Links with brief summaries (and occasionally helpful context or opinions).
-- 
+
+
+# 6. Development Notes
+
+#### 9 Dec 2017
+- Add brainstormed list of topics to cover. The idea is to write (or link to) paper summaries, good blog posts or articles that will help people with limited experience get a better idea of what is going on in the field. This means:
+	- Understanding what different models or terms mean
+		- Knowing what the state-of-the-art results are in each domain
+		- Being able to look up known advantages and disadvantages of key models and approaches
+	- Seeing how different concepts connect with each other
+- The target audience is not currently experienced researchers, but the hope is that researchers will eventually benefit from this as well.
+- I will also be going through Goodfellow et. al's book 'Deep Learning' and may add insights or summaries from the book (referencing those appropriately.)
+- Difficulties: it is hard to know how to connect concepts with each other initially, so I will first 
+	- (1) write paper summaries,
+	- (2) write a list of summaries of key terminology, and
+	- (2) build a spreadsheet trying to list connections in parallel.
+		- The spreadsheet is important: I believe that it will be greatly beneficial to have a visual map and not just a list of papers because the latter is much harder to digest.
+- Everything will likely be scattered at first, but I hope the pieces will start coming together after the first month.
+

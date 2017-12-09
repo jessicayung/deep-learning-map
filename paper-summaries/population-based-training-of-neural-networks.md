@@ -2,7 +2,7 @@
 
 Jaderberg et. al., Nov 2017
 
-[[arxiv]]](https://arxiv.org/abs/1711.09846) [[DeepMind's blog post]](https://deepmind.com/blog/population-based-training-neural-networks/)
+[[arxiv]](https://arxiv.org/abs/1711.09846) [[DeepMind's blog post]](https://deepmind.com/blog/population-based-training-neural-networks/)
 
 ## Summary
 

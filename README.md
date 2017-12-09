@@ -112,6 +112,13 @@ Have added a :star: to the ones I find particularly helpful.
 	- About 40 summaries. Last active August 2017.
 
 ## 5. Newsletters
+Including these here because they contain fantastic summaries of what's going on in industry and in research. They take some time to go through though.
+
+- [ImportAI by Jack Clark](https://jack-clark.net/)
+	- Weekly email newsletter
+	- Noteworthy items with headlines and more detailed descriptions. 
+		- May take more time to go through but the summaries are of high quality and are often structured (e.g. briefly describing testing methods, results).
+	- Hilarious tech fiction at the end of the newsletter. :)
 - [The Wild Week in AI by Denny Britz](https://www.getrevue.co/profile/wildml)
 	- Weekly email newsletter
 	- Sections: 

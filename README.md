@@ -50,7 +50,7 @@ README contents:
 	- [Notes for Stanford course CS231n on Convolutional Neural Networks](http://cs231n.github.io/)
 		- Have found this to be great for learning and an excellent reference (often landed here in my first few months of Googling about deep learning terms/problems!)
 - Existing repositories with summaries of papers on machine learning (have added a :star: to the ones I find particularly helpful)
-	- :star: [Alexander Jung](https://github.com/aleju/papers) (Recommended)
+	- :star: [Alexander Jung](https://github.com/aleju/papers)
 		- Summaries:
 			- What, How, Results summary. Easy to digest.
 			- Bullet points with images (result graphs, architectures).

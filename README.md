@@ -57,14 +57,14 @@ README contents:
 			- Links to related resources (paper website, video).
 		- Lists by date added, **with brief tags** such as 'self-driving cars', 'segmentation','gan'.
 		- Around 80 papers added from 2016-17, last active Dec 2017.
-		- **:star: because summaries are easy to digest and understand.**
+		- Starred because summaries are easy to digest and understand.
 	- :star: [Denny Britz](https://github.com/dennybritz/deeplearning-papernotes)
 		- Summaries:
 			- Short TLDR; section that gives authors' argument, method and high-level findings.
 			- Sometimes contain key points (usually model, experiment or result details) and thoughts sections.
 		- Lists summaries by date reviewed, list also includes many other papers without summaries (are these key papers or ones he's read?).
 		- About 100 summaries. Last active Nov 2017.
-		- :star: because summaries are short but to the point, and because there are many summaries.
+		- Starred because summaries are short but to the point, and because there are many summaries.
 		- I also recommend his weekly newsletter ['The Wild Week in AI'](https://www.getrevue.co/profile/wildml?utm_campaign=Issue&utm_content=forwarded&utm_medium=email&utm_source=The+Wild+Week+in+AI) and his blog [WildML](http://www.wildml.com/) which has some great tutorials and a deep learning glossary.
 			- In some way the glossary has done part of what I'd like to do with this map. Haha great!
 			- Oh and did I mention his [repo of implementations of RL algorithms](https://github.com/dennybritz/reinforcement-learning)? :O I haven't even gone through this properly yet.

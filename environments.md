@@ -20,3 +20,5 @@
 	- [[Website]](https://home-platform.github.io/) [[Code]](https://github.com/HoME-Platform/home-platform) [[Paper]](https://arxiv.org/abs/1711.11017v1), 
 	- OpenAI Gym-compatible
 * Malmo (Microsoft, Minecraft-based)
+* Unity Machine Learning Agents
+	- [support for curriculum learning in v0.2](https://blogs.unity3d.com/2017/12/08/introducing-ml-agents-v0-2-curriculum-learning-new-environments-and-more/)

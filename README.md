@@ -28,8 +28,9 @@ Let me know if you'd like to contribute or have suggestions.
 
 ## 1. Summaries
 
-- [Population-based training of Neural Networks](https://github.com/jessicayung/deep-learning-map/blob/master/paper-summaries/population-based-training-of-neural-networks.md)
-- [Leave no Trace: Learning to Reset for Safe and Autonomous Reinforcement Learning](https://github.com/jessicayung/deep-learning-map/blob/master/paper-summaries/leave-no-trace.md)
+- [Population-based training of Neural Networks (Nov 2017)](https://github.com/jessicayung/deep-learning-map/blob/master/paper-summaries/population-based-training-of-neural-networks.md)
+- [Leave no Trace: Learning to Reset for Safe and Autonomous Reinforcement Learning (Nov 2017)](https://github.com/jessicayung/deep-learning-map/blob/master/paper-summaries/leave-no-trace.md)
+- [AI Safety Gridworlds (Nov 2017)](https://github.com/jessicayung/deep-learning-map/blob/master/paper-summaries/ai-safety-gridworlds.md)
 
 ## 2. Topics to cover
 

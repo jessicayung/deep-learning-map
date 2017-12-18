@@ -1,6 +1,24 @@
 
 # Papers to print
 
+## Next papers to look at
+- [Feature Visualisation](https://distill.pub/2017/feature-visualization/)
+- [Mastering Chess and Shogi by Self-Play with a General Reinforcement Learning Algorithm (Silver et. al., Dec 2017)](https://arxiv.org/abs/1712.01815?utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=The%20Wild%20Week%20in%20AI)
+- [The Case for Learned Index Structures (Kraska et. al., Dec 2017)](https://arxiv.org/abs/1712.01208)
+	- Show how to implement neural-network-based 'learned indexes' that can replace B-Tree indexes.
+		- Result: 70$ speed improvement, save an order of magnitude in memory over several real-world datasets
+			- Caveats: dataset fixed etc
+	- To consider: implications of replacing indices with learned models for system design, software etc
+
+## Papers to post summaries of (already read)
+- [Deep Reinforcement Learning from Human Preferences]
+- [Gridworlds]
+
+## Posts to read
+- [Framework to look at ML research](http://blog.evjang.com/2017/11/exp-train-gen.html?utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=The%20Wild%20Week%20in%20AI)
+
+## Past papers to print
+### General
 - [A Deep Hierarchical Approach to Lifelong Learning in Minecraft](https://arxiv.org/abs/1604.07255)
 - [Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation](https://arxiv.org/abs/1604.06057)
 - [An Actor-Critic Algorithm for Sequence Prediction](https://openreview.net/forum?id=SJDaqqveg)

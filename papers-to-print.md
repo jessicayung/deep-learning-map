@@ -21,6 +21,19 @@
 ## Posts to read
 - [Framework to look at ML research](http://blog.evjang.com/2017/11/exp-train-gen.html?utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=The%20Wild%20Week%20in%20AI)
 
+## Papers to maybe-read
+- [CycleGAN: A Master of Steganography](https://arxiv.org/abs/1712.02950)
+	- CycleGAN can be used to train a generator of adversarial examples
+		- it learns to '"hide" information about a soruce image inside the generated image in nearly imperceptible, high-frequency noise'
+	- Steganography: 'hiding messages or information within other non-secret text or data.
+	- CycleGANS: prev successfully used to learn correspondences between two image distributions
+		- train two maps (functions) F:X->Y, G:Y->X in parallel 
+			- (image classes X and Y) two functions 
+			- goal: satisfy conditions:
+				1. Fx ~ p(y) for x~p(x), Gy ~p(x) for y ~ p(y)
+				2. GFx = x, FGy = y for all x in X, for all y in Y
+		- see intro of this paper or Zhu et al., Mar/Nov 2017](https://arxiv.org/abs/1703.10593)
+
 ## Past papers to print
 ### General
 - [A Deep Hierarchical Approach to Lifelong Learning in Minecraft](https://arxiv.org/abs/1604.07255)

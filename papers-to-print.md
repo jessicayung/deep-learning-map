@@ -6,9 +6,13 @@
 - [Mastering Chess and Shogi by Self-Play with a General Reinforcement Learning Algorithm (Silver et. al., Dec 2017)](https://arxiv.org/abs/1712.01815?utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=The%20Wild%20Week%20in%20AI)
 - [The Case for Learned Index Structures (Kraska et. al., Dec 2017)](https://arxiv.org/abs/1712.01208)
 	- Show how to implement neural-network-based 'learned indexes' that can replace B-Tree indexes.
-		- Result: 70$ speed improvement, save an order of magnitude in memory over several real-world datasets
+		- Result: 70% speed improvement, save an order of magnitude in memory over several real-world datasets
 			- Caveats: dataset fixed etc
 	- To consider: implications of replacing indices with learned models for system design, software etc
+	- Related:
+		- [Software 2.0: Related article by Andrej Karpathy on how neural networks represent a fundamental shift in how we write sofware (Nov 2017)](https://medium.com/@karpathy/software-2-0-a64152b37c35)
+		- [DeepConfig: Automating Data Center Network Topologies Management with Machine Learning (Streiffer and Chen et. al., Dec 2017)](https://arxiv.org/abs/1712.03890)
+			- TODO: write summary
 
 ## Papers to post summaries of (already read)
 - [Deep Reinforcement Learning from Human Preferences]

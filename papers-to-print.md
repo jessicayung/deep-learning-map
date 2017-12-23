@@ -33,8 +33,10 @@
 				1. Fx ~ p(y) for x~p(x), Gy ~p(x) for y ~ p(y)
 				2. GFx = x, FGy = y for all x in X, for all y in Y
 		- see intro of this paper or Zhu et al., Mar/Nov 2017](https://arxiv.org/abs/1703.10593)
+- [Progressive Growing of GANs for Improved Quality, Stability, and Variation (Karras et. al., Oct 2017)](http://research.nvidia.com/publication/2017-10_Progressive-Growing-of)
+	- New training method for GANs that speeds up and stabilises training, which produces images uf 'unprecedented quality' (fake celebrity CelebA images)
 
-## Past papers to print
+## Previous papers to print
 ### General
 - [A Deep Hierarchical Approach to Lifelong Learning in Minecraft](https://arxiv.org/abs/1604.07255)
 - [Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation](https://arxiv.org/abs/1604.06057)
@@ -50,3 +52,16 @@ Multiagent Reinforcement Learning](https://arxiv.org/pdf/1711.00832.pdf)
 ### Capsule Networks
 - [Dynamic Routing between Capsules (Capsule networks)](https://arxiv.org/pdf/1710.09829.pdf)
 - [Matrix Capsules with EM Routing](https://openreview.net/pdf?id=HJWLfGWRb)
+
+## MRes Project
+- [FeUdal Networks for Hierarchical Reinforcement Learning (Vezhnevets et. al., 2017)](https://arxiv.org/abs/1703.01161)
+- [Reinforcement Learning with Unsupervised Auxiliary Tasks (Jadergberg et. al., 2016)](https://arxiv.org/abs/1611.05397)
+- [Feature Control as Intrinsic Motivation for Hierarchical Reinforcement Learning (Dilokthanakul et. al., Nov 2017)](https://arxiv.org/pdf/1705.06769.pdf)
+- [A Deep Hierarchical Approach to Lifelong Learning in Minecraft](https://arxiv.org/abs/1604.07255)
+- [Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation](https://arxiv.org/abs/1604.06057)
+
+#### Tangentially relevant
+- [Hierarchical Multiscale Recurrent Neural Networks](https://openreview.net/forum?id=S1di0sfgl)
+
+#### Friend linked to
+- [Learning and Transfer of Modulated Locomotor Controllers (Heess et. al., 2017)](https://arxiv.org/abs/1610.05182)

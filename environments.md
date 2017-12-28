@@ -32,6 +32,10 @@
 	- Unity-based with Python API. OS: Mac or Ubuntu.
 	- [[Website]](http://ai2thor.allenai.org./)[[Video]](https://www.youtube.com/watch?time_continue=7&v=MvvAhF4HZ8s) [[Paper]](https://arxiv.org/abs/1712.05474)
 
+## Platforms (may not quite be environments)
+- [MAgent](https://github.com/geek-ai/MAgent)
+	- Research platform for many-agent reinforcement learning. (hundreds to millions of agents)
+
 ## Other resources
 ![](images/ai-envs-comparison-ai2thor.png)
 *Comparison of environments. Credits: AI2-THOR (possible bias in selection of criteria)*

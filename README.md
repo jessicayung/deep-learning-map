@@ -78,7 +78,7 @@ Have added a :star: to the ones I find particularly helpful.
 	- Lists summaries by date reviewed, list also includes many other papers without summaries (are these key papers or ones he's read?).
 	- About 100 summaries. Last active Nov 2017.
 	- Starred because summaries are short but to the point, and because there are many summaries.
-	- I also recommend his weekly newsletter ['The Wild Week in AI'](https://www.getrevue.co/profile/wildml) and his blog [WildML](http://www.wildml.com/) which has some great tutorials and a deep learning glossary.
+	- I also recommend his weekly newsletter ['The Wild Week in AI'](https://www.getrevue.co/profile/wildml) and his blog [WildML](http://www.wildml.com/) which has some great tutorials and a [deep learning glossary](http://www.wildml.com/deep-learning-glossary/).
 		- In some way the glossary has done part of what I'd like to do with this map. Haha great!
 		- Oh and did I mention his [repo of implementations of RL algorithms](https://github.com/dennybritz/reinforcement-learning)? :O I haven't even gone through this properly yet.
 - [Dibyatanoy Bhattacharjee (Yale)](https://dibyatanoy.github.io/deep-learning-paper-summaries/)

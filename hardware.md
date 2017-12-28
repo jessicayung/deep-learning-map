@@ -7,3 +7,4 @@
 - Deep Learning chip companies: Chinese companies [Bitmain](https://www.sophon.ai/blog/view.html?id=12) and [Cambricon](https://syncedreview.com/2017/11/06/ai-chip-explosion-cambricons-billion-device-ambition/) to be competitive with NVIDIA? 
 	- ImportAI #68
 	- [ARK Invest table](https://twitter.com/ARKInvest/status/929440610599260161) -> great general overview
+- [Horizon Robotics (Surveillance chip for detecting and recognising many objects simultaneously, China)](http://news.sina.com.cn/o/2017-12-20/doc-ifypxmsq8674661.shtml)

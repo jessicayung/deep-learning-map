@@ -13,6 +13,10 @@
 		- [Software 2.0: Related article by Andrej Karpathy on how neural networks represent a fundamental shift in how we write sofware (Nov 2017)](https://medium.com/@karpathy/software-2-0-a64152b37c35)
 		- [DeepConfig: Automating Data Center Network Topologies Management with Machine Learning (Streiffer and Chen et. al., Dec 2017)](https://arxiv.org/abs/1712.03890)
 			- TODO: write summary
+- [Superhuman AI for heads-up no-limit poker: Libratus beats top professionals (Brown et. al., Dec 2017)](http://science.sciencemag.org/content/early/2017/12/15/science.aao1733)
+- [Peephole: Predicting Network Performance Before Training (Deng et. al., Dec 2017)](https://arxiv.org/pdf/1712.03351.pdf)
+- [Mathematics of Deep Learning (Vidal et. al., Dec 2017)](https://arxiv.org/abs/1712.04741)
+	- 'Review of recent work that aims to provide a mathematical justification for several properties of deep networks, such as global optimality, geometric stability, and invariance of the learned representations.''
 
 ## Papers to post summaries of (already read)
 - [Deep Reinforcement Learning from Human Preferences]
@@ -35,6 +39,19 @@
 		- see intro of this paper or Zhu et al., Mar/Nov 2017](https://arxiv.org/abs/1703.10593)
 - [Progressive Growing of GANs for Improved Quality, Stability, and Variation (Karras et. al., Oct 2017)](http://research.nvidia.com/publication/2017-10_Progressive-Growing-of)
 	- New training method for GANs that speeds up and stabilises training, which produces images uf 'unprecedented quality' (fake celebrity CelebA images)
+- [Applied Machine Learning at Facebook: A Datacenter Infrastructure Perspective (Hazelwood et. al., Dec 2017)](https://research.fb.com/publications/applied-machine-learning-at-facebook-a-datacenter-infrastructure-perspective/)
+	- High performance computing, 
+- [Deep Learning Scaling is Predictable, Empirically (Hestness et. al., Dec 2017)](http://research.baidu.com/deep-learning-scaling-predictable-empirically/)
+	- How scale relates to performance
+	- Results show that 'generalization error—the measure of how well a model can predict new samples—decreases as a power-law of the training data set size'
+- [A Flexible Approach to Automated RNN Architecture Generation (Schrimpf et. al., Dec 2017)](https://arxiv.org/abs/1712.07316)
+	- Method: 'using a recursive neural network to iteratively predict the performance of new architectures, reducing the need for actual full-blown testing of the models'
+	- Result: 
+	- Summaries from Import AI #74.
+
+## Paradigms
+- [Deep Neuroevolution (Uber, Dec 2017)](https://eng.uber.com/deep-neuroevolution/)
+	- Claim: Neuroevolution, where neural networks are optimized through evolutionary algorithms, is also an effective method to train deep neural networks for reinforcement learning (RL) problems.
 
 ## Previous papers to print
 ### General

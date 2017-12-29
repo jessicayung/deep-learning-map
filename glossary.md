@@ -19,6 +19,9 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 
 - Backpropagation
 - Synthetic gradients
+	- Result: Faster updating of parameter weights
+	- Method: Using predicted 'synthetic gradients' (estimate based on local gradient) instead of true backpropagated error gradients
+	- [[Paper (Jaderberg et. al., Jul 2017)]](https://arxiv.org/pdf/1608.05343.pdf)
 
 ### Models
 

@@ -116,6 +116,52 @@ Examples of ways reward hacking can happen:
 	- Often called 'wireheading'
 	- Especially concerning if humans are in the loop (may harm or coerce humans to get reward)
 
+#### Approaches
+1. Adversarial Reward Function
+	- Perspective: Reward hacking as ML system having an adversarial relationship with reward function
+	- Solution: make reward function its own agent -> find scenarios where ML system claims is high reward but human labels as low reward
+	- Principle: System has multiple pieces trained using different objectives that are used to check each other.
+2. Model Lookahead
+	- Give reward based on anticipated future states rather than the present state.
+	- Helpful for situations where model rewrites reward function
+		- by giving negative reward for planning to replace the reward function (lol)
+3. Adversarial Blinding
+	- Blind a model to certain variables using adversarial techniques
+	- e.g. to prevent a model from understanding how its reward is generated.
+	- Described as 'Cross-validation for agents'
+4. Careful Engineering
+	- e.g. formal verification or practical testing of parts of the system
+		- can avoid e.g. buffer overflow (TODO: which will cause what?)
+	- RD: May be possible to create a highly reliable 'core agent' which could ensure reasonable behaviour from the rest of the agent.
+		- *T: like null or 'known safe' policy?*
+5. Reward Capping
+	- Cap maximum possible reward 
+	- To prevent low-probability, high-payoff strategies
+	- *T: okay...?*
+6. Counterexample Resistance
+	- Adversial training, weight uncertainty or architectural decisions to resist adversarial counterexamples
+7. Multiple Rewards
+	- Use combination of multiple rewards, e.g. different physical implementations or different proxies for the sam informal objective.
+		- Difficulty: bad behaviours that affect all reward fns in a correlated way.
+	- *T: like repeated codes. RD: parallels in information theory?*
+8. Reward Pretraining
+	- Defense against agent manipulating its own reward function (feedback or environmental embedding)
+	- Train a fixed reward function ahead of time as a supervised learning process divorced from interaction with the environment
+	- Difficulty: Forfeits ability to further learn reward fn after pretraining, which may create other vulnerabilities
+	- *T: pretrained version of DRLHP?*
+9. Variable Indifference
+	- Want agent NOT to optimse certain variables.
+		- like routing optimisation pressure around parts of the environment.
+	- Difficulty: Make sure the variables targeted for indifference are actually the variables we care about, vs proxies or aliased versions.
+	- *T: I like this approach.*
+10. Trip Wires
+	- Deliberately introduce plausible vulnerabilities that will alert us if the agent hacks its reward function.
+	- Difficulties: Agent potentially seeing through the trip wire and avoiding it
+
+#### Potential experiments:
+- Delusion box environment: standard RL agents distort their own perception to apprear to receive higher reward vs optimising objective
+- Creating classes of environments where a delusion box is a natural and integrated part of the environment
+	- *e.g. AI Safety Gridworlds watering tomatoes x bucket environment.*
 
 <!-- ## Thoughts
 

@@ -11,8 +11,8 @@ Amodei and Olah et. al., Jul 2016
 ## Summary
 
 Discusses five areas (objectives) for AI safety research:
-1. Avoid negative side effects
-2. Avoid Reward Hacking
+1. [Avoiding negative side effects](#i-avoiding-negative-side-effects)
+2. [Avoiding Reward Hacking](#ii-avoiding-reward-hacking)
 3. Scalable Oversight
 	- TODO: add brief explanation
 4. Safe exploration
@@ -84,7 +84,7 @@ For each area, they discuss the research problems, current and promising approac
 Potential experiments:
 1. Avoid obstacles (e.g. don't break vases) while accomplishing a single goal.
 
-### II. Avoid Reward Hacking
+### II. Avoiding Reward Hacking
 
 Examples of ways reward hacking can happen:
 - Closing eyes (don't sense mess) vs cleaning mess up

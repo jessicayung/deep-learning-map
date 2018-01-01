@@ -67,6 +67,30 @@ Often used for regularisation.
 		- i is the index for examples
 	- Aside: can be formulated in other ways (OVA, AVA)
 - Cross-entropy loss
+	- Minimises cross-entropy between estimated class probabilities and the distribution where all p(x) mass is on the correct class
+	- $L_i = -\log(\frac{e^{f_{y_i}}{\sum_j e^{f_j}})$
+		- equivalently: $L_i = -f_{y_i} + \log\sum_j e^{f_j}$
+		 - where $f_j$ = jth element of vector of class scores $f$.
+	 - Equivalent to minimising Kullback-Leibler divergence $D_{KL}$ between the two distributions. 
+	 	- since $H(p,q) = H(p) + D_{KL}(p||q)$, and $H(p) = 0$.
+	 - Information Theory Cross Entropy
+	 	- $H(p,q)=-\sum_xp(x)\log q(x)$
+	 		- where p is a 'true' distribution and q is an estimated distribution
+	- Probabilistic Interpretation
+		- Interpret $P(y_i|x_i;W) = \frac{e^{f_{y_i}}{\sum_j e^{f_j}}$ as the 
+			- Normalised probability assigned to the correct label $y_i$ given the image $x_i$ and parameterised by $W$.
+			- since softmax classifier interprets $f$ scores as unnormalised log probabilities.
+		- i.e. minimising negative log likelihood of the correct class, i.e. performing Maximum Likelihood Estimation (MLE).
+		- Can thus also interpret R(W) as 'coming from a Gaussian prior over the weight matrix W, where we are performing Maximum a posteriori (MAP) estimation'
+		- then the cross-entropy loss $L_i = -\log P(y_i|x_i;W)$.
+ - Softmax function
+ 	- $f_j(z) = \frac{e^{z_j}{\sum_k e^{z_k}}$
+ 	- 'Takes vector of arbitrary real-valued scores in z and squashes it to a vector of values between zero and one that sum to one.'
+ 	- Problems: Dividing large numbers (exponentials may be large) may be numerically unstable, so multiply top and bottom by constant C, where e.g. $\log C = - \max_j f_j$
+ 		- i.e. shift values inside vector $f$ so highest value is zero.
+- Softmax classifier notes
+	- Outputs unnormalised log probabilities whose peakiness depends on regularisation strength.
+		- Higher regularisation strength -> less peaky
 
 #### Regularisation
 - Loss is usually = Data loss + Regularisation loss
@@ -112,6 +136,11 @@ Often used for regularisation.
 - Bias trick (to represent W, b as one)
 	- Extend input vector x_i by one additional dimension than holds constant 1 (default bias dimension)
 	- W, b merged into new W.
+- SVM vs Softmax classifiers
+	- SVM interprets scores as class scores, loss function encourages correct class to have a score higher by a margin than other class scores
+	- Softmax interprets scores as unnormalised log probabilities for each class, encourages log probability of correct class to be high.
+	- SVM and Softmax losses are thus not comparable
+	- SVM more 'local': happy if score for correct class is sufficiently higher than other classes, vs softmax never fully satisfied
 
 ### Other terms
 - Subgradient

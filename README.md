@@ -130,7 +130,7 @@ Including these here because they contain fantastic summaries of what's going on
 	- Links with brief summaries (and occasionally helpful context or opinions).
 
 
-# 6. Development Notes
+## 6. Development Notes
 
 #### 9 Dec 2017
 - Add brainstormed list of topics to cover. The idea is to write (or link to) paper summaries, good blog posts or articles that will help people with limited experience get a better idea of what is going on in the field. This means:

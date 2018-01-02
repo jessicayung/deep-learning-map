@@ -155,6 +155,12 @@ Often used for regularisation.
 - Softmax classifier notes
 	- Outputs unnormalised log probabilities whose peakiness depends on regularisation strength.
 		- Higher regularisation strength -> less peaky
+- L2 vs Softmax
+	- Softmax more stable, L2 harder to optimise
+- Structured loss
+	- Case where labels can be arbitrary structures such as graphs, trees or other complex objects. Space of structured assumed to be large and not easily enumerable.
+	- Idea: Deand margin between correct structure y_i and highest-scoring incorrec structure.
+	- Usually devise special solvers (as opposed to gradient descent) that exploit simplifying assumptions of the structure space.
 
 ### Regularisation loss
 - Loss is usually = Data loss + Regularisation loss

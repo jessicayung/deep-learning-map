@@ -11,25 +11,6 @@
 		- to quantify quality of a set of parameters
 	- Optimiser (finding parameters to minimise loss)
 
-### Convolutional Neural Networks
-
-
-### Recurrent Neural Networks
-
-
-### Backpropagation
-
-
-### Measures of distance
-
-Often used for regularisation.
-
-- L1 distance 
-	- $d_1(x, y) = \sum_i|x_i - y_i|$
-- L2 distance 
-	- $d_2(x, y) = \sqrt{\sum_i (x_i - y_i)^2}$
-
-
 ### Data
 - Training set
 	- Data used to directly train your model
@@ -58,6 +39,15 @@ Often used for regularisation.
 ### Data preprocessing
 - Centering data by subtracting mean from each feature
 - Scaling input features so values range from [-1,1]
+
+### Measures of distance
+
+Often used for regularisation.
+
+- L1 distance 
+	- $d_1(x, y) = \sum_i|x_i - y_i|$
+- L2 distance 
+	- $d_2(x, y) = \sqrt{\sum_i (x_i - y_i)^2}$
 
 ### Loss Functions
 - Multiclass Support Vector Machine (SVM) loss
@@ -131,6 +121,18 @@ Often used for regularisation.
 	- Mini-batch size = 1. 
 	- In practice people often call mini-batch gradient descent SGD.
 <!-- TODO: implement MGD etc -->
+
+
+### Backpropagation
+
+
+### Convolutional Neural Networks
+
+
+### Recurrent Neural Networks
+
+
+
 
 ### Other techniques
 - Softmax

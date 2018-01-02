@@ -6,10 +6,10 @@
 	- Input
 	- Score function: maps raw data to class scores (for classification)
 		- Layers
-		- Conversion to output
 	- Loss Function (also cost function, objective)
-		- e.g. accuracy?
-	- Optimiser (to minimise loss)
+		- e.g. Softmax, SVM
+		- to quantify quality of a set of parameters
+	- Optimiser (finding parameters to minimise loss)
 
 ### Convolutional Neural Networks
 
@@ -66,6 +66,8 @@ Often used for regularisation.
 		- where $s_j$ is the score for the jth class,
 		- i is the index for examples
 	- Aside: can be formulated in other ways (OVA, AVA)
+	- Convex function, non-differentiable (due to kinks) but [subgradient](https://en.wikipedia.org/wiki/Subderivative) still exists and is commonly used instead.
+		- Subgradient: set of slopes of lines drawn through a point f(x0) which is everywhere either touching or below the graph of f.
 - Cross-entropy loss
 	- Minimises cross-entropy between estimated class probabilities and the distribution where all p(x) mass is on the correct class
 	- $L_i = -\log(\frac{e^{f_{y_i}}{\sum_j e^{f_j}})$
@@ -113,6 +115,22 @@ Often used for regularisation.
 	- $f(x) = max(0, x)$
 	- Squared Hinge Loss: $max(0, -)^2$
 		- Penalises violated margins more strongly. Less common.
+
+### Optimisation
+- Key hyperparameter: learning rate (step size of gradient descent)
+- Centered difference formula
+	- $[f(x+h)-f(x-h)]/2h$ 
+	- in practice often better for computing numeric gradient than the typical gradient formula ($[f(x+h)-f(x)]/h$).
+- Gradient check: computing the analytic gradient and comparing it to the numerical gradient to check the correctness of your (analytical) implementation
+- Gradient descent:
+	- repeatedly evaluating the gradient and then performing a parameter update (`weights += step_size *  weights_grad`)
+- Mini-batch gradient descent:
+	- Parameter update after computing gradient over a batch (subset) of the training data 
+	- Works because examples in the training data are correlated
+- Stochastic gradient descent
+	- Mini-batch size = 1. 
+	- In practice people often call mini-batch gradient descent SGD.
+<!-- TODO: implement MGD etc -->
 
 ### Other techniques
 - Softmax

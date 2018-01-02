@@ -3,6 +3,7 @@
 Most of these definitions are paraphrased from [CS231n](http://cs231n.github.io/).
 
 ### Artificial Neural Networks
+- 'Perform sequences of linear mappings with interwoven non-linearites'
 - Typical Components of a Neural Network
 	- Input
 	- Score function: maps raw data to class scores (for classification)
@@ -51,7 +52,58 @@ Most of these definitions are paraphrased from [CS231n](http://cs231n.github.io/
 
 ### Data preprocessing
 - Centering data by subtracting mean from each feature
-- Scaling input features so values range from [-1,1]
+	- `X-= np.mean(X, axis=0)`
+	- For images, can subtract a single value from all pixels for convenience: `X -= np.mean(X)`.
+- Normalisation
+	- Method (2 ways)
+		- 1: Divide each zero-centered feature by its standard devation:
+			- `X /= np.std(X, axis=0)`
+		- 2: Scaling input features so values range from [-1,1]
+	- 'Only if different features have different scales but should be of approximately equal importance to the learning algorithm' -> hm
+- PCA (principle component analysis)
+	- Dimensionality reduction: keep K dimensions of data that contain the most variance.
+	- Method:
+		1. Center data at zero (as above).
+		2. Compute covariance matrix
+		3. Compute SVD factorisation of data covariance matrix: eigenvectors U, singular values S, V.
+		4. Project original (zero-centered) data into the eigenbasis
+		5. Use only the top K eigenvectors (reduce to K dims).
+- Whitening: 
+	- Used after PCA. Normalises the scale of the data.
+	- Method: Take the data in the eigenbasis and divide each dimension by the egienvalue to normalise the scale
+	- Cons: Can exaggerate noise (higher frequencies) since it stretches all dims to be of equal size in the input
+		- Can mitigate with stronger smoothing
+- Note that statistics such as the mean should only be computed from training data.
+- PCA and whitening rarely used with CNNs.
+
+### Weight initialisation
+- Initialise to small random numbers
+	- Not too small for deep nets: Smaller weights mean smaller gradients which could reduce the 'gradient signal' flowing backward through a network and so be a problem for deep networks (because there are so many layers it needs to propagate through)
+- Normalise variance per neuron by 1/sqrt(num_input)
+	- Alts:
+		- For NNs with ReLU neurons: `sqrt(2.0/n)` [(He et. al.)](https://arxiv-web3.library.cornell.edu/abs/1502.01852)
+			- **current recommendation**
+		- `sqrt(2.0/(n_in + n_out))` [(Glorot et. al.)](http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf)
+	- Variance of dist of outputs from a randomly initialised neuron grows with number of inputs. 
+	- 1/sqrt(num_inputs) is the recommended heuristic scaling factor 
+	- So all neurons have approx same output dist, empirically improves rate of convergence
+	- Fan-in: number of inputs
+- Alt: sparse initialisation
+	- Set all weight matrices to zero (but say connections sampled from small gaussian? TODO: follow up), but 
+	- Break symmetry by randomly connecting each neuron to a fixed number of neurons below it, e.g. 10 neurons.
+- Bias initialisation
+	- Commonly initialise to zero
+	- (Unclear if provides consistent improvement) ReLU non-linearities: can init to small constant like 0.01 to ensure all ReLU units fire in the begining and thus obtain and propagate some gradient.
+- Mistakes
+	- All-zero initialisation (all weights the same): no asymmetry between neurons, all compute same gradients and undergo same parameter updates. 
+- Batch normalisation 
+	- Make nets more robust to bad initialisation.
+	- Idea: Explicitly forces activations throughout net to take on unit gaussian dist at start of training.
+		- Possible because normalisation is a simpe differentiable operation.
+		- Like doing preprocessing at each layer of the net.
+	- Method:
+		- Insert BatchNorm laye immediately after fully connected layers.
+	- [Paper by Ioffe and Szegedy, 2015](https://arxiv.org/abs/1502.03167)
 
 ### Measures of distance
 
@@ -62,7 +114,9 @@ Often used for regularisation.
 - L2 distance 
 	- $d_2(x, y) = \sqrt{\sum_i (x_i - y_i)^2}$
 
-### Loss Functions
+### Loss Functions (Data loss)
+- Loss is usually = Data loss + Regularisation loss
+- Loss usually mean loss per example over training data examples
 - Multiclass Support Vector Machine (SVM) loss
 	- Wants correct class to have score higher than incorrect classes by at least some fixed margin $\Delta$.
 	- $L_i = \sum_{j\ne y_i}\max(0,s_j-(s_{y_i}-\Delta))$ 
@@ -76,11 +130,16 @@ Often used for regularisation.
 	- $L_i = -\log(\frac{e^{f_{y_i}}{\sum_j e^{f_j}})$
 		- equivalently: $L_i = -f_{y_i} + \log\sum_j e^{f_j}$
 		 - where $f_j$ = jth element of vector of class scores $f$.
-	 - Equivalent to minimising Kullback-Leibler divergence $D_{KL}$ between the two distributions. 
-	 	- since $H(p,q) = H(p) + D_{KL}(p||q)$, and $H(p) = 0$.
-	 - Information Theory Cross Entropy
-	 	- $H(p,q)=-\sum_xp(x)\log q(x)$
-	 		- where p is a 'true' distribution and q is an estimated distribution
+	- Problems:
+		- If number of classes is very large (e.g. ImageNet 22k classes), may be helpful to use hierarchical softmax
+			- decomposes labels into tree (each label is a path), softmax classifier trained at each node of tree.
+			    - Structure of tree strongly affects performance as is usually problem-dependent
+	- More Theory
+		- Equivalent to minimising Kullback-Leibler divergence $D_{KL}$ between the two distributions. 
+		 	- since $H(p,q) = H(p) + D_{KL}(p||q)$, and $H(p) = 0$.
+		- Information Theory Cross Entropy
+		 	- $H(p,q)=-\sum_xp(x)\log q(x)$
+		 		- where p is a 'true' distribution and q is an estimated distribution
 	- Probabilistic Interpretation
 		- Interpret $P(y_i|x_i;W) = \frac{e^{f_{y_i}}{\sum_j e^{f_j}}$ as the 
 			- Normalised probability assigned to the correct label $y_i$ given the image $x_i$ and parameterised by $W$.
@@ -88,7 +147,7 @@ Often used for regularisation.
 		- i.e. minimising negative log likelihood of the correct class, i.e. performing Maximum Likelihood Estimation (MLE).
 		- Can thus also interpret R(W) as 'coming from a Gaussian prior over the weight matrix W, where we are performing Maximum a posteriori (MAP) estimation'
 		- then the cross-entropy loss $L_i = -\log P(y_i|x_i;W)$.
- - Softmax function
+- Softmax function
  	- $f_j(z) = \frac{e^{z_j}{\sum_k e^{z_k}}$
  	- 'Takes vector of arbitrary real-valued scores in z and squashes it to a vector of values between zero and one that sum to one.'
  	- Problems: Dividing large numbers (exponentials may be large) may be numerically unstable, so multiply top and bottom by constant C, where e.g. $\log C = - \max_j f_j$
@@ -97,22 +156,47 @@ Often used for regularisation.
 	- Outputs unnormalised log probabilities whose peakiness depends on regularisation strength.
 		- Higher regularisation strength -> less peaky
 
-#### Regularisation
+### Regularisation loss
 - Loss is usually = Data loss + Regularisation loss
-	- Regularisation loss is usually NOT a function of the data, but of the model parameters
+    - Regularisation loss is usually NOT a function of the data, but of the model parameters
 - Regularisation: Preference for certain sets of weights over others. 
 	- Usually to prevent overfitting or reduce ambiguity when there exist multiple solutions (e.g. when weights $\lambda W$ all yield same output, for positive real $\lambda$).
 - L2 norm
-	- Discourages large weights
-		- 'tends to improve generalization, because it means that no input dimension can have a very large influence on the scores all by itself'
 	- Elementwise quadratic penalty over all parameters:
 		- $R(W) = \sum_k \sum_l W_{k,l}^2$
 			- sums up all squared elements of W
+		- often $\frac{1}{2}\lambda w^2$, 0.5 because then gradient wrt w is $\lambda w$.
+	- Discourages large weights
+		- 'tends to improve generalization, because it means that no input dimension can have a very large influence on the scores all by itself'
+		- encourages more diffuse (vs peaky) vectors
+	- During gradient descent param update, each weight is decayed linearly towards zero. `W+= 
+	-lambda * W`.
 	- Aside: Leads to max margin property in SVMs
+- L1 regularisation
+	- $R(W) = \lambda|w|$
+	- Makes weight vectors sparse during optimisation
+		- Neurons end up using only a sparse subset of most important inputs and become nearly invariant to 'noisy' inputs.
+- ElasticNet regularisation
+	- Combine L1 with L2 regularisation: $R(W) = \lambda_1|w| + \lambda_2w^2$
+- Notes (L1, L2):
+	- Claim: L2 expected to give superior performance over L1 if we're not concerend with explicit feature selection (CS231n)
+	- Common to regularise only weights W and not biases b because biases don't control the strength of influence of an input dimensioon, but in practice this often turns out to have a negligible effect.
+	- If have regularisation loss, cannot achieve zero loss on all examples (assuming examples are distinct), since e.g. for L2 norm, zero loss only possible when W = 0.
+- Max norm constraints: 
+	- Absolute upper bound on magnitude of weight vector for each neuron
+	- Method: clamp weights after parameter updates
+		- called projected gradient descent? TODO: check.
+	- Pros: Network cannot 'explode' even when learning rate is set too high because updates always bounded.
+- Dropout
+	- Only keep a neuron active with probability p (hyperparameter), set it to zero otherwise
+	- [Paper by Srivastava et. al., 2014](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)
+	- NOTE for raw implementations: usually scale by 1/p AND drop during train time to keep the expected output of each neuron the same during test and train
+- DropConnect (not common)
+	- Random set of weights set to zero during forward pass
+- Regularising bias (not common)
+	- But rarely leads to significantly worse performance
 - Parameters like scaling of regularisation loss usually determined by cross-validation
-- Common to regularise only weights W and not biases b because biases don't control the strength of influence of an input dimensioon, but in practice this often turns out to have a negligible effect.
-- If have regularisation loss, cannot achieve zero loss on all examples (assuming examples are distinct), since e.g. for L2 norm, zero loss only possible when W = 0.
-
+	
 #### Helper functions in loss functions
 - Hinge Loss
 	- $f(x) = max(0, x)$
@@ -189,8 +273,6 @@ Often used for regularisation.
 
 
 ### Recurrent Neural Networks
-
-
 
 
 ### Other techniques

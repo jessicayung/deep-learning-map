@@ -1,15 +1,28 @@
 # Basics Glossary
 
+Most of these definitions are paraphrased from [CS231n](http://cs231n.github.io/).
 
 ### Artificial Neural Networks
 - Typical Components of a Neural Network
 	- Input
 	- Score function: maps raw data to class scores (for classification)
 		- Layers
+		- Output layer
+			- Usually don't have an activation fn
 	- Loss Function (also cost function, objective)
 		- e.g. Softmax, SVM
 		- to quantify quality of a set of parameters
 	- Optimiser (finding parameters to minimise loss)
+- Size: usually measured by number of parameters
+	- Small networks not preferred: they are harder to train with local methods such as gradient descent.
+		- Many minima of loss functions are bad and easy to converge to -> variance in final loss
+	- Large networks: beware of overfitting. 
+		- Tackle using regularisation.
+- Representational power: NNs with at least one hidden layer are universal approximators
+	- but this has little to do with their widespread use
+- Number of layers
+	- (Fully Connected only) In practice, going beyond 3 layers rarely helps much more.
+	- CNNs: depth has been found to be extremely important (10+ learnable layers).
 
 ### Data
 - Training set
@@ -135,7 +148,7 @@ Often used for regularisation.
 	- So preprocessing matters: if input too large, need to lower learning rate to compensate.
 
 ### Activation functions
-- In practice, usually use ReLU. Don't use sigmoid.
+- In practice, usually use ReLU. Be careful with learning rates, possibly monitor fraction of 'dead' units in a network. Don't use sigmoid.
 - ReLU $f(x)=\max(0,x)$
 	- Pros:
 		- Greatly accelerates the converges of SGD compared to the sigmoid/tanh functions, possibly due to linear, non-saturating form (Krizhevsky et. al.).
@@ -164,7 +177,12 @@ Often used for regularisation.
 	- Activations saturate, but output is zero-centered. 
 		- So tanh always preferred to sigmoid.
 		- Tanh is scaled sigmoid neuron: $\tanh(x) = 2\sigma(2x) - 1$
-- Maxout
+- Maxout $\max(w_1^Tx+b_1, w_2^Tx+b_2)$
+	- Generalisation of ReLU and Leaky ReLU
+	- Pros & Cons
+		- Has benefits of ReLU (linear, no saturation) without drawbacks (dying ReLU).
+		- BUT doubles number of parameters for each neuron, leading to a high total number of paramaters
+	- Introduced by Goodfellow et. al.
 
 
 ### Convolutional Neural Networks

@@ -32,6 +32,17 @@
 	- Unity-based with Python API. OS: Mac or Ubuntu.
 	- [[Website]](http://ai2thor.allenai.org./)[[Video]](https://www.youtube.com/watch?time_continue=7&v=MvvAhF4HZ8s) [[Paper]](https://arxiv.org/abs/1712.05474)
 
+## For self-driving cars 
+- CARLA (Simulator for autonomous driving research, from Intel)
+	- 'supports flexible specification of sensor suites and environmental conditions'
+	- [[Code]](https://github.com/carla-simulator/carla) [[Paper]](http://proceedings.mlr.press/v78/dosovitskiy17a/dosovitskiy17a.pdf)
+- ParallelEye (3D urban environment modelled on Beijing's Zhongguancun region)
+	- [[Paper]](https://arxiv.org/abs/1712.08394)
+	- Unclear if full dataset exists or if this is just a proposed pipeline
+	- Intended for traffic vision research
+	- Method: built using much human labour ('constructed the dataset by grabbing the available Open Street Map (OSM) layout data for a 2km x 3km area, then modeled that data using CityEngine, and built the whole environment in the Unity3D engine.' - Import AI #75)
+	- Unity
+
 ## Platforms (may not quite be environments)
 - [MAgent](https://github.com/geek-ai/MAgent)
 	- Research platform for many-agent reinforcement learning. (hundreds to millions of agents)

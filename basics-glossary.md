@@ -124,6 +124,47 @@ Often used for regularisation.
 
 
 ### Backpropagation
+- TODO: add implementation examples and links to those examples
+- Staged computation: breaking up functions into modules for which you can easily derive local gradients, and then chaining them with the chain rule.
+	- Group together expressions as a gate (e.g. sigmoid) for convenience 
+- Practical notes
+    - Useful to cache forward pass variables
+- Multiply gate:
+	- (two arguments) Local gradients are input values switched then multiplied by output gradient
+	- So scale of gradients is directly proportional to scale of inputs.
+	- So preprocessing matters: if input too large, need to lower learning rate to compensate.
+
+### Activation functions
+- In practice, usually use ReLU. Don't use sigmoid.
+- ReLU $f(x)=\max(0,x)$
+	- Pros:
+		- Greatly accelerates the converges of SGD compared to the sigmoid/tanh functions, possibly due to linear, non-saturating form (Krizhevsky et. al.).
+		- Cheaper computationally than tanh, sigmoid
+	- Cons:
+		- ReLU units can irreversibly 'die' during training: a large gradient flowing through a ReLU neuron could cause weights to update such that the neuron will never activate on any datapoint again.
+			- so gradient through that unit will always be zero.
+			- Tackle by e.g. **decreasing learning rate**.
+- Leaky ReLU: $f(x) = 1(x<0)(\alpha x) + 1(\geq 0)(x)$, where $\alpha$ is a small constant.
+	- Attempt to fix 'dying ReLU' problem. When x < 0, function has small negative slope instead of being zero.
+	<!-- TODO: verify through differentiating -->
+	- Consistency unclear
+- Sigmoid $\sigma(x) = \frac{1}{1+e^{-x}}$
+	- $\frac{d\sigma(x)}{dx} = (1-\sigma(x))\sigma(x)$
+	- Rarely used now because
+		- Sigmoids saturate and kill gradients: when neuron's activation saturates at 0 or 1, the gradient at these regions is almost zero
+			- So almost no signal will flow through the neuron to its weights and thus to its data
+			- Also need to be careful that initial weights don't saturate at 0 or 1 
+		- Sigmoid outputs are not zero-centered (less serious)
+			- -> neurons in later layers would be receiving data that is not zero-centered
+			- If data coming into neurons is always positive, gradients on weights during backprop will either always be positive or always be negative.
+			- May introduce zigzagging dynamics in gradient updates
+			- BUT once gradients summed across a batch, 'the final update for the weights can have variable signs, somewhat mitigating this issue' <!-- TODO: =? Also add code examples for these two points -->
+- Tanh
+	- Squashes real number to range [-1,1]
+	- Activations saturate, but output is zero-centered. 
+		- So tanh always preferred to sigmoid.
+		- Tanh is scaled sigmoid neuron: $\tanh(x) = 2\sigma(2x) - 1$
+- Maxout
 
 
 ### Convolutional Neural Networks

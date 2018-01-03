@@ -289,6 +289,13 @@ Often used for regularisation.
 		- Idea: Compute gradient at lookahead position `x + mu * v` instead of old position `x`, since momentum alone pushes particle to lookahead position.
 		- Stronger theoretical convergence guarantees for convex functions
 		- In practice consistently works slightly better than standard momentum
+- Second order methods (not common in practice)
+	- $x \leftarrow x - [Hf(x)]^{-1}\grad f(x)$.
+		- $Hf(x)$ being the Hessian matrix, a square matrix of second-order partial derivatives of the function (describes local curvature of loss fn)
+		- No learning rate hyperparameters
+		- Impractical for most DL applications because computing Hessian is costly in space and time
+		    - So people have developed quasi-Newnton methods that approximate the inverted Hessian, e.g. L-BFGS.
+	    - But naive L-BFGS must be computed over entire training set. Getting L-BFGS to work on mini-batches is tricky.
 
 ### Annealing learning rate
 - Learning rate decay
@@ -302,6 +309,46 @@ Often used for regularisation.
 	- 1/t decay `lr = init_lr/(1+k*t)`
 		- init_lr, k: hyperparameters
 		- t: iteration number
+
+#### Methods to tune learning rate
+- Adagrad
+	- ```
+	# Assume the gradient dx and parameter vector x
+	cache += dx**2
+	x += - learning_rate * dx / (np.sqrt(cache) + eps)
+	``` <!-- TODO: what is cache's init value? -->
+		- cache: used to normalise parameter update step element-wise. Weights with higher gradients have effective lr reduced and vice versa
+		- eps: smoothing term (1e-8 to 1e-4) that avoids division by zero
+	- Cons: monotonic learning rate usually proves too aggressive and stops learning too early
+	- By Duchi et. al.
+- RMSprop
+	- ``` cache = decay_rate * cache + (1 - decay_rate) * dx**2
+x += - learning_rate * dx / (np.sqrt(cache) + eps) # same as Adagrad
+	```
+		- Adjusted Adagrad (to reduce aggressive, monotonically decreasing learning rate -> has equalizing effect but upds do not get monotonically smaller) 
+			- Uses moving average of squared gradients instead of squared gradients.
+		- `decay_rate`: hyperparameter, typical values [0.9, 0.99, 0.999]
+	- Very effective
+- Adam
+	- ```
+	# Simplified version
+	m = beta1*m + (1-beta1)*dx
+	v = beta2*v + (1-beta2)*(dx**2)
+	x += - learning_rate * m / (np.sqrt(v) + eps)
+	```
+		- Smooth version of gradient (m) used rather than raw, possibly noisy gradient vector `dx`.
+		- Full version includes bias correction:
+			- Corrects for fact that in the first few timesteps m, v both initialised and therefore biased at zero
+			- ```
+			# t is your iteration counter going from 1 to infinity
+			m = beta1*m + (1-beta1)*dx
+			mt = m / (1-beta1**t)
+			v = beta2*v + (1-beta2)*(dx**2)
+			vt = v / (1-beta2**t)
+			x += - learning_rate * mt / (np.sqrt(vt) + eps)
+```
+	- Like RMSprop with momentum
+	- Currently recommended as default algorithm to use
 
 ### Activation functions
 - In practice, usually use ReLU. Be careful with learning rates, possibly monitor fraction of 'dead' units in a network. Don't use sigmoid.

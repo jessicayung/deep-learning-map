@@ -2,6 +2,35 @@ import numpy as np
 # import sklearn
 import matplotlib.pyplot as plt
 
+
+def relu(X):
+    return [[max(0, x) for x in example] for example in X]
+
+
+def softmax(X):
+    # TODO: optimise
+    probs = []
+    for example in X:
+        exps = [np.exp(x) for x in example]
+        den = sum(exps)
+        probs.append(exps/den)
+    return probs
+
+
+def cross_entropy_loss(pred, true):
+    if len(pred) != len(true):
+        # TODO: rewrite exception
+        raise Exception("Number of predictions different from number of labelled examples.")
+    n_examples = len(pred)
+    mean_loss = 0
+    for i in range(n_examples):
+        yh = pred[i]
+        yt = true[i]
+        loss = sum(-yt*np.log(yh))
+        mean_loss += loss/n_examples
+    return mean_loss
+
+
 # Generate data
 np.random.seed(42)
 num_examples = 20
@@ -19,21 +48,6 @@ print(y[:5])
 h1_units = 5
 h2_units = 5
 output_classes = 4
-
-
-def relu(X):
-    return [[max(0, x) for x in example] for example in X]
-
-
-def softmax(X):
-    # TODO: optimise
-    probs = []
-    for example in X:
-        exps = [np.exp(x) for x in example]
-        den = sum(exps)
-        probs.append(exps/den)
-    return probs
-
 
 # Initialise weights
 stdev = 0.001
@@ -55,5 +69,7 @@ h2 = relu(h2)
 output = np.dot(h2, Wo) + bo
 output = softmax(output)
 # print("output: ", output)
+print(cross_entropy_loss(output, y))
+
 
 # Backward prop

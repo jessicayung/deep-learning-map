@@ -26,9 +26,13 @@ def relu(X):
 
 
 def softmax(X):
-    exps = [[np.exp(x) for x in example] for example in X]
-    den = [sum(exp) for exp in exps]
-    return np.array(exps)/den
+    # TODO: optimise
+    probs = []
+    for example in X:
+        exps = [np.exp(x) for x in example]
+        den = sum(exps)
+        probs.append(exps/den)
+    return probs
 
 
 # Initialise weights
@@ -43,12 +47,13 @@ bo = np.random.randn(output_classes) * stdev
 # Forward prop
 h1 = np.dot(X, W1) + b1
 print("h1 shape: ", h1.shape)
-print("h1: ", h1)
+# print("h1: ", h1)
 h1 = relu(h1)
 h2 = np.dot(h1, W2) + b2
-print("h2: ", h2)
+# print("h2: ", h2)
 h2 = relu(h2)
 output = np.dot(h2, Wo) + bo
 output = softmax(output)
-print("output: ", output)
+# print("output: ", output)
+
 # Backward prop

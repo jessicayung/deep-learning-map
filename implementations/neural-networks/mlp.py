@@ -52,9 +52,9 @@ output_classes = 4
 stdev = 0.001
 W1 = np.random.randn(input_length, h1_units) * stdev
 b1 = np.random.randn(h1_units) * stdev
-W2 = np.random.randn(h1_units, h2_units) * stdev
-b2 = np.random.randn(h2_units) * stdev
-Wo = np.random.randn(h2_units, output_classes) * stdev
+# W2 = np.random.randn(h1_units, h2_units) * stdev
+# b2 = np.random.randn(h2_units) * stdev
+Wo = np.random.randn(h1_units, output_classes) * stdev
 bo = np.random.randn(output_classes) * stdev
 
 # Forward prop
@@ -62,10 +62,10 @@ h1 = np.dot(X, W1) + b1
 print("h1 shape: ", h1.shape)
 # print("h1: ", h1)
 h1 = relu(h1)
-h2 = np.dot(h1, W2) + b2
+# h2 = np.dot(h1, W2) + b2
 # print("h2: ", h2)
-h2 = relu(h2)
-output = np.dot(h2, Wo) + bo
+# h2 = relu(h2)
+output = np.dot(h1, Wo) + bo
 output = softmax(output)
 # print("output: ", output)
 print(cross_entropy_loss(output, y))

@@ -222,7 +222,18 @@ Often used for regularisation.
 - Centered difference formula
 	- $[f(x+h)-f(x-h)]/2h$ 
 	- in practice often better for computing numeric gradient than the typical gradient formula ($[f(x+h)-f(x)]/h$).
+	- Twice as expensive but more precise (Error terms on order of $O(h^2))$ (second order approximation) vs typical formula with error on order of $O(h)$ (first order approximation).
 - Gradient check: computing the analytic gradient and comparing it to the numerical gradient to check the correctness of your (analytical) implementation
+	- Consider the relative error $\frac{|f'_a - f'_n|}{\max(|f'_a|, |f'_n|)}$
+		- AND explicitly keep track of the case where both are zero and pass the gradient check in that edge case.
+		- Empirical figures for relative error (CS231n):
+			- > 1e-2: gradient probably wrong
+			- between (1e-2, 1e-4): uncomfortable
+			- under 1e-4: usually okay for objectives with kinks, but too high otherwise
+			- under 1e-7: good
+		- Will get higher relative errors with deeper networks
+	- Use double precision
+	- More at [CS231n](http://cs231n.github.io/neural-networks-3/)
 - Gradient descent:
 	- repeatedly evaluating the gradient and then performing a parameter update (`weights += step_size *  weights_grad`)
 - Mini-batch gradient descent:
@@ -244,6 +255,53 @@ Often used for regularisation.
 	- (two arguments) Local gradients are input values switched then multiplied by output gradient
 	- So scale of gradients is directly proportional to scale of inputs.
 	- So preprocessing matters: if input too large, need to lower learning rate to compensate.
+
+### Parameter updates
+- Using gradients computing via propagation to perform parameter updates
+- SGD
+	- Vanilla update
+		- Change parameters along negative gradient direction (to minimise loss)
+		- `x+= - learning_rate * dx`
+	- Momentum update
+		- ```
+		v = mu * v - learning_rate * dx # integrate velocity
+		x += v # integrate position
+		```
+			- 'Momentum' parameter mu is more like the coefficient of friction.
+				- Damps velocity and reduces kinetic energy of system, else particle would never come to a stop at the bottom of a hill.
+				- Usually set to [0.5, 0.9, 0.95, 0.99] when cross-validated.
+			- Optimisation can sometimes benefit a little from momentum schedules, where momentum is increased in later stages of learning.
+				- E.g. init 0.5, anneal to 0.99 over multiple epochs.
+		- 'Parameter vector will build up velocity in any direction than has consistent gradient' <!-- TODO: ? -->
+ 		- Physics perspective:
+			- Loss as height of hilly terrain, proportional to potential energy U = mgh
+			- Initialising parameters with random numbers seen as equivalent to setting a particle with zero initial velocity at some location
+			- Optimisation process equivalent to process of simulating parameter vector (particle) as rolling on the landscape
+			- Force on particle $F = -\grad U$, so force felt by particle is negative gradient of loss.
+			- F = ma, so negative gradient is proportional to acceleration of particle.
+		- VS SGD: Gradient only directly influences the velocity, which in turn has an effect on the position. VS SGD gradient directly integrates the position.
+	- Nesterov momentum update
+		- ```
+		v_prev = v
+		v = mu + v - learning_rate * dx # velocity update same
+		x += -mu * v_prev + (1+mu) * v # position update changes form
+		```
+		- Idea: Compute gradient at lookahead position `x + mu * v` instead of old position `x`, since momentum alone pushes particle to lookahead position.
+		- Stronger theoretical convergence guarantees for convex functions
+		- In practice consistently works slightly better than standard momentum
+
+### Annealing learning rate
+- Learning rate decay
+	- In practice find step decay slightly preferable because hyperparameters are more interpretable.
+	- Better to err on the side of slower decay and train for longer if you can afford the computational budget
+	- Step decay: reduce lr by some factor (e.g. 0.5) every k epochs
+		- Heuristic: reduce lr by a constant whenever the validation error stops improving
+	- Exponential decay `lr = init_lr*exp(-k*t)`
+		- init_lr, k: hyperparameters
+		- t: iteration number (or epoch)
+	- 1/t decay `lr = init_lr/(1+k*t)`
+		- init_lr, k: hyperparameters
+		- t: iteration number
 
 ### Activation functions
 - In practice, usually use ReLU. Be careful with learning rates, possibly monitor fraction of 'dead' units in a network. Don't use sigmoid.
@@ -282,6 +340,32 @@ Often used for regularisation.
 		- BUT doubles number of parameters for each neuron, leading to a high total number of paramaters
 	- Introduced by Goodfellow et. al.
 
+### Before learning (sanity checks)
+- Check you're getting the loss you expect when initialising with small parameters
+	- Check data loss alone
+		- e.g. CIFAR-10 with Softmax classifier expect initial loss to be -ln(0.1) = 2.302
+		- e.g. Weston Watkins SVM expect all desired margins to be violated, so expected loss = 9
+	- Then increasing regularisation strength should increase loss
+- Overfit a tiny subset of data
+	- e.g. 20 examples, make sure you can achieve zero cost
+	- Set regularisation = 0 for this.
+
+### During learning: things to monitor
+- Loss against epochs:
+	- if it goes flat (or increases quickly), learning rate likely too high
+	- if linearly decreasing, learning rate likely too low
+	- Variation between epochs increases as batch size decreases
+- Training and validation accuracy
+- Ratio of magnitudes of updates:weights (magnitudes)
+	- update_scale/weights_scale should be around 1e-3 (heuristic)
+		- magnitude = norm of vector
+		- If lower, learning rate might be too low and vice versa 
+	- alt: keep track of norm of gradients and gradient updates, usually correlated and give approximately the same results
+- Activation / Gradient distributions per layer
+	- Diagnosing incorrect initialisation
+		- Can identify all neurons outputting zero or all neurons being completely saturated at either -1 or 1.
+	- Method: Plot activation / gradient histograms: should not see strange distributions
+- (For images) First-layer visualisations
 
 ### Convolutional Neural Networks
 

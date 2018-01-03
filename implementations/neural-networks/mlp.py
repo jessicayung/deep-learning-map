@@ -58,17 +58,28 @@ Wo = np.random.randn(h1_units, output_classes) * stdev
 bo = np.random.randn(output_classes) * stdev
 
 # Forward prop
-h1 = np.dot(X, W1) + b1
+h1_mul = np.dot(X, W1) + b1
 print("h1 shape: ", h1.shape)
 # print("h1: ", h1)
-h1 = relu(h1)
+h1 = relu(h1_mul)
 # h2 = np.dot(h1, W2) + b2
 # print("h2: ", h2)
 # h2 = relu(h2)
 output = np.dot(h1, Wo) + bo
-output = softmax(output)
+pred = softmax(output)
 # print("output: ", output)
-print(cross_entropy_loss(output, y))
+print(cross_entropy_loss(pred, y))
 
 
 # Backward prop
+dpred = sum([-yt * 1.0 / yh for yt, yh in zip(y.ravel(), pred.ravel())])
+# sum_exps = sum([np.exp(sk) for sk in ...])
+# doutput expr: (sum_exps - np.exp(sj))*np.exp(sj)/(sum_exps**2)
+doutput = None # TODO: calculate, need to diff softmax
+dWo = doutput * h1
+dbo = doutput
+dh1 = doutput * Wo
+dh1_mul = dh1 * np.int64(h1 > 0)
+db1 = dh1_mul
+dW1 = X * dh1_mul
+dX = W1 * dh1_mul

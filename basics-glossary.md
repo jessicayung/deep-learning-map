@@ -161,6 +161,14 @@ Often used for regularisation.
 	- Case where labels can be arbitrary structures such as graphs, trees or other complex objects. Space of structured assumed to be large and not easily enumerable.
 	- Idea: Deand margin between correct structure y_i and highest-scoring incorrec structure.
 	- Usually devise special solvers (as opposed to gradient descent) that exploit simplifying assumptions of the structure space.
+- For regression
+	- L2 norm squared (of the difference between the prediction quantity and true answer)
+		- i.e. $L_i = ||f-y_i||^2_2$
+		<!-- TODO: expand this -->
+	- L1 norm of the difference between the prediction quantity and true answer
+		- $L_i = ||f-y_i||_1 = \sum_j|f_j-(y_i)_j|$
+	    - L2 norm squared because gradient becomes 
+	    simpler_
 
 ### Regularisation loss
 - Loss is usually = Data loss + Regularisation loss

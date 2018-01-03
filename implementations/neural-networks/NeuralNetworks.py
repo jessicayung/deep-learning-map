@@ -32,7 +32,76 @@ class Node:
 
 class Input(Node):
     """An input to the network."""
+    def __init__(self):
+        Node.__init__(self)
 
+    def forward(self):
+        # Do nothing because nothing is calculated
+        pass
+
+    def backward(self):
+        # TODO: (don't get this) Input node has no inputs, so gradient of node is zero
+        # I get it if it's init at zero. but if it's got inputs, still init at zero?
+        self.gradients = {self: 0}
+        # Sum gradient from output nodes
+        for n in self.outbound_nodes:
+            self.gradients[self] += n.gradients[self]
+
+
+class Linear(Node):
+    """Node that performs a linear transform."""
+    def __init__(self, X, W, b):
+        Node.__init__(self, [X, W, b])
+
+    def forward(self):
+        X = self.inbound_nodes[0].value
+        W = self.inbound_nodes[1].value
+        b = self.inbound_nodes[2].value
+
+        # output: each column is a unit, each row is an example
+        self.value = np.dot(X, W) + b
+
+    def backward(self):
+        # init partial derivative for each inbound node
+        self.gradients = {n: np.zeros_like(n.value) for n in self.inbound_nodes}
+        # sum gradients over all outputs
+        for n in self.outbound_nodes:
+            # df/dthis
+            grad_cost = n.gradients[self]
+
+            # X:
+            # take coeff (W) and mult with grad cost in a way that preserves correct dims
+            self.gradients[self.inbound_nodes[0]] = np.dot(grad_cost, self.inbound_nodes[1].value.T)
+            # W
+            self.gradients[self.inbound_nodes[0]] = np.dot(self.inbound_nodes[0].value.T, grad_cost)
+            # b
+            self.gradients[self.inbound_nodes[2]] += np.sum(grad_cost, axis=0, keepdims=False) # sum each column, i.e. sum across examples
+
+
+class Sigmoid(Node):
+    """Node that performs sigmoid activation function."""
+    def __init__(self, node):
+        Node.__init__(self, [node])
+
+    def _sigmoid(self, x):
+        """
+        TODO: tbh can combine with forward method
+        :param x: numpy array-like object
+        :return: elementwise (TODO: check?) sigmoid of x
+        """
+        return 1. / (1. + np.exp(-x))
+
+    def forward(self):
+        input_value = self.inbound_nodes[0].value
+        self.value = self._sigmoid(input_value)
+
+    def backward(self):
+        self.gradients = {n: np.zeros_like(n.value) for n in self.inbound_nodes}
+        # sum gradients over all outputs
+        for n in self.outbound_nodes:
+            grad_cost = n.gradients[self]
+            sigmoid = self.value
+            self.gradients[self.inbound_nodes[0]] += grad_cost * sigmoid * (1-sigmoid)
 
 class Layer:
     def __init__(self, units=0, W=None, activation="relu", n_inputs=0):

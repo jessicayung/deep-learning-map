@@ -338,7 +338,7 @@ x += - learning_rate * dx / (np.sqrt(cache) + eps) # same as Adagrad
 	```
 		- Smooth version of gradient (m) used rather than raw, possibly noisy gradient vector `dx`.
 		- Full version includes bias correction:
-			- Corrects for fact that in the first few timesteps m, v both initialised and therefore biased at zero
+			- Corrects for fact that in the first few timesteps m, v both initialised and therefore biased at zero)
 			- ```
 			# t is your iteration counter going from 1 to infinity
 			m = beta1*m + (1-beta1)*dx
@@ -413,6 +413,34 @@ x += - learning_rate * dx / (np.sqrt(cache) + eps) # same as Adagrad
 		- Can identify all neurons outputting zero or all neurons being completely saturated at either -1 or 1.
 	- Method: Plot activation / gradient histograms: should not see strange distributions
 - (For images) First-layer visualisations
+
+### Key hyperparameters to tune
+- Initial learning rate
+- Learning rate decay schedule (e.g. decay constant)
+- Regularisation strength (L2 penalty, dropout strength)
+
+### Tips for hyperparameter optimisation
+- One validation fold (of respectable size) vs CV simplifies the code base
+- Search for hyperparameters on log scale. E.g. `learning rate = 10 ** uniform(-6,1)`. Similar for regularisation strength, since these have multiplicative effects on the training dynamics.
+	- vs dropout usually searched in original scale
+- Prefer random search to grid search ([Bergstra and Bengio](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf))
+	- Often the case that some hyperparameters matter much more than others
+- Check best values are not on order (else more optimal settings may be outside your interval)
+- First search coarse search (and with fewer epochs, e.g. 1 epoch), then move to finer search
+	- Some hyperparameter settings can lead the model to not learn at all, or immediately explode with infinite cost
+- Bayesian Hyperparameter Optimisation: 
+	- Algorithms to more efficiently navigate the hyperparameter space via exploration-exploitation tradeoff
+	- e.g. Spearmint, SMAC, Hyperopt. 
+	- In practice (for CNNs) it's hard to beat random search in carefully-chosen intervals
+
+### Ensembles
+- In practice training independent models and averaging predictions at test time is a reliable approach to improve performance of NNs
+- Approaches to forming an ensemble
+	- Same model, different initialisations (with hyperparameters determined by CV)
+	- Top few hyperparameter configurations
+	- Different checkpoints of a single model
+	- Running (exponentially decaying) average of weights used during training
+		- Intuition: Objective is bowl-shaped, network is jumping around mode, so average has higher chance of being somewhere near the mode.
 
 ### Convolutional Neural Networks
 

@@ -1,5 +1,5 @@
 """
-Softmax Linear Classifier in Raw Python (with Numpy)
+Multilayer Perceptron in Raw Python (with Numpy)
 trained on Spiral Dataset
 
 Adapted from CS231n http://cs231n.github.io/neural-networks-case-study/

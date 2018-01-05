@@ -46,7 +46,7 @@ plt.scatter(X[:, 0], X[:, 1], c=y, s=40)
 W = 0.01 * np.random.randn(D, K)
 b = np.zeros((1, K))
 
-n_epochs = 10
+n_epochs = 190
 for i in range(n_epochs):
     # Forward pass
     scores = np.dot(X, W) + b
@@ -59,7 +59,8 @@ for i in range(n_epochs):
     data_loss = np.sum(correct_logprobs)/num_examples
     reg_loss = 0.5*reg*np.sum(W*W)
     loss = data_loss + reg_loss
-    print("Epoch: %d, Loss: %f" % (i, loss))
+    if i % 10 == 0:
+        print("Epoch: %d, Loss: %f" % (i, loss))
     # print("Initial loss should be about np.log(1.0/3) = ", np.log(1.0/3))
 
     # Backprop
@@ -73,7 +74,7 @@ for i in range(n_epochs):
 
     # Parameter update
     W += -step_size * dW
-    b += step_size * db
+    b += -step_size * db
 
 # Evaluate training set accuracy
 scores = np.dot(X, W) + b

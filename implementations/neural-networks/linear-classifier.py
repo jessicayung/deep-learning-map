@@ -1,10 +1,26 @@
 """
+Softmax Linear Classifier in Raw Python (with Numpy)
+trained on Spiral Dataset
+
 Adapted from CS231n http://cs231n.github.io/neural-networks-case-study/
 
+Jessica Yung
 Jan 2018
 """
 import numpy as np
 import matplotlib.pyplot as plt
+
+###########################
+# TODO: set model parameters
+###########################
+
+# Parameters
+# regularisation strength
+reg = 1e-3
+# Parameter update step size
+step_size = 1e-0
+# Number of training epochs
+n_epochs = 250
 
 ###########################
 # Generate a spiral dataset (classes not linearly separable)
@@ -17,11 +33,6 @@ D = 2
 # Number of classes
 K = 3
 num_examples = N*K
-
-# Parameters
-# regularisation strength
-reg = 1e-3
-step_size = 1e-0
 
 # Initialise data matrix
 X = np.zeros((num_examples, D))
@@ -40,18 +51,19 @@ for j in range(K):
 plt.scatter(X[:, 0], X[:, 1], c=y, s=40)
 # plt.show()
 
+# print("Initial loss should be about np.log(1.0/K) = ", np.log(1.0/K))
+
+###########################
 # Softmax classifier
+###########################
 
 # Initialise parameters
 W = 0.01 * np.random.randn(D, K)
 b = np.zeros((1, K))
 
-n_epochs = 190
 for i in range(n_epochs):
     # Forward pass
     scores = np.dot(X, W) + b
-    #print(scores.shape)
-    #print(scores[:5])
     exp_scores = np.exp(scores)
     probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True) # sum along each row
     correct_logprobs = -np.log(probs[range(num_examples), y])
@@ -61,7 +73,6 @@ for i in range(n_epochs):
     loss = data_loss + reg_loss
     if i % 10 == 0:
         print("Epoch: %d, Loss: %f" % (i, loss))
-    # print("Initial loss should be about np.log(1.0/3) = ", np.log(1.0/3))
 
     # Backprop
     # dLi/dfk = pk - 1(yi=k)
@@ -80,3 +91,9 @@ for i in range(n_epochs):
 scores = np.dot(X, W) + b
 predicted_class = np.argmax(scores, axis=1)
 print("Training accuracy: %.2f" % (np.mean(predicted_class == y)))
+
+# TODO: plot results
+
+# TODO: split into training and validation sets
+
+# TODO: plot training vs validation loss

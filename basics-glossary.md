@@ -443,6 +443,54 @@ x += - learning_rate * dx / (np.sqrt(cache) + eps) # same as Adagrad
 		- Intuition: Objective is bowl-shaped, network is jumping around mode, so average has higher chance of being somewhere near the mode.
 
 ### Convolutional Neural Networks
+- Properties
+	- Constrain architecture assuming input consists of images (or similarly structured data)
+		- inputs and outputs are 3D volumes (width, height, depth of image)
+        - Motivation: regular neural nets don't scale well to full images
+    - Shared weights: reduce number of parameters
+- Convolutional Layer
+	- Filters: Each filter is smaller than image along width, height dimensions, depth same as image.
+	- Operation: Convolve (// slide) filter across width and height of input and compute dot products between entries of filter and input at every position
+	- Output: Produce 2D activation map for each depth layer -> stack them to produce output
+	- Connectivity
+		- Locally (vs fully) connected: connect each neuron to only a local region of the input volume.
+		- Parameter: receptive field of neuron (filter size/dimensions)
+	- Spatial arrangement
+		- Depth of output volume (Number of filters)
+			- Each filter is meant to learn to look for something different in the input, e.g. presence of various oriented edges or blobs of colour.
+			- Depth column / fibre: Set of neurons all looking at the same region of the input
+		- Stride: Number of pixels we move at a time when we slide the filter around the image
+			- Usually 1 or 2
+			- Larger stride produces smaller output spatially (width, height)
+		- Padding
+			- Zero padding: pad input volume with zeros around the border.
+				- To control size of output volume, usually to keep it the same dim as the input volume
+				- Hyperparameter: size of zero padding
+		- Output spatial size (along each of width, height): (W-F+2P)/S + 1, where
+			- W = input vol size
+			- F = filter size
+			- S = stride
+				- If (W-F+2P) is not divisible by S -> depends how yo uhandle it, e.g. can floor (crop image) or throw error
+			- P = padding (on one side)
+		- Weight sharing
+			- Weights for filter are the same within one neuron.
+				- so forward pass can be computed as a convolution of neuron's weights with input volume
+			- Assume that 'if one feature is useful to compute at some spatial position (x1,y1), then it should also be useful to compute at a different position (x2,y2).'
+				- Locally-connected layer: relax parameter sharing scheme since it may not make sense if e.g. input images to ConvNet have specific centered structure
+		- im2col implementation (matrix multiplication)
+			- Method:
+				- Matrix `X_col`: convert each filter-sized region into a column vector.
+				- Matrix `W_row`: convert each filter (depth slice) into a row vector
+				- Multiply `X_col` with `W_row` (e.g. `np.dot(X_col, W_row)`) and reshape it to proper output dimensions
+			- Cons: Memory-intensive (some values replicated in `X_col`)
+			- Pros: There are very efficient implementations of matrix multiplication we can use (e.g. BLAS API)
+		- Backpropagation: Also a convolution. TODO: derive
+		- 1x1 convolution
+			- Makes sense because we operate over 3D and filters always extend through full depth of input volume (TODO: link and elaborate)
+		- Dilated convolutions
+			- Spaces in between each cell in the filter
+			- Allows you to merge spatial information across inputs more aggressively since receptive field grows much quicker
+- Pooling Layer
 
 
 ### Recurrent Neural Networks

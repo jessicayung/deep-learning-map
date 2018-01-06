@@ -73,16 +73,14 @@ class fc2d:
         self.y = np.dot(X, self.W) + self.b
         return self.y
 
-    def backward(self, dy, reg):
+    def backward(self, dy):
         """Backward pass.
         NOTE: Assumes L2 regularisation.
         dy: gradient propagated to layer
         reg: L2 regularisation parameter
         """
-        self.reg = reg
         self.db = np.sum(dy, axis=0, keepdims=True)  # sum across columns
         self.dW = np.dot(self.X.T, dy)
-        self.dW += self.reg * self.W
         self.dX = np.dot(dy, self.W.T)
         return self.dX
 
@@ -109,12 +107,13 @@ X, y = generate_spiral_data(N, 2, 3, plot=False)
 
 # Initialise parameters
 fc1 = fc2d(D, h1_units)
+relu1 = relu()
 fc2 = fc2d(h1_units, K)
 
 for i in range(n_epochs):
     # Forward pass
     h1_prod = fc1.forward(X)
-    h1 = np.maximum(0, h1_prod)
+    h1 = relu1.forward(h1_prod)
     scores = fc2.forward(h1)
     exp_scores = np.exp(scores)
     probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True) # sum along each row
@@ -131,25 +130,23 @@ for i in range(n_epochs):
     dscores = probs
     dscores[range(num_examples),y] -= 1
     dscores /= num_examples
-    dh1 = fc2.backward(dscores, reg)
-    dW2 = fc2.dW
-    db2 = fc2.db
+    dh1 = fc2.backward(dscores)
+    dh1_prod = relu1.backward(dh1)
+    dX = fc1.backward(dh1_prod)
 
-    dh1_prod = dh1
-    # Backprop ReLU (gradient = 1 if > 0, = 0 otherwise)
-    dh1_prod[h1 <= 0] = 0
-    fc1.backward(dh1_prod, reg)
-    dW1 = fc1.dW
-    db1 = fc1.db
+    # Gradient from regularisation
+    fc1.dW += reg*fc1.W
+    fc2.dW += reg*fc2.W
 
     # Parameter update
-    fc1.W += -step_size * dW1
-    fc1.b += -step_size * db1
-    fc2.W += -step_size * dW2
-    fc2.b += -step_size * db2
+    fc1.W += -step_size * fc1.dW
+    fc1.b += -step_size * fc1.db
+    fc2.W += -step_size * fc2.dW
+    fc2.b += -step_size * fc2.db
 
 # Evaluate training set accuracy
-h1 = np.maximum(0, fc1.forward(X))
+h1_prod = fc1.forward(X)
+h1 = relu1.forward(h1_prod)
 scores = fc2.forward(h1)
 predicted_class = np.argmax(scores, axis=1)
 print("Training accuracy: %.2f" % (np.mean(predicted_class == y)))

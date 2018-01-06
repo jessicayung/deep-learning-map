@@ -114,7 +114,7 @@ fc2 = fc2d(h1_units, K)
 for i in range(n_epochs):
     # Forward pass
     h1_prod = fc1.forward(X)
-    h1 = ep.maximum(0, h1_prod)
+    h1 = np.maximum(0, h1_prod)
     scores = fc2.forward(h1)
     exp_scores = np.exp(scores)
     probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True) # sum along each row

@@ -61,13 +61,13 @@ plt.scatter(X[:, 0], X[:, 1], c=y, s=40)
 
 
 def conv(X, W, b, stride=1, padding=0):
-    w, h, d = X.shape
-    fw, fh = W[0].shape[:2]
+    h, w, d = X.shape
+    fh, fw = W[0].shape[:2]
     sw = stride
     sh = stride
     yw = (w + 2*padding - fw)/sw + 1
     yh = (h + 2*padding - fh)/sh + 1
-    print(fw, yh)
+    print("Output shape: ", yw, yh)
     yw, yh = int(yw), int(yh)
     num_filters = len(W)
     y = np.zeros((yw, yh, num_filters))
@@ -76,7 +76,7 @@ def conv(X, W, b, stride=1, padding=0):
         for i in range(yw):
             for j in range(yh):
                 for depth in range(d):
-                    y[i,j,n] += np.sum(W[n,:,:,depth] * X[i*(1+sw):i*(1+sw)+fw,j*(1+sh):j*(1+sh)+fh,depth])
+                    y[j,i,n] += np.sum(W[n,:,:,depth] * X[j*sh:j*sh+fh,i*sw:i*sw+fw,depth])
                 y[i,j,n] += b[n]
     print("Y shape: ", y.shape)
     return y

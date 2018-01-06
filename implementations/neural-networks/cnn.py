@@ -67,18 +67,18 @@ def conv(X, W, b, stride=1, padding=0):
     sh = stride
     yw = (w + 2*padding - fw)/sw + 1
     yh = (h + 2*padding - fh)/sh + 1
-    print("Output shape: ", yw, yh)
+    # print("Output shape: ", yw, yh)
     yw, yh = int(yw), int(yh)
     num_filters = len(W)
     y = np.zeros((yw, yh, num_filters))
-    print("Number of filters: ", num_filters)
+    # print("Number of filters: ", num_filters)
     for n in range(num_filters):
         for i in range(yw):
             for j in range(yh):
                 for depth in range(d):
                     y[j,i,n] += np.sum(W[n,:,:,depth] * X[j*sh:j*sh+fh,i*sw:i*sw+fw,depth])
                 y[i,j,n] += b[n]
-    print("Y shape: ", y.shape)
+    # print("Y shape: ", y.shape)
     return y
 
 X = np.array([[[1,0,0],[2,0,0],[0,0,0]],
@@ -90,6 +90,38 @@ print("W shape: ", W.shape)
 print("X shape: ", X.shape)
 b = np.array([0])
 print(conv(X, W, b))
+
+def im2col(X, W, stride=1, padding=0):
+    # Convert each filter-sized region of X into a column vector
+    h, w, d = X.shape
+    fh, fw = W[0].shape[:2]
+    sw = stride
+    sh = stride
+    yw = (w + 2 * padding - fw) / sw + 1
+    yh = (h + 2 * padding - fh) / sh + 1
+    # print("Output shape: ", yw, yh)
+    yw, yh = int(yw), int(yh)
+    num_filters = len(W)
+    X_new = np.zeros((fh*fw, yw*yh,d))
+    W_new = np.zeros((num_filters,fh*fw,d))
+    # y = np.zeros((yw, yh, num_filters))
+    col = 0
+    for i in range(yw):
+        for j in range(yh):
+            for depth in range(d):
+                X_new[:,col,depth] = np.reshape(X[j * sh:j * sh + fh, i * sw:i * sw + fw, depth],-1)
+            col += 1
+    for n in range(num_filters):
+        for i in range(fw):
+            for j in range(yh):
+                for depth in range(d):
+                    W_new[n,:,depth] = np.reshape(W[n,:,:,depth],-1)
+    return X_new, W_new
+X_new, W_new = im2col(X, W)
+print("X_new.shape: ", X_new.shape)
+print("W_new.shape: ", W_new.shape)
+print("X_new: ", X_new)
+print("W_new: ", W_new)
 """
 # Initialise parameters
 W1 = 0.01 * np.random.randn(D, h1)
@@ -117,6 +149,7 @@ for i in range(n_epochs):
     dscores = probs
     dscores[range(num_examples),y] -= 1
     dscores /= num_examples
+    
     db2 = np.sum(dscores, axis=0, keepdims=True)  # sum across columns
     dW2 = np.dot(h1.T, dscores)
     dW2 += reg * W2
@@ -125,6 +158,8 @@ for i in range(n_epochs):
     dh1_prod = dh1
     # Backprop ReLU (gradient = 1 if > 0, = 0 otherwise)
     dh1_prod[h1 <= 0] = 0
+    
+    
     dW1 = np.dot(X.T, dh1_prod)
     dW1 += reg * W1
     db1 = np.sum(dh1_prod, axis=0, keepdims=True) # sum across columns

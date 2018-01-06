@@ -62,28 +62,33 @@ plt.scatter(X[:, 0], X[:, 1], c=y, s=40)
 
 def conv(X, W, b, stride=1, padding=0):
     w, h, d = X.shape
-    fw, fh = W[0][0].shape
+    fw, fh = W[0].shape[:2]
     sw = stride
     sh = stride
     yw = (w + 2*padding - fw)/sw + 1
     yh = (h + 2*padding - fh)/sh + 1
     print(fw, yh)
     yw, yh = int(yw), int(yh)
-    y = np.zeros((yw, yh, d))
     num_filters = len(W)
+    y = np.zeros((yw, yh, num_filters))
+    print("Number of filters: ", num_filters)
     for n in range(num_filters):
         for i in range(yw):
             for j in range(yh):
                 for depth in range(d):
-                    y[i,j,n] += np.sum(W[n,depth,:,:] * X[depth,i*(1+sw):i*(1+sw)+fw,j*(1+sh):j*(1+sh)+fh])
+                    y[i,j,n] += np.sum(W[n,:,:,depth] * X[i*(1+sw):i*(1+sw)+fw,j*(1+sh):j*(1+sh)+fh,depth])
                 y[i,j,n] += b[n]
+    print("Y shape: ", y.shape)
     return y
 
-slice = np.array([[1,2,3],[4,5,6],[7,8,9]])
-X = np.array([slice, slice, slice])
-filter = np.array([[[1,-1],[0,1]],[[1,-1],[0,1]],[[1,-1],[0,1]]])
-W = np.array([filter, filter])
-b = np.array([1, 2])
+X = np.array([[[1,0,0],[2,0,0],[0,0,0]],
+                 [[0,0,0],[0,0,0],[0,0,0]],
+                 [[0, 0, 0], [0, 0, 0], [3, 0, 0]]])
+filter = np.array([[[1,0],[0,1]],[[1,0],[0,1]],[[1,0],[0,1]]])
+W = np.array([[[[1,1,1],[0,0,0]],[[0,0,0],[1,1,1]]]])
+print("W shape: ", W.shape)
+print("X shape: ", X.shape)
+b = np.array([0])
 print(conv(X, W, b))
 """
 # Initialise parameters

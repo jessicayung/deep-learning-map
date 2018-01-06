@@ -119,11 +119,32 @@ def im2col(X, W, stride=1, padding=0):
     return X_new, W_new
 
 
-X_new, W_new = im2col(X, W)
-print("X_new.shape: ", X_new.shape)
-print("W_new.shape: ", W_new.shape)
-print("X_new: ", X_new)
-print("W_new: ", W_new)
+def conv_im2col(X, W, b, stride=1, padding=0):
+    h, w, d = X.shape
+    fh, fw = W[0].shape[:2]
+    sw = stride
+    sh = stride
+    yw = (w + 2*padding - fw)/sw + 1
+    yh = (h + 2*padding - fh)/sh + 1
+    # print("Output shape: ", yw, yh)
+    yw, yh = int(yw), int(yh)
+    num_filters = len(W)
+    y = np.zeros((yw, yh, num_filters))
+    # print("Number of filters: ", num_filters)
+    X_new, W_new = im2col(X, W)
+    y = np.reshape(np.dot(W_new, X_new), (yh, yw, num_filters))
+    # print("Y shape: ", y.shape)
+    # Add bias
+    for n in range(num_filters):
+        y[:,:,n] += b[n]
+    return y
+
+y = conv_im2col(X, W, b, stride=1, padding=0)
+print("y: ", y)
+# print("X_new.shape: ", X_new.shape)
+# print("W_new.shape: ", W_new.shape)
+# print("X_new: ", X_new)
+# print("W_new: ", W_new)
 """
 # Initialise parameters
 W1 = 0.01 * np.random.randn(D, h1)

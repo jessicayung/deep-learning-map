@@ -22,20 +22,19 @@ step_size = 1e-0
 # Number of training epochs
 n_epochs = 9000
 # Size of hidden layer
-units = 100
+h1_units = 100
 
 ###########################
 # Generate a spiral dataset (classes not linearly separable)
 ###########################
 
 # Number of points per class
-points_per_class = 100
+N = 100
 # Number of dimensions of input
-input_dims = 2
+D = 2
 # Number of classes
-num_classes = 3
-num_examples = points_per_class * num_classes
-
+K = 3
+num_examples = N*K
 
 def generate_spiral_data(points_per_class, input_dims=2, num_classes=3, plot=False):
     # Initialise data matrix
@@ -58,12 +57,6 @@ def generate_spiral_data(points_per_class, input_dims=2, num_classes=3, plot=Fal
         else:
             print("Input dims > 2, cannot plot scatter diagram.")
     return X, y
-
-X, y = generate_spiral_data(points_per_class, input_dims, num_classes)
-###########################
-# Multilayer Perceptron classifier
-###########################
-
 
 class fc2d:
 
@@ -94,22 +87,41 @@ class fc2d:
         return self.dX
 
 
+class relu:
+    def __init__(self):
+        pass
+
+    def forward(self, X):
+        self.X = X
+        return np.maximum(0,X)
+
+    def backward(self, dy):
+        dy[self.X <= 0] = 0
+        return dy
+
+X, y = generate_spiral_data(N, 2, 3, plot=False)
+
+# print("Initial loss should be about np.log(1.0/K) = ", np.log(1.0/K))
+
+###########################
+# Multilayer Perceptron classifier
+###########################
+
 # Initialise parameters
-fc1 = fc2d(X.shape[1], units)
-fc2 = fc2d(units, num_classes)
+fc1 = fc2d(D, h1_units)
+fc2 = fc2d(h1_units, K)
 
 for i in range(n_epochs):
     # Forward pass
     h1_prod = fc1.forward(X)
-    h1_relu = np.maximum(0, h1_prod)
-    scores = fc2.forward(h1_relu)
-
+    h1 = ep.maximum(0, h1_prod)
+    scores = fc2.forward(h1)
     exp_scores = np.exp(scores)
     probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True) # sum along each row
     correct_logprobs = -np.log(probs[range(num_examples), y])
 
     data_loss = np.sum(correct_logprobs)/num_examples
-    reg_loss = 0.5*reg*(np.sum(pow(fc1.W, 2)) + np.sum(pow(fc2.W, 2)))
+    reg_loss = 0.5*reg*(np.sum(fc1.W * fc1.W) + np.sum(fc2.W*fc2.W))
     loss = data_loss + reg_loss
     if i % 1000 == 0:
         print("Epoch: %d, Loss: %f" % (i, loss))
@@ -119,24 +131,26 @@ for i in range(n_epochs):
     dscores = probs
     dscores[range(num_examples),y] -= 1
     dscores /= num_examples
+    dh1 = fc2.backward(dscores, reg)
+    dW2 = fc2.dW
+    db2 = fc2.db
 
-    dh1_relu = fc2.backward(dscores, reg)
-
+    dh1_prod = dh1
     # Backprop ReLU (gradient = 1 if > 0, = 0 otherwise)
-    dh1_prod = dh1_relu
-    dh1_prod[units <= 0] = 0
-
-    dX = fc1.backward(dh1_prod, reg)
+    dh1_prod[h1 <= 0] = 0
+    fc1.backward(dh1_prod, reg)
+    dW1 = fc1.dW
+    db1 = fc1.db
 
     # Parameter update
-    fc1.W += -step_size * fc1.dW
-    fc1.b += -step_size * fc1.db
-    fc2.W += -step_size * fc2.dW
-    fc2.b += -step_size * fc2.db
+    fc1.W += -step_size * dW1
+    fc1.b += -step_size * db1
+    fc2.W += -step_size * dW2
+    fc2.b += -step_size * db2
 
 # Evaluate training set accuracy
-h1_relu = np.maximum(fc1.forward(X),0)
-scores = fc2.forward(h1_relu)
+h1 = np.maximum(0, fc1.forward(X))
+scores = fc2.forward(h1)
 predicted_class = np.argmax(scores, axis=1)
 print("Training accuracy: %.2f" % (np.mean(predicted_class == y)))
 

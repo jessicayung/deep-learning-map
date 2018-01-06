@@ -102,21 +102,23 @@ def im2col(X, W, stride=1, padding=0):
     # print("Output shape: ", yw, yh)
     yw, yh = int(yw), int(yh)
     num_filters = len(W)
-    X_new = np.zeros((fh*fw, yw*yh,d))
-    W_new = np.zeros((num_filters,fh*fw,d))
+    X_new = np.zeros((yw*yh*d,fh*fw))
+    W_new = np.zeros((num_filters,fh*fw*d))
+    print("X_new.shape: ", X_new.shape)
+    print("W_new.shape: ", W_new.shape)
     # y = np.zeros((yw, yh, num_filters))
     col = 0
     for i in range(yw):
         for j in range(yh):
-            for depth in range(d):
-                X_new[:,col,depth] = np.reshape(X[j * sh:j * sh + fh, i * sw:i * sw + fw, depth],-1)
+            X_new[:,col] = np.reshape(X[j * sh:j * sh + fh, i * sw:i * sw + fw,:],-1)
             col += 1
     for n in range(num_filters):
         for i in range(fw):
             for j in range(yh):
-                for depth in range(d):
-                    W_new[n,:,depth] = np.reshape(W[n,:,:,depth],-1)
+                W_new[n,:] = np.reshape(W[n,:,:,:],-1)
     return X_new, W_new
+
+
 X_new, W_new = im2col(X, W)
 print("X_new.shape: ", X_new.shape)
 print("W_new.shape: ", W_new.shape)
@@ -149,7 +151,7 @@ for i in range(n_epochs):
     dscores = probs
     dscores[range(num_examples),y] -= 1
     dscores /= num_examples
-    
+
     db2 = np.sum(dscores, axis=0, keepdims=True)  # sum across columns
     dW2 = np.dot(h1.T, dscores)
     dW2 += reg * W2
@@ -158,8 +160,8 @@ for i in range(n_epochs):
     dh1_prod = dh1
     # Backprop ReLU (gradient = 1 if > 0, = 0 otherwise)
     dh1_prod[h1 <= 0] = 0
-    
-    
+
+
     dW1 = np.dot(X.T, dh1_prod)
     dW1 += reg * W1
     db1 = np.sum(dh1_prod, axis=0, keepdims=True) # sum across columns

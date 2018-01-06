@@ -76,6 +76,7 @@ Multiagent Reinforcement Learning](https://arxiv.org/pdf/1711.00832.pdf)
 - [Feature Control as Intrinsic Motivation for Hierarchical Reinforcement Learning (Dilokthanakul et. al., Nov 2017)](https://arxiv.org/pdf/1705.06769.pdf)
 - [A Deep Hierarchical Approach to Lifelong Learning in Minecraft](https://arxiv.org/abs/1604.07255)
 - [Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation](https://arxiv.org/abs/1604.06057)
+- [RL for complex goals using TF (O'Reilly blog post)](https://www.oreilly.com/ideas/reinforcement-learning-for-complex-goals-using-tensorflow)
 
 #### Tangentially relevant
 - [Hierarchical Multiscale Recurrent Neural Networks](https://openreview.net/forum?id=S1di0sfgl)

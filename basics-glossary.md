@@ -491,7 +491,40 @@ x += - learning_rate * dx / (np.sqrt(cache) + eps) # same as Adagrad
 			- Spaces in between each cell in the filter
 			- Allows you to merge spatial information across inputs more aggressively since receptive field grows much quicker
 - Pooling Layer
-
+	- Resizes (downsamples) each depth slice of input using MAX operation (Max-pooling)
+		- Other less common pooling operations: Average pooling or L2-norm pooling
+	- Motivation: 'To reduce amount of parameters and computation in the network, and hence to also control overfitting'
+	- Method
+		- Hyperparameters: 
+			- spatial extent F (filter width, height)
+			- stride S
+		- Output of size W2 = (W1 - F)/S + 1 (same for height)
+			- where W1 is input width, W2 is output width
+		- Common parameterisation: 2x2 filters, stride of 2 (discards 75% of activations)
+	- Introduces zero parameters
+	- Backpropagation: 
+	- Looking ahead:
+		- [Discarding pooling (2015)](https://arxiv.org/abs/1412.6806) 
+		- Discarding pooling layers has been found to be important in training good generative models like variational autoencoders and genarative adversarial networks.
+- Normalisation Layer
+	- Fallen out of favour because in practice their contribution has been shown to be minimal
+- Converting Fully connected layer to Conv layer
+	- TODO: add, see [cs231n](http://cs231n.github.io/convolutional-networks/)
+- Common ConvNet architectures
+	- INPUT -> [[CONV -> RELU]*N -> POOL?]*M -> [FC -> RELU]*K -> FC
+		- where usually N <= 3, K < 3. N, M, K all non-negative.
+		- Two CONV layers before every POOL layer 'generally a good idea for larger and deeper networks, because multiple stacked CONV layers can develop more complex features of the input volume before the deestructive pooling operation'
+- Heuristics
+	- Prefer a stack of small filter CONVs to one large receptive field CONV layer (that have identical spatial extent).
+		- Stack of small filters contain non-linearities that make features more expressive
+		- Uses fewer parameters
+		- BUT might need more memory to hold intermediate CONV layer results for backprop
+- Looking ahead
+	- Paradigm of linear list of layers has recently been challenged in Google's Inception architectures and Residual Networks from Microsoft Research Asia
+	- Hinton's Capsule Networks
+- In practice
+	- Use whatever works best on ImageNet. Download a pretrained model and finetune it on your data.
+- Famous ConvNet architectures
 
 ### Recurrent Neural Networks
 
@@ -529,3 +562,9 @@ x += - learning_rate * dx / (np.sqrt(cache) + eps) # same as Adagrad
 
 ### References
 - [CS231n](http://cs231n.github.io/)
+
+### Other resources
+- [Machine Learning for Humans: plain-English explanations of ML](https://medium.com/machine-learning-for-humans/why-machine-learning-matters-6164faf1df12)
+	- Caveat: I haven't read this yet
+- [Jeff Dean's Lecture for YC AI](https://blog.ycombinator.com/jeff-deans-lecture-for-yc-ai/)
+- [Heroes of Deep Learning interview series by Andrew Ng](https://www.youtube.com/watch?v=-eyhCTvrEtE&list=PLfsVAYSMwsksjfpy8P2t_I52mugGeA5gR)

@@ -22,7 +22,7 @@ step_size = 1e-0
 # Number of training epochs
 n_epochs = 9000
 # Size of hidden layer
-h1 = 100
+h1_units = 100
 
 ###########################
 # Generate a spiral dataset (classes not linearly separable)
@@ -60,9 +60,9 @@ plt.scatter(X[:, 0], X[:, 1], c=y, s=40)
 ###########################
 
 # Initialise parameters
-W1 = 0.01 * np.random.randn(D, h1)
-b1 = np.zeros((1, h1))
-W2 = 0.01 * np.random.randn(h1, K)
+W1 = 0.01 * np.random.randn(D, h1_units)
+b1 = np.zeros((1, h1_units))
+W2 = 0.01 * np.random.randn(h1_units, K)
 b2 = np.zeros((1, K))
 
 for i in range(n_epochs):

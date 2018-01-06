@@ -145,6 +145,23 @@ print("y: ", y)
 # print("W_new.shape: ", W_new.shape)
 # print("X_new: ", X_new)
 # print("W_new: ", W_new)
+
+# Backprop
+print("y.shape: ", y.shape)
+# y.shape: (2, 2, 1)
+dy = np.ones_like(y)
+db = np.sum(dy, axis=(0,1)) # all except depth axis
+print(db)
+num_filters = len(W)
+db = db.reshape(num_filters, -1) # check if we need this. len(W) = num_filters
+dy_reshaped = dy.reshape(num_filters, -1)
+X_col, W_row = im2col(X, W)
+dW = np.dot(dy_reshaped, X_col.T)
+# reshape into num_filters, h, w, num_examples later
+# W_reshape = W.reshape(num_filters, -1)
+# dX_col = np.dot(W_reshape, dy_reshaped)
+# dX =
+
 """
 # Initialise parameters
 W1 = 0.01 * np.random.randn(D, h1)

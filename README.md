@@ -12,7 +12,29 @@ Map of deep learning and notes from papers.
 6. Development notes
 
 ---
-## 0. Vision for the Deep Learning Map
+## 0. Contents of this Repo
+
+1. Paper summaries: `summaries/`
+	- See 'Summaries' section in this README for details.
+2. Glossaries
+	- `basics-glossary.md`
+		- version with LaTeX equations rendered: `basics-glossary.ipynb`
+	- `ai-safety-glossary.md`
+	- Will work on `glossary.md` shortly.
+3. Lists
+	- NOTE: Many of these comprise only items I've come across in my reading since Dec 2017, so these lists don't represent my view of e.g. 'the most important datasets'. Though I try to include only items I think are significant.
+	- `datasets.md`
+	- `environments.md`: environments for training DL algorithms.
+	- `hardware.md`
+	- `libraries.md`
+	- `speech.md`
+	- `papers-to-print.md`: Some papers I'm interested in.
+	- Misc:
+		- `other-news.md`, `other-resources.md`
+4. Implementations
+	- `implementations/neural-networks`: implementations of deep learning algorithms (early stages, currently have 2D MLP working)
+
+## 1. Vision for the Deep Learning Map
 The idea is to write (or link to) paper summaries, blog posts or articles that will help people with limited experience:
 
 - Understand what different models or terms mean
@@ -26,14 +48,14 @@ It is thus crucial that
 
 Let me know if you'd like to contribute or have suggestions.
 
-## 1. Summaries
+## 2. Summaries
 
 - [Population-based training of Neural Networks (Nov 2017)](https://github.com/jessicayung/deep-learning-map/blob/master/summaries/population-based-training-of-neural-networks.md)
 - [Leave no Trace: Learning to Reset for Safe and Autonomous Reinforcement Learning (Nov 2017)](https://github.com/jessicayung/deep-learning-map/blob/master/summaries/leave-no-trace.md)
 - [AI Safety Gridworlds (Nov 2017)](https://github.com/jessicayung/deep-learning-map/blob/master/summaries/ai-safety-gridworlds.md)
 - [Concrete Problems in AI Safety (July 2016)](https://github.com/jessicayung/deep-learning-map/blob/master/summaries/concrete-problems-in-ai-safety.md)
 
-## 2. Topics to cover
+## 3. Topics to cover
 
 - DQN
 	- Deep convolutional Q-learning
@@ -54,14 +76,16 @@ Let me know if you'd like to contribute or have suggestions.
 
 - AI Safety
 
-## 3. Recommended Deep Learning Resources
+## 4. Recommended Deep Learning Resources
+
+See also my [effective deep learning resources shortlist](http://www.jessicayung.com/effective-deep-learning-resources-a-shortlist/).
 
 - [Notes for Stanford course CS231n on Convolutional Neural Networks](http://cs231n.github.io/)
 	- Have found this to be great for learning and an excellent reference (often landed here in my first few months of Googling about deep learning terms/problems!)
 - [Deep Learning terms glossary on WildML](http://www.wildml.com/deep-learning-glossary/)
 	- Short descriptions of terms (techniques, architectures frameworks) with links to relevant resources (blog posts, papers). 
 
-## 4. Existing repositories with summaries of papers on machine learning 
+## 5. Existing repositories with summaries of papers on machine learning 
 Have added a :star: to the ones I find particularly helpful.
 
 - :star: [Alexander Jung](https://github.com/aleju/papers)
@@ -113,7 +137,7 @@ Have added a :star: to the ones I find particularly helpful.
 	- Lists papers by topic.
 	- About 40 summaries. Last active August 2017.
 
-## 5. Newsletters
+## 6. Newsletters
 Including these here because they contain fantastic summaries of what's going on in industry and in research. They take some time to go through though.
 
 - [ImportAI by Jack Clark](https://jack-clark.net/)
@@ -130,7 +154,7 @@ Including these here because they contain fantastic summaries of what's going on
 	- Links with brief summaries (and occasionally helpful context or opinions).
 
 
-## 6. Development Notes
+## 7. Development Notes
 
 #### 9 Dec 2017
 - Add brainstormed list of topics to cover. The idea is to write (or link to) paper summaries, good blog posts or articles that will help people with limited experience get a better idea of what is going on in the field. This means:

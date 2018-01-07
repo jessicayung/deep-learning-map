@@ -3,13 +3,14 @@ Map of deep learning and notes from papers.
 
 #### README contents:
 
-0. Vision for the Deep Learning Map
-1. Summaries
-2. Topics to cover (in the DL map)
-3. Recommended Deep Learning Resources
-4. Existing repositories with summaries of papers on machine learning 
-5. Newsletters
-6. Development notes
+0. Contents of this Repo
+1. Vision for the Deep Learning Map
+2. Summaries
+3. Topics to cover (in the DL map)
+4. Recommended Deep Learning Resources
+5. Existing repositories with summaries of papers on machine learning 
+6. Newsletters
+7. Development notes
 
 ---
 ## 0. Contents of this Repo

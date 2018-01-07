@@ -97,6 +97,30 @@ class relu:
         dy[self.X <= 0] = 0
         return dy
 
+class softmax_loss:
+    def __init__(self, y):
+        self.y = y
+
+    def forward(self, X):
+        self.num_examples = len(X)
+        exp_scores = np.exp(X)
+        probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True) # sum along each row
+        correct_logprobs = -np.log(probs[range(num_examples), self.y])
+        data_loss = np.sum(correct_logprobs)/num_examples
+        self.probs = probs
+        return data_loss
+
+    def backward(self, dy=None):
+        # dLi/dfk = pk - 1(yi=k)
+        if dy is None:
+            dscores = self.probs
+        else:
+            dscores = dy
+        dscores[range(num_examples),self.y] -= 1
+        dscores /= self.num_examples
+        return dscores
+
+
 X, y = generate_spiral_data(N, 2, 3, plot=False)
 
 # print("Initial loss should be about np.log(1.0/K) = ", np.log(1.0/K))
@@ -109,17 +133,14 @@ X, y = generate_spiral_data(N, 2, 3, plot=False)
 fc1 = fc2d(D, h1_units)
 relu1 = relu()
 fc2 = fc2d(h1_units, K)
+data_loss_fn = softmax_loss(y)
 
 for i in range(n_epochs):
     # Forward pass
     h1_prod = fc1.forward(X)
     h1 = relu1.forward(h1_prod)
     scores = fc2.forward(h1)
-    exp_scores = np.exp(scores)
-    probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True) # sum along each row
-    correct_logprobs = -np.log(probs[range(num_examples), y])
-
-    data_loss = np.sum(correct_logprobs)/num_examples
+    data_loss = data_loss_fn.forward(scores)
     reg_loss = 0.5*reg*(np.sum(fc1.W * fc1.W) + np.sum(fc2.W*fc2.W))
     loss = data_loss + reg_loss
     if i % 1000 == 0:
@@ -127,9 +148,7 @@ for i in range(n_epochs):
 
     # Backprop
     # dLi/dfk = pk - 1(yi=k)
-    dscores = probs
-    dscores[range(num_examples),y] -= 1
-    dscores /= num_examples
+    dscores = data_loss_fn.backward()
     dh1 = fc2.backward(dscores)
     dh1_prod = relu1.backward(dh1)
     dX = fc1.backward(dh1_prod)
@@ -151,6 +170,10 @@ scores = fc2.forward(h1)
 predicted_class = np.argmax(scores, axis=1)
 print("Training accuracy: %.2f" % (np.mean(predicted_class == y)))
 
+exp_scores = np.exp(scores)
+probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True) # sum along each row
+print(probs.shape)
+print(probs[:2])
 # TODO: plot results
 
 # TODO: split into training and validation sets

@@ -8,3 +8,9 @@
 	- [[Website]](http://ray.readthedocs.io/en/latest/rllib.html) [[Code]](https://github.com/ray-project/ray/tree/master/python/ray/rllib) [[Paper]](https://arxiv.org/abs/1712.09381)
 	- Can implement algorithms by composing and reusing a small number of standard components
 	- from UC Berkeley
+
+## Trained Models
+- [wav2letter (Jan 2018)](https://github.com/facebookresearch/wav2letter)
+	- Facebook's speech recognition system (implemented architecture) with pre-trained models for the Librispeech dataset
+		- Applications: transcribing speech
+	- [[Code]](https://github.com/facebookresearch/wav2letter) [[Paper: Wav2Letter: an End-to-End ConvNet-based Speech Recognition System (Collobert et. al., Sept 2016)]](https://arxiv.org/abs/1609.03193) [[Paper: Letter-Based Speech Recognition with Gated ConvNets (Liptchinsky et. al., Dec 2017)]](https://arxiv.org/abs/1712.09444)

@@ -47,6 +47,18 @@
 - [MAgent](https://github.com/geek-ai/MAgent)
 	- Research platform for many-agent reinforcement learning. (hundreds to millions of agents)
 
+## Sense of touch
+- [SenseNet (3D Objects Database and Tactile Simulator)](https://arxiv.org/abs/1801.00361)
+	- Simulated MPL robotic hand with touch integrated into one of its simulated physical sensors
+	- Can experiment with algorithms that learn to classify objects by touch
+	- API similar to OpenAI Gym
+	- [[Paper (Dec 2017)]](https://arxiv.org/abs/1801.00361)
+
+## 2D
+- [Gym-Maze](https://github.com/zuoxingdong/gym-maze)
+	- Easy-to-use maze generator (code for random mazes, Morris water mazes available)
+	- [[Code]](https://github.com/zuoxingdong/gym-maze)
+
 ## Other resources
 ![](images/ai-envs-comparison-ai2thor.png)
 *Comparison of environments. Credits: AI2-THOR (possible bias in selection of criteria)*

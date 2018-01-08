@@ -26,11 +26,33 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 ### Models
 
 - A3C (Asynchoronous Advantage Actor-Critic)
+	- Actor-critic: 
+		- Two outputs: 
+			1. Actor: outputs Policy, i.e. Q-values $Q(s,a_i)$ for all $a_i$, possible actions via Softmax
+			2. Critic: outputs Value of state we're in $V(s)$
+	- Asynchronous
+		- Multiple agents tackling the same environment, each initalised differently (diff random seed)
+			- More experience to learn from
+			- Reduces chance of all agents being stuck in a local max
+			- Can combine N nets into one single net,
+				- where N = number of agents. 
+				- So weights are shared.
+		- Agents share experience by contributing to a common critic
+	- Advantage
+		- Have two losses, one for each output (Value loss, policy loss)
+		- Value loss: TODO (fill in)
+		- Policy loss: 
+			- Let Advantage A = Q(s,a) - V(s)
+				- How much better is the Q-value you're selecting compared to the 'known' V value across agents?
+			- Goal is to maximise advantage: encourages actions that have Q(s,a) > V.
+
 - A2C (Synchronous A3C: Advantage Actor-Critic)
 - Rainbow
 - Neural Turing Machine
 - DQN
 - Capsule Networks
 - Dilated convolutions
-- Skip connections
+	- Convolutions with filter cells that are regularly spaced out.
+	- Purpose: Receptive field grows quicker, so can merge more spatial information across input (keeping filter size constant).
 - Dilated LSTMs
+- Skip connections

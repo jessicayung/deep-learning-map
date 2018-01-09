@@ -18,6 +18,9 @@
 * Malmo (Microsoft, Minecraft-based)
 * Unity Machine Learning Agents
 	- [support for curriculum learning in v0.2](https://blogs.unity3d.com/2017/12/08/introducing-ml-agents-v0-2-curriculum-learning-new-environments-and-more/)
+* DeepMind Control Suite
+	- Continuous control tasks with standardised structure and rewards, intended to serve as performance benchmarks for RL agents.
+	- [[Video]](https://www.youtube.com/watch?v=rAai4QzcYbs&feature=youtu.be) [[Paper (Tassa et. al., Jan 2018)]](https://arxiv.org/abs/1801.00690) [[Code]](https://github.com/deepmind/dm_control)
 
 ## 3D Home Environments
 * HoME (Household Multimodal Environment, 45k 3D houses populated with objects)

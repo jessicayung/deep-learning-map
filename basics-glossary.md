@@ -453,7 +453,8 @@ x += - learning_rate * dx / (np.sqrt(cache) + eps) # same as Adagrad
 	- Operation: Convolve (// slide) filter across width and height of input and compute dot products between entries of filter and input at every position
 	- Output: Produce 2D activation map for each depth layer -> stack them to produce output
 	- Connectivity
-		- Locally (vs fully) connected: connect each neuron to only a local region of the input volume.
+		- Locally (vs fully) connected: connect each neuron to only a local region of the input volume. 
+			- (i.e. Sparse connectivity: only connect each neuron to a subset of neurons in the previous layer)
 		- Parameter: receptive field of neuron (filter size/dimensions)
 	- Spatial arrangement
 		- Depth of output volume (Number of filters)

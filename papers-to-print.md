@@ -48,6 +48,9 @@
 	- Method: 'using a recursive neural network to iteratively predict the performance of new architectures, reducing the need for actual full-blown testing of the models'
 	- Result: 
 	- Summaries from Import AI #74.
+- [Deep Learning: A Critical Appraisal (Marcus, Jan 2018)](https://arxiv.org/abs/1801.00631)
+	- Ten concerns for DL
+- [Recent Advances in Recurrent Neural Networks (Salehinejad et. al., Jan 2018)]
 
 ## Paradigms
 - [Deep Neuroevolution (Uber, Dec 2017)](https://eng.uber.com/deep-neuroevolution/)

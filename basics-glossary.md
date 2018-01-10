@@ -520,12 +520,57 @@ x += - learning_rate * dx / (np.sqrt(cache) + eps) # same as Adagrad
 		- Stack of small filters contain non-linearities that make features more expressive
 		- Uses fewer parameters
 		- BUT might need more memory to hold intermediate CONV layer results for backprop
+	- CNN Layer Sizing Patterns
+		- Input layer: multiples of powers of 2 (e.g. 32 (CIFAR-10), 64, 96 (STL-10), 224 (ImageNet), 384, 512)
+		- Conv layers: 
+			- small filters (3x3 to 5x5)
+			- stride = 1
+				- smaller strides work better in practice and allow us to leave all down-sampling to POOL layers
+				- may have to compromise (increase stride) due to memory constraints, usually compromise only input layer.
+			- pad with zeros such that spatial dimensions of input remains the same
+				- padding also improves performance, else info at borders 'washed away' too quickly.
+		- Pool layers
+			- Most common: max-pooling with 2x2 receptive fields, stride=2 (discards 75% of activations)
+			- rare to see F > 3 because then pooling 'is then too lossy and aggressive and usually leads to worse performance'.
 - Looking ahead
 	- Paradigm of linear list of layers has recently been challenged in Google's Inception architectures and Residual Networks from Microsoft Research Asia
 	- Hinton's Capsule Networks
 - In practice
 	- Use whatever works best on ImageNet. Download a pretrained model and finetune it on your data.
 - Famous ConvNet architectures
+	- LeNet
+	- AlexNet (ImageNet 2012 winner)
+	- ZF Net (Zeiler and Fergus, ILSVRC 2013 winner)
+	- GoogLeNet (Szegedy et. al., ILSVRC 2014 winner)
+		- Developed 'Inception Module' that dramatically reduces parameters in the network (4M from AlexNet's 60M)
+		- Uses average pooling instead of fully connected layers at the top of the ConvNet
+			- Eliminates a large number of parameters that don't seem to matter much
+		- Followed up by Inception-v4 etc.
+	- VGGNet (Simonyan and Zisserman, ILSVRC 2014 runner-up)
+		- Showed that the depth of the network is a critical component for good performance.
+			- 16 layers
+		- Homogenous architecture that only performs 3x3 convs and 2x2 pooling from beginning to end.
+		- Cons: More expensive to evaluate, uses more memory and parameters (140M params, mostly in first FC layer)
+			- since found that first FC layers can be removed with no performance downgrade, greatly reducing number of parameters (first FC layer has 100M parameters)
+	- ResNet (Residual Network, Kaiming He et. al., winner of ILSVRC 2015)
+		- Skip connections
+		- Heavy use of batch normalisation
+		- No fully connected laters at the end
+		- State-of-the-art as of May 10, 2016
+- Computational Considerations
+	- Memory bottleneck
+		- Many modern GPUs have limits of 3/4/6 GB memory
+		- Memory sources:
+			- Activations
+				- Raw activations (forward pass values) and gradients at each layer of a convnet. Kept because they are needed for backpropgation
+					- (TODO: could in principle reduce this...? see [cs231n page](http://cs231n.github.io/convolutional-networks/))
+			- Parameters
+				- Network parameters, their gradients during backpropagation, commonly also a step cache if optimisation is using momentum, Adagrad or RMSprop.
+				- Estimate: num params x 3
+			- Misc. memory
+				- e.g. image data batches and possibly their augmenetd verisons
+		- Estimating memory: number of values x 4 (bypes) / 1024**3 (GB).
+		- Decrease batch size to make things fit (since most memory usually consumed by activations)
 
 ### Recurrent Neural Networks
 

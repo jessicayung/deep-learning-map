@@ -587,6 +587,38 @@ x += - learning_rate * dx / (np.sqrt(cache) + eps) # same as Adagrad
 		- Plot probability of correct class as a function of the position of an occluder object 
 			- plot as a heat map
 
+### Transfer Learning
+- Common to use a pretrained CNN as an initialisation or fixed feature extractor for task of interest (vs training CNN from scratch)
+	- Pretrain a CNN on a large dataset (e.g. ImageNet 1.2M images with 1k categories)
+- Fixed feature extractor:
+	- Remove last FC layer (which outputs 1k class scores for ImageNet, say)
+	- Treat rest of the network as a feature extractor. These features are called *CNN codes*.
+		- e.g. AlexNet 4096D vectors.
+		- Need to be ReLU'd if they were also RELU'd during pretraining.
+	- Train linear classifier for the new datase on these features.
+- Fine-tuning pretrained CNN
+	- Can only fine-tune later layers of CNN (motivation: earlier layers should contain more generic features, later layers more specific.)
+	- Rules of thumb:
+		- New dataset small
+				- Small data -> Not good idea to fine-tune CNN due to overfitting concerns. Best to train only linear classifier.
+				- New dataset similar to original dataset: 
+				    - Similar: Expect high-level features in CNN to be relevant to this dataset
+				    - Approach: Train linear classifier on CNN codes
+			    - New dataset very different from original dataset:
+			    	- Train classifier from activations earlier in the network
+		- New dataset large
+			- Can have more confidence we won't overfit if we try to fine-tune the entire network
+			- New dataset similar to original dataset:
+				- Finetune entire network
+			- New dataset v different from original dataset
+				- Finetune entire network.
+				- Can consider training CNN from scratch, but usually don't. 
+- Other practical advice
+	- If you use pretrained models, you may be constrained by their architecture choices.
+		- But can run pretrained net on images of different spatial size due to parameter sharing (adjust strides)
+	- Learning rates
+		- Common to use smaller lr for CNN weights that are being fine-tuned because we expect initial CNN weights to be good.
+
 ### Recurrent Neural Networks
 
 

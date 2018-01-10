@@ -571,6 +571,21 @@ x += - learning_rate * dx / (np.sqrt(cache) + eps) # same as Adagrad
 				- e.g. image data batches and possibly their augmenetd verisons
 		- Estimating memory: number of values x 4 (bypes) / 1024**3 (GB).
 		- Decrease batch size to make things fit (since most memory usually consumed by activations)
+- Visualising what CNNs learn
+	- Visualising activations and first-layer weights
+		- (ReLU activations) As training progresses (deeper layers) activations usually become more sparse and localised
+		- Dead filters (possible symptoms of high learning rates) easily spotted when activation maps are all zero for many different inputs
+	- Weights
+		- Usually most interpretable on first Conv layer which is looking directly at the raw pixel data
+		- 'Noisy patterns can be an indicator of a network that hasn't been trained for long enough, or possibly a very low regularisation strength that may have led to overfitting.'
+			- well-trained nets usually display nice and smooth filters without noisy patterns
+	- Images that maximally activate a neuron
+		- But ReLU neurons don't necessarily have any semantic meaning individually: more likely that multiple ReLU neurons are basis vectors of some space
+	- Embedding vectors right before classifier (including the ReLU non-linearity)
+		- e.g. in t-SNE to get a 2D vector for each image -> see which images are close to each other
+	- Occluding (hiding) parts of the image
+		- Plot probability of correct class as a function of the position of an occluder object 
+			- plot as a heat map
 
 ### Recurrent Neural Networks
 

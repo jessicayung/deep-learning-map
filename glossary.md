@@ -2,6 +2,7 @@
 
 (Work in progress. The focus is on terms that won't be part of most introductory courses since those definitions are easy to find and are usually in the [WildML glossary](http://www.wildml.com/deep-learning-glossary/).)
 
+See also the [basics glossary](basics-glossary.md).
 
 ### Frameworks
 
@@ -17,7 +18,7 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 
 ### Training methods
 
-- Backpropagation
+- [Backpropagation](basics-glossary.md)
 - Synthetic gradients
 	- Result: Faster updating of parameter weights
 	- Method: Using predicted 'synthetic gradients' (estimate based on local gradient) instead of true backpropagated error gradients
@@ -56,3 +57,43 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 	- Purpose: Receptive field grows quicker, so can merge more spatial information across input (keeping filter size constant).
 - Dilated LSTMs
 - Skip connections
+
+### Reinforcement Learning
+- Intuition of RL: 
+	- Loop through two steps:
+		- Agent performs action. 
+		- State may change, agent may get reward.
+	- Agent explores the environment by taking actions.
+	- Actions involve time
+	- Don't pre-program procedures in agent, but agent knows list of actions
+- Bellman Equation
+	- $V(s) = \max{a}(R(s,a)+\gamma E[V(s')])$
+		- where $\gamma$ is the discount factor.
+		- Deterministic version: $V(s) = \max{a}(R(s,a)+\gamma V(s'))$
+		- Expanded for MDPs: $V(s) = \max{a}(R(s,a)+\gamma \sum_{s'} P(s,a,s')V(s'))$
+- Plans vs Policies: 
+	- Plans comprise the optimal action for each state, with no stochasticity. Policies incorporate stochasticity.
+- Deterministic vs non-deterministic search:
+	- Deterministic search: Agent's intention maps 100% to agent's action.
+	- Non-deterministic search: Small chance of agent acting differently to how it intends to act
+- Markov Decision Processes (MDP)
+	- Mathematical framework for modelling decision-making where outcomes are partly random and partly under the control of a decision-maker
+	- Markov Property: 
+		- Memorylessness: Conditional P(X) dist depends only on present state
+	- Associated Bellman eqn: $V(s) = \max{a}(R(s,a)+\gamma E[V(s')])$
+		- aka $V(s) = \max{a}(R(s,a)+\gamma \sum_{s'} P(s,a,s')V(s'))$
+- Q-learning
+	- Give values to actions $Q(s_0,a_i)$ instead of states
+		- $Q(s,a) = R(s,a)+\gamma \sum_{s'} P(s,a,s')V(s')$
+			- i.e. $Q(s,a) = R(s,a)+\gamma \sum_{s'} P(s,a,s')\max{a'}Q(s',a')$
+- Temporal Difference
+	- TODO: refine
+	- (Consider Q-learning under deterministic search for convenienc)
+	- $TD_t(a,s) = Q_t(s,a) - Q_{t-1}(s,a) = R(s,a)+\gamma\max{a'}Q(s',a') - Q_{t-1}(s,a)$
+	- $TD(a,s)$ may be nonzero because of randomness. (Though we've *written* the deterministic search version of )
+- Update eqn: $Q_t(s,a) = Q_{t-1}(s,a) + \alpha TD_t(a,s)$
+	- $\alpha$ is the learning rate.
+	- Hope: algorithm will converge to the 'correct' Q-value, unless the environment is constantly changing.
+
+References:
+- RL: AI A to Z course

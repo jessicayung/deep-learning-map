@@ -312,7 +312,7 @@ Often used for regularisation.
 
 #### Methods to tune learning rate
 - Adagrad
-	- ```
+	```
 	# Assume the gradient dx and parameter vector x
 	cache += dx**2
 	x += - learning_rate * dx / (np.sqrt(cache) + eps)
@@ -322,31 +322,31 @@ Often used for regularisation.
 	- Cons: monotonic learning rate usually proves too aggressive and stops learning too early
 	- By Duchi et. al.
 - RMSprop
-	- ``` cache = decay_rate * cache + (1 - decay_rate) * dx**2
-x += - learning_rate * dx / (np.sqrt(cache) + eps) # same as Adagrad
+	``` cache = decay_rate * cache + (1 - decay_rate) * dx**2
+	x += - learning_rate * dx / (np.sqrt(cache) + eps) # same as Adagrad
 	```
-		- Adjusted Adagrad (to reduce aggressive, monotonically decreasing learning rate -> has equalizing effect but upds do not get monotonically smaller) 
-			- Uses moving average of squared gradients instead of squared gradients.
-		- `decay_rate`: hyperparameter, typical values [0.9, 0.99, 0.999]
+	- Adjusted Adagrad (to reduce aggressive, monotonically decreasing learning rate -> has equalizing effect but upds do not get monotonically smaller) 
+		- Uses moving average of squared gradients instead of squared gradients.
+	- `decay_rate`: hyperparameter, typical values [0.9, 0.99, 0.999]
 	- Very effective
 - Adam
-	- ```
+	```
 	# Simplified version
 	m = beta1*m + (1-beta1)*dx
 	v = beta2*v + (1-beta2)*(dx**2)
 	x += - learning_rate * m / (np.sqrt(v) + eps)
 	```
-		- Smooth version of gradient (m) used rather than raw, possibly noisy gradient vector `dx`.
-		- Full version includes bias correction:
-			- Corrects for fact that in the first few timesteps m, v both initialised and therefore biased at zero)
-			- ```
+	- Smooth version of gradient (m) used rather than raw, possibly noisy gradient vector `dx`.
+	- Full version includes bias correction:
+		- Corrects for fact that in the first few timesteps m, v both initialised and therefore biased at zero)
+			```
 			# t is your iteration counter going from 1 to infinity
 			m = beta1*m + (1-beta1)*dx
 			mt = m / (1-beta1**t)
 			v = beta2*v + (1-beta2)*(dx**2)
 			vt = v / (1-beta2**t)
 			x += - learning_rate * mt / (np.sqrt(vt) + eps)
-```
+			```
 	- Like RMSprop with momentum
 	- Currently recommended as default algorithm to use
 

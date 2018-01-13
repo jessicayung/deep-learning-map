@@ -94,6 +94,34 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 - Update eqn: $Q_t(s,a) = Q_{t-1}(s,a) + \alpha TD_t(a,s)$
 	- $\alpha$ is the learning rate.
 	- Hope: algorithm will converge to the 'correct' Q-value, unless the environment is constantly changing.
+- Living penalty
+    - e.g. small negative reward when entering each non-terminal state to motivate agent to finish the game quickly
 
-References:
+### Deep RL
+- Deep Q-learning
+	- **Learning**: Feed in state to NN, final layer gives q-values for each action
+		- Compares predicted value to previous observed value: loss $L = \sum(Q_{prev_observed} - Q_{pred})
+<!--			- TODO: but what if you haven't seen this state before?
+			- TODO: What if you've seen it multiple times?
+-->
+		- Learning happens for each state
+	- **Acting**: Put final layer through softmax (or some other action selection policy, see below) and select the corresponding action.
+- Experience replay
+	- Problem: Update after every action, so consecutive states that are similar may bias the neural network.
+	- Solution: Save state information. Start updating after some initial time period, and update with states drawn uniformly from memory in the interval $(t-k_1, t-k_2)$.
+	- [Schaul et al. (2016), Prioritized Experience Replay](#)
+- Action selection policies
+	- Most commonly used:
+		- $\epsilon$-greedy
+			- Select highest q-value action $(1-\epsilon)$ of the time, randomly otherwise.
+				- Tokic (2010): can adapt $\epsilon$ depending on the state (smaller $\epsilon$ if the agent is certain about its state)
+		- $\epsilon$-soft $(1-\epsilon)$
+			- Opposite of $\epsilon$-greedy: select highest q-value action $\epsilon$ of the time, randomly otherwise.
+		- Softmax
+			- $\sigma(\textbf{z})_j = \frac{e^{z_j}}{\sum_k e^{z_k}}$ for $j=1,...,K$.
+			- Outputs across all actions sum to one
+	- Key is exploration vs exploitation
+		- Agent may find itself stuck in a local maximum (thinks e.g. a positive-reward action $Q_2$ is the best action because it hasn't found the better one $Q_4$.)
+
+#### References:
 - RL: AI A to Z course

@@ -2,6 +2,8 @@
 Multilayer Perceptron in Raw Python (with Numpy)
 trained on Spiral Dataset
 
+Implementation uses in-file classes.
+
 Adapted from CS231n http://cs231n.github.io/neural-networks-case-study/
 
 Jessica Yung

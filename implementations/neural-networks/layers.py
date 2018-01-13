@@ -57,8 +57,8 @@ class softmax_loss:
         self.num_examples = len(X)
         exp_scores = np.exp(X)
         probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True) # sum along each row
-        correct_logprobs = -np.log(probs[range(num_examples), self.y])
-        data_loss = np.sum(correct_logprobs)/num_examples
+        correct_logprobs = -np.log(probs[range(self.num_examples), self.y])
+        data_loss = np.sum(correct_logprobs)/self.num_examples
         self.probs = probs
         return data_loss
 
@@ -68,7 +68,7 @@ class softmax_loss:
             dscores = self.probs
         else:
             dscores = dy
-        dscores[range(num_examples),self.y] -= 1
+        dscores[range(self.num_examples),self.y] -= 1
         dscores /= self.num_examples
         return dscores
 

@@ -71,33 +71,36 @@ for i in range(n_epochs):
     # Backprop
     # dLi/dfk = pk - 1(yi=k)
     dscores = data_loss_fn.backward()
-    print("dscores:",dscores.shape)
+    # print("dscores:",dscores.shape)
     dh1 = fc2.backward(dscores)
-    print("dh1:",dh1.shape)
+    # print("dh1:",dh1.shape)
     dconv1 = relu1.backward(dh1)
-    print("dconv1:",dconv1.shape)
+    # print("dconv1:",dconv1.shape)
     dconv1 = np.reshape(dconv1, (num_examples, cnn1.yh, cnn1.yw, cnn1.num_filters))
     dX = cnn1.backward(dconv1)
-    print(dX.shape)
+    # print(dX.shape)
     # TODO: do we need to take the mean of the gradients? Or is this included in the learning rate (which should then take into account batch size?) I think it's already taken into account.
 
     # Gradient from regularisation
-    print("cnn1.dW:",cnn1.dW.shape)
-    print("cnn1.W:",cnn1.W.shape)
+    # print("cnn1.dW:",cnn1.dW.shape)
+    # print("cnn1.W:",cnn1.W.shape)
     cnn1.dW += reg*cnn1.W
     fc2.dW += reg*fc2.W
 
     # Parameter update
     for i in range(num_examples):
         cnn1.W += -step_size * cnn1.dW[i]
-        print("cnn1.b:",cnn1.b.shape)
-        print("cnn1.db:",cnn1.db.shape)
+        # print("cnn1.b:",cnn1.b.shape)
+        # print("cnn1.db:",cnn1.db.shape)
         cnn1.b += -step_size * cnn1.db[i]
     fc2.W += -step_size * fc2.dW
     fc2.b += -step_size * fc2.db
 
+print("cnn1.W: ", cnn1.W.shape)
 # Evaluate training set accuracy
 conv1 = cnn1.forward(X_train)
+print("conv1: ", conv1.shape)
+print("conv1: ", conv1[0])
 h1_prod = flatten(conv1,num_examples)
 h1 = relu1.forward(h1_prod)
 scores = fc2.forward(h1)

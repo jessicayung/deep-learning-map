@@ -60,7 +60,7 @@ class cnn2d:
     def forward(self, X):
         self.X = X
         self.num_examples = len(self.X)
-        self.y = np.zeros((self.yw, self.yh, self.num_filters))
+        self.y = np.zeros((self.yh, self.yw, self.num_filters))
         # print("Number of filters: ", num_filters)
         self.im2col()
         self.y = np.reshape(np.dot(self.W_row, self.X_col), (self.num_examples, self.yh, self.yw, self.num_filters))
@@ -72,12 +72,20 @@ class cnn2d:
 
     def backward(self, dy):
         # TODO: check bias dims
-        self.db = np.sum(dy, axis=(0,1)) # all except depth axis
-        self.db = self.db.reshape(self.num_filters, -1) # check if we need this.
-        dy_reshaped = self.dy.reshape(self.num_filters, -1)
-        self.dW = np.dot(dy_reshaped, self.X_col.T)
+        print("dy:",dy.shape)
+        self.db = np.sum(dy, axis=(1,2)) # all except depth axis
+        print("db:",self.db.shape)
+        if self.Xd != 1:
+            self.db = self.db.reshape(self.num_examples, self.num_filters, -1) # check if we need this.
+            print("db:",self.db.shape)
+        dy_reshaped = dy.reshape(self.num_examples, self.num_filters, -1)
+        self.dW = np.array([np.dot(dy_reshaped[i], self.X_col[i].T) for i in range(self.num_examples)])
+        print("dW:",self.dW.shape)
+        self.dW = np.reshape(self.dW, (self.num_examples, self.num_filters, self.fh, self.fw, self.Xd))
+        print("dW:",self.dW.shape)
         # reshape into num_filters, h, w, num_examples later
         W_reshape = self.W.reshape(self.num_filters, -1)
-        dX_col = np.dot(W_reshape, dy_reshaped)
+        dX_col = np.array([np.dot(W_reshape.T, dy_reshaped[i]) for i in range(self.num_examples)])
+        print("dX_col:",dX_col.shape)
         return dX_col
 

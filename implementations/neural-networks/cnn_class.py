@@ -26,15 +26,30 @@ class cnn2d:
         self.sh = stride
         self.yw = (self.Xw + 2 * padding - self.fw) / self.sw + 1
         self.yh = (self.Xh + 2 * padding - self.fh) / self.sh + 1
+        """
+        if not (self.yw % 1) or not (self.yh % 1):
+            print("yw: ", self.yw)
+            print("yh: ", self.yh)
+            raise Exception("stride not compatible")
+        """
+
         self.yw, self.yh = int(self.yw), int(self.yh)
 
     def im2col(self):
-        self.X_col = np.zeros((self.yw*self.yh*self.Xd,self.fh*self.fw))
+        self.X_col = np.zeros((self.num_examples, self.fh*self.fw, self.yw*self.yh*self.Xd))
+        print("X_col shape: ", self.X_col.shape)
+        print("X shape: ", self.X.shape)
         self.W_row = np.zeros((self.num_filters,self.fh*self.fw*self.Xd))
+        print("W_row shape: ", self.W_row.shape)
+        print("W shape: ", self.W.shape)
         col = 0
         for i in range(self.yw):
             for j in range(self.yh):
-                self.X_col[:,col] = np.reshape(self.X[j * self.sh:j * self.sh + self.fh, i * self.sw:i * self.sw + self.fw,:],-1)
+                for k in range(self.num_examples):
+                    if self.Xd == 1:
+                        self.X_col[k,:,col] = np.reshape(self.X[k,j * self.sh:j * self.sh + self.fh, i * self.sw:i * self.sw + self.fw],-1)
+                    else:
+                        self.X_col[k,:,col] = np.reshape(self.X[k,j * self.sh:j * self.sh + self.fh, i * self.sw:i * self.sw + self.fw,:],-1)
                 col += 1
         for n in range(self.num_filters):
             for i in range(self.fw):
@@ -44,14 +59,15 @@ class cnn2d:
 
     def forward(self, X):
         self.X = X
+        self.num_examples = len(self.X)
         self.y = np.zeros((self.yw, self.yh, self.num_filters))
         # print("Number of filters: ", num_filters)
         self.im2col()
-        self.y = np.reshape(np.dot(self.W_row, self.X_col), (self.yh, self.yw, self.num_filters))
+        self.y = np.reshape(np.dot(self.W_row, self.X_col), (self.num_examples, self.yh, self.yw, self.num_filters))
         # print("Y shape: ", y.shape)
         # Add bias
         for n in range(self.num_filters):
-            self.y[:,:,n] += self.b[n]
+            self.y[:,:,:,n] += self.b[n]
         return self.y
 
     def backward(self, dy):

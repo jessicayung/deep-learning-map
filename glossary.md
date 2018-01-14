@@ -59,7 +59,7 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 - Skip connections
 	- Mappings (connections) that skip one or more layers.
 		- E.g. Adds (a 1x1 convolution of) an earlier layer to the most recent network layer
-		- ![](images/skip-connections.png)
+		- ![](images/skip-connection.png)
 			Image from He et. al., 2015.
 	- Component of a 'deep residual layer'
 	    - Goal: help network to learn approximate identity layers (if that is what is locally optimal)

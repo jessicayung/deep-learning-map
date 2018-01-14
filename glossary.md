@@ -57,6 +57,14 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 	- Purpose: Receptive field grows quicker, so can merge more spatial information across input (keeping filter size constant).
 - Dilated LSTMs
 - Skip connections
+	- Mappings (connections) that skip one or more layers.
+		- E.g. Adds (a 1x1 convolution of) an earlier layer to the most recent network layer
+	- Component of a 'deep residual layer'
+	    - Goal: help network to learn approximate identity layers (if that is what is locally optimal)
+	    	- in which case the output of the most recent network layer should be approx 0.
+	- Introduced by [He et. al., Dec 2015](https://arxiv.org/pdf/1512.03385.pdf) as part of deep residual networks, winner of ILSVRC 2015.
+		- [Useful Stackexchange post](https://stats.stackexchange.com/questions/56950/neural-network-with-skip-layer-connections)
+	- Also called *residaul connections*, *shortcut connections*.
 
 ### Reinforcement Learning
 - Intuition of RL: 

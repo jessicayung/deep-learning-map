@@ -163,7 +163,64 @@ Examples of ways reward hacking can happen:
 - Creating classes of environments where a delusion box is a natural and integrated part of the environment
 	- *e.g. AI Safety Gridworlds watering tomatoes x bucket environment.*
 
-<!-- ## Thoughts
+### III. Scalable Oversight
+
+#### Problem
+- Providing complete evaluations for complex objectives may be impossible or too costly.
+- We then need to reply on cheaper approximations, which can exacerbate problems like unwanted side effects and reward hacking
+	- Approximations: calls to proxy, or limited calls to true object function and many calls to a proxy
+
+#### Framework: Semi-supervised reinforcement learning
+- Agent can only see its reward on a small fraction of the timesteps or episodes (but evaluated based on reward for all episodes).
+- Settings:
+	- Active learning: agent can request to see the reward on timesteps where it'd be most useful
+	- Random setting: Reward visible on random subset of timesteps
+	- Intermediates between active learning and random setting
+- Key subtask: 
+	- identifying proxies which predict the reward, and 
+	- learning conditions under which these proxies are valid
+- Authors' thoughts:
+	- Use of semi-supervised RL with a reliable but sparse true approval metric may incentivise communication and transparency by the agent.
+		- since agent wants as much cheap proxy feedback as possible
+	- e.g. for a cleaning robot, 'hiding a mess under the rug simply breaks the correspondence between the user's reaction and the real reward signal, and so would be avoided.'
+		- *T: Would there be situations where the action to truly fix a problem is so costly that the agent still chooses to hide a mess under the rug?*
+
+#### Approaches to semi-supervised RL
+- Supervised Reward Learning
+	- Train model to predict reward from state on per-timestep/episode basis.
+		- Use predicted reward to estimate payoff of unlabelled episodes
+	- Use weighting or uncertainty estimate to account for lower confidence in estimated vs known reward
+- Semi-supervised or Active Reward Learning
+	- Supervised Reward Learning combined with semi-supervised or active learning,
+	- i.e. Agent requesting to see the reward associated with e.g. 'salient' events in the environment cthat it learns to identify
+- Unsupervised Value Iteration
+	- 'Use the observed transitions of the unlabeled episodes to make more accurate Bellman updates.' <!-- TODO: ? -->
+- Unsupervised Model Learning
+	- 'If using model-based RL, use the observed transitions of the unlabeled episodes to improve the quality of the model.' <!-- TODO: ? -->
+
+#### Approaches to scalable oversight other than semi-supervised RL
+- Distant supervision
+	- Provide useful information about the system's decisions in the aggregate, or
+	- Or provide noise hints about correct evaluations
+	- e.g.
+		- Generalised expectation criteria: ask the user to provide population-level statistics
+		- DeepDive: 'asks users to supply rules that each generate many weak labels and extrapolates more general patterns from an initial set of low-recall labeling rules.' 
+	- Approach received recent attention in natural language processing
+	- RD: Extending and applying this work to case of agents where feedback is more interactive and i.i.d. assumptions may be violated
+- Hierarchical reinforcement learning
+	- In HRL, top-level agents receive rewards (usually over long timescales) from the environment. To maximise their reward from the enviroment, they act by assigning synthetic rewards for sub-agents, which then assign synthetic rewards to sub-sub-agents. At the lowest level, agents directly take primitive actions in the environment.
+	- Relevant because: Sub-agents receive dense reward even if top-level reward is very sparse, since sub-agents are maximising synthetic reward signals defined by higher-level agents.
+	- RD: potential proimse of combining ideas from HRL with neural network function approximators <!-- Look into? -->
+	- Note: subagents may take actions that don't serve top-level agents' real goals, in the same way that a human may be concerned that the top-level agent's actions don't serve the human's real goals. -> there may be fruitful parallel s between hierarchical RL and several aspects of the safety problem.
+
+#### Potential experiments
+	- Semi-supervised RL in basic control environments, such as cartpole balance or pendulum swing-up, 
+	- Then basic Atari games
+		- Active learning case: is it possible to infer the reward structure from just a few carefully requested samples (e.g. frames where enemy ships are blowing up in Space Invaders?), and thus learn
+		- *T: see [Deep Reinforcement Learning from Human Preferences](https://blog.openai.com/deep-reinforcement-learning-from-human-preferences/)*
+	- Then tasks with more complicated reward structure (simulated or real-world), e.g. robot locomotion or industrial control tasks.
+<!--
+ ## Thoughts
 
 ## Related papers
 

@@ -3,8 +3,8 @@
 
 ## Approaches
 
-- Cooperative Inverse Reinforcement Learning
 - Inverse Reinforcement Learning
+- Cooperative Inverse Reinforcement Learning
 - Multi-Armed Bandits
 
 ## Problems

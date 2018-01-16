@@ -219,6 +219,54 @@ Examples of ways reward hacking can happen:
 		- Active learning case: is it possible to infer the reward structure from just a few carefully requested samples (e.g. frames where enemy ships are blowing up in Space Invaders?), and thus learn
 		- *T: see [Deep Reinforcement Learning from Human Preferences](https://blog.openai.com/deep-reinforcement-learning-from-human-preferences/)*
 	- Then tasks with more complicated reward structure (simulated or real-world), e.g. robot locomotion or industrial control tasks.
+
+### IV. Safe exploration
+
+- Exploration: taking actions that don't seem ideal given current information, but which help the agent learn about its environment.
+- Problem: Can be dangerous because it involves taking actions whose consequences the agent doesn't know well
+	- **Can we predict which actions are dangerous and explore in a way that avoids those actions?**
+- Much literature on this topic
+
+#### Approaches
+- Hard-coding avoidance of catastrophic behaviours: is not generalisable
+	- Works well when there are only a few things that could go wrong, and the designers know all of them ahead of time.
+- Risk-Sensitive Performance Criteria
+	- Changing the optimisation criteria from expected total reward to other objectives that are better at preventing rare catastrophic events
+	- Approaches:
+		- optimising worst-case performance
+		- ensuring that the probability of very bad performance is msmall, or 
+		- penalising variance in performance
+	- Status:
+		- Methods not yet tested with DNNs, but should be possible in principle for some methods
+	- Related lines of work:
+		- Estimating uncertainty in value functions that are represented by deep neural networks
+		- Using off-policy estimation to perform a policy update that is good with high probability
+- Use Demonstrations
+	- Avoiding the need for exploration if we use inverse RL or apprenticeship learning, where the learning algorithm is provided with expert trajectories of near-optimal behaviour.
+	- Ways of using demonstrations
+		- Train only on demonstrations
+		- To reduce the need for exploration in advanced RL (by training on a small set of demonstrations)
+		- To create a baseline policy, such that even if further learning is necossary, exploration away from the baseline policy can be limited in magnitude.
+- Simulated Exploration
+	- Do exploration in simulated environments instead of the real world
+	<!-- - Note: 'in systems that involve a continual cycle of learnnig and deployment, there may be interesting research problems associated with how to safely incrementally update policies given simulation-based trajectories that imperfectly represent the consequences of those policies as well as reliably accurate off-policy trajectorios (e.g. semi-on-policy evaluation).' -->
+- Bounded Exploration
+	- Remain without portion of state space we know to be safe
+	<!-- TODO: add -->
+	- Related areas: H-infinity control, regional verification
+- Trusted Policy Oversight
+	- Limit exploration to actions the trusted policy believes we can recover from.
+		- Requires a trusted policy (policy we trust to be safe) and a model of the environment
+- Human Oversight
+	- Check potentially unsafe actions with a human.
+	- But runs into the scalable oversight problem: there may be too many actions, or they may occur too quickly for a human to judge them
+	- Challenges: 
+		- Having the agent be a good judge of which actions are genuinely risky
+		- Finding appropriately safe actions to take while waiting for oversight
+
+#### Potential experiments
+- Suite of environments where agents can fall prey to harmful exploration, but there is enough pattern to catastrophes that clever agents can predict and avoid them.
+
 <!--
  ## Thoughts
 

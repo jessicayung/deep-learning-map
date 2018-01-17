@@ -3,7 +3,7 @@
 This is a table that lists components of a neural networks with examples.
 
 <table>
-	<th><td>Category</td><td>Examples</td></th>
+	<th>Category</th><th>Examples</th>
 	<tr><td>Data</td><td></td></tr>
 	<tr><td>Data Preprocessing</td><td></td></tr>
 	<tr><td>Model initialisation</td><td><ol>

@@ -272,6 +272,98 @@ Examples of ways reward hacking can happen:
 #### Potential experiments
 - Suite of environments where agents can fall prey to harmful exploration, but there is enough pattern to catastrophes that clever agents can predict and avoid them.
 
+### V. Robustness to Distributional Change
+- Problem: In unfamiliar situations, ML systems are often highly confident in their erroneous classifications.
+	- Need to learn to recognise their own ignorance
+- Typical constraints
+	- Likely have access to a large amount of labelled data at training time, but little or no labelled data at test time
+- Goal
+	- Ensure that model 'performs reasonably' on potetentially different test dist p\*, i.e.
+		- often performs well on p\*,
+		- knows when it is performing badly (and ideally can avoid/mitigate the bad performance by taking conservative actions or soliciting human input).
+- Potentially relevant areas:
+	- Change detection and anomaly detection, hypothesis testing, transfer learning
+
+#### Approaches
+
+#### A. Detecting  when a model is unlikely to make good predictions on a new distribution, or trying to improve the quality of those predictions
+
+- Well-specified models: 
+	- e.g. covariate shift and marginal likelihood
+	- Approach (1): Make covariate shift assumption 
+		- Assumption: that p_0(y|x) = p^\*(y|x).
+			- where x is input, y is output, p^\* is test dist, p_0 train dist.
+			- A strong and untestable assumption
+		- Method (1): Sample re-weighting: re-weight each training example by p^\*(x)/p_0(x).
+			- -> then can estimate performance on p^\* or even re-train model to perform well on p^\*.
+			- Limited by variance of importance 	estimate, which is large or even infinite unless p_0 and p^\* are close together
+		- Method (2): Assume well-specified model family
+			<!-- TODO: could add more, but bit technical, dk if it'll help -->
+	- Approach (2): Build generative model of the distribution
+		- Free to assume other invariants (e.g. p(y) changes while p(x|y) stays the same) instead of assuming that p(x) changes while p(y|x) stays the same.
+		<!-- Todo: what is p exactly -->
+			- Advantage: such assumptions usually more testable since they don't only involve unobserved var y
+			- Disadvantage: generative approaches are even more fragile than discriminative approaches in the presence of model-misspefication
+	- Approaches above all rely strongly on having a well-specified model family
+		- Possible to mitigate this with very expressive models such as kernels, Turing machines or very large neural networks
+			- But may not be able to learn specification of model given finite data 
+- Partially-specified models: 
+	- e.g. method of moments (econometrics), unsupervised risk estimation, causal identification, and limited-information maximal likelihood (even instrumental variables)
+	- Assumes constructing a fully well-specified model family is infeasible
+	- Partially specified models: models for which assumptions are made about some aspects of a distribution, but for which we are agnostic or make limited assumptions about other aspects.
+		- e.g. linear regression with white noise: can identify W without knowing precise dist of noise.
+	- Current ML:
+		- Success for method of moments in estimation of latent variable models
+<!--			- Focus is on using moM to overcome non-convexity issues, but it can also offer a way to perform unsupervised learning while relying only on conditional independence assumptions (vs strong distributional assumptions underlying maximum likelihood learning) -->
+		- Some work focusing only on modelling the distribution of errors of a model
+			- Goal: perform unsupervised risk estimation (given a model and unlabeled data from a test distribution, estimate the labeled risk of a model)
+				- Can potentially handle very large changes between train and test
+			- *T: nice, look into this problem*
+	- RD / Q: Are partially specified models fundamentally constrained to simple situations and/or conservative predictions?
+- Training on multiple distributions
+	- Train on multiple training distributions in the hope that a model which simultaneously works well on many training dists will also work well on a novel test dist
+	- Still important to detect when one is in a situation that is not covered by the training data and to respond appropriately
+	- Can combine with approaches above
+	- Lit:
+		- Applies in automated speech recognition systems
+
+#### How to respond when out-of-distribution
+- Ask humans for information 
+	- But may be unclear what questions to ask
+		- -> work on pinpointing aspects of a structure that a model is uncertain about
+		- obtaining calibration in structured output settings <!-- TODO:? -->
+	- May not be an option in time-critical situations
+		- Relevant work based on reachability analysis or robust policy improvement
+		- RD: Combine this work with methods for detecting out-of-dist failures in a model
+- Non-structured output setting (agents that can act in an environment, e.g. RL agents)
+	- Inormation about the reliability of percepts (observations?) in uncertain situations seems to have great potential value
+		- Potential agent responses if info seems uncertain
+			- Gather info that clarifies percept (e.g. move closer to speaker in a noisy environment)
+			- Engage in low-stakes experimentation when uncertainty is high (e.g. try potentially dangerous chemical reaction in a controlled environment)
+			- Seek experiences that are likely to help expose the perception sytem to the relevant distribution (e.g. practice listening to accented speech)
+- Generally a RD
+
+#### Frameworks
+- A unifying view: counterfactual reasoning and ML with contracts
+- Counterfactual reasoning
+	- 'What would have happened if the world were different in a certain way?'
+	- Thinking of distributional shifts as counterfactuals
+- Machine learning with contracts
+	- Construct ML systems that satisfy a well-defined contract on their behaviour, analogous to software systems
+	- Brittle implicit contract in most ML systems: that they only necessarily perform well if the training and test distributions are identical.
+		- Condition difficult to check and rare in practice, valuable to build systems that perform well under weaker contracts that are easier to reason about
+	- Approaches: 
+		- Partially specified models (above)
+		- Reachability analysis
+			- optimise performance subject to the condition that a safe region can always be reached by a known conservative policy
+		- Model repair
+			- Alter a trained model to ensure that certain desired safety properties hold
+
+#### Potential Experiments
+- Challenge: Train a state-of-the-art speech system on a standard dataset that gives well-calibrated results on a range of other test sets, like noisy and accented speech
+- Design models that could consistently estimate (bounds on) their performance on novel test distributions
+- Create an environment where an RL agent must learn to interpret speech as part of some larger task, and to explore how to respond appropriately to its own estimates of its transcription error
+	- TODO: why is this valuable?
 <!--
  ## Thoughts
 

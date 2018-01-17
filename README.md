@@ -30,6 +30,8 @@ Map of deep learning and notes from papers.
 	- `libraries.md`
 	- `speech.md`
 	- `papers-to-print.md`: Some papers I'm interested in.
+    - `nn-components.md`: List of components of neural networks.
+        - A first step towards drawing a 'map' of Deep Learning.
 	- Misc:
 		- `other-news.md`, `other-resources.md`
 4. Implementations

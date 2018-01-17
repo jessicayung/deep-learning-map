@@ -370,3 +370,13 @@ Examples of ways reward hacking can happen:
 ## Related papers
 
 -->
+  
+### Related Efforts
+<!-- TODO: add list of related research efforts with links-->
+- Related Problems in Safety
+	- Privacy 
+	- Fairness
+	- Security (Adversarial atttacks against a legitimate ML system)
+	- Abuse (Misuse of ML systems to attack or harm people)
+	- Transparency (Understading what complicated ML systems are doing)
+	- Policy

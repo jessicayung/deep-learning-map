@@ -2,6 +2,8 @@
 
 Eysenbach et. al., Nov 2017
 
+Authors: Benjamin Eysenbach, Shixiang Gu, Julian Ibarz, Sergey Levine
+
 [[arxiv]](https://arxiv.org/abs/1711.06782) [[Videos]](https://sites.google.com/site/mlleavenotrace/)
 
 **Tags**: 

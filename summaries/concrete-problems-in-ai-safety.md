@@ -2,6 +2,8 @@
 
 Amodei and Olah et. al., Jul 2016
 
+Authors: Dario Amodei, Chris Olah, Jacob Steinhardt, Paul Christiano, John Schulman, Dan Mané
+
 [[arxiv]](https://arxiv.org/abs/1606.06565) [[Open AI blog post]](https://blog.openai.com/concrete-ai-safety-problems/)
 
 **Tags**: 

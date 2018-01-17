@@ -2,6 +2,8 @@
 
 Jaderberg et. al., Nov 2017
 
+Authors: Max Jaderberg, Valentin Dalibard, Simon Osindero, Wojciech M. Czarnecki, Jeff Donahue, Ali Razavi, Oriol Vinyals, Tim Green, Iain Dunning, Karen Simonyan, Chrisantha Fernando, Koray Kavukcuoglu
+
 [[arxiv]](https://arxiv.org/abs/1711.09846) [[DeepMind's blog post]](https://deepmind.com/blog/population-based-training-neural-networks/)
 
 ## Summary

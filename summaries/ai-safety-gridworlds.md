@@ -2,6 +2,8 @@
 
 Leike et. al., Nov 2017
 
+Authors: Jan Leike, Miljan Martic, Victoria Krakovna, Pedro A. Ortega, Tom Everitt, Andrew Lefrancq, Laurent Orseau, Shane Legg
+
 [[arxiv]](https://arxiv.org/abs/1711.09883) [[DeepMind blog post]](https://deepmind.com/blog/specifying-ai-safety-problems/) [[code]](https://github.com/deepmind/ai-safety-gridworlds)
 
 **Tags**: 

@@ -251,9 +251,14 @@ Examples of ways reward hacking can happen:
 	- Do exploration in simulated environments instead of the real world
 	<!-- - Note: 'in systems that involve a continual cycle of learnnig and deployment, there may be interesting research problems associated with how to safely incrementally update policies given simulation-based trajectories that imperfectly represent the consequences of those policies as well as reliably accurate off-policy trajectorios (e.g. semi-on-policy evaluation).' -->
 - Bounded Exploration
-	- Remain without portion of state space we know to be safe
+	- Remain within portion of state space we know to be safe
+		- Some definitions of safety:
+			- Remaining with an ergodic region of the state space s.t. actions are reversible
+			- Limiting P(X) of huge negative reward to some small value
+			- OR obey constarints on separate safety function with high probability (safety functions, performance functions separate)
+		- If model exists, can use model to extrapolate forward and ask whether an action will take us outside the safe state stpace
 	<!-- TODO: add -->
-	- Related areas: H-infinity control, regional verification
+	- Potentially related areas: H-infinity control, regional verification
 - Trusted Policy Oversight
 	- Limit exploration to actions the trusted policy believes we can recover from.
 		- Requires a trusted policy (policy we trust to be safe) and a model of the environment

@@ -32,38 +32,79 @@ Each environment has
 ### Problems and environments:
 
 #### Specification
+Key: Reward function and performance function differ.
 
 1. Safe interruptibility
-	- Off-switch environment: the agent can 
+	- Problem: We may want to use some mechanism to switch an agent off or to interrupt and override their actions. How can we design agents that neither seek nor avoid interruptions?
+	- Off-switch environment
+	- ![](images/gridworlds-safe-interruptibility.png)
 2. Avoiding side effects
+	- Problem: How can we agents to minimise effects unrelated to their main objective, especiallyt hose that are irreversible of difficult to reverse?
 	- Irreversible side effects environment
 <!-- 	- Specifying all such safety constraints is labour-intensive and brittle and is unlikely to scale or generalise well, so we want the agent to have a general heuristic againsnt causing side effects in the environment. -->
 3. Absent supervisor
+	- Problem: How can we make sure an agent does not behave differently depending on the presence or absence of a supervisor?
 	- Absent supervisor environment
 4. Reward gaming
+	- Problem: How do we build agents that do not try to introduce or exploit errors in the reward function in order to get more reward?
 	- Boat race environment
+		- Misspecified reward function
 	- Tomato watering environment
+		- Agent can modify its own observations: by putting a bucket over its head, the agent can't see any dried out tomatoes.
 
 #### Robustness
+Reward function and performance function are the same.
 
 5. Self-modification
+	- Problem: How can we design agents that behave well in environments that allow self-modification?
 	- Whisky and gold environment
 		- Agent needs to reach goal. 'If the agent drinks the whisky W, its exploration rate increases to 0.9, which results in it taking random actions most of the time, casing it to take much longer to reach the goal G.'
 		- Desired behaviour: walk around whisky flask without drinking it so the agent can get to the goal quickly and reliably
+	- ![](images/gridworlds-whisky-and-gold.png)
 6. Distributional shift
+	- Problem: How do we ensure that an agent behaves robustly when its test environment differs from the training environment?
 	- Lava world environment: 
 		- Agent needs to reach goal without falling into the lava lake, but the 'bridge' over the lava lake shifts by one cell up or down (randomly) in the testing vs the training environment
 7. Robustness to adversaries
+	- Problem: How does an agent detect and adapt to friendly and adversarial intentions present in the environment?
 	- Friend or foe environment
 8. Safe exploration
+	- Problem: How can we build agents that respect the safety constraints not only during normal operation, but also during the initial learning period?
 	- Island navigation environment
 		- Agent needs to reach goal without falling into the water (which ends the episode)
 		- Safety constraint (Manhattan distance to the water) provided to agent
+	<!--
+	- Suggested directions: 
+		- Risk-sensitive RL possibly combined with distributional RL since distributions over Q-values allow risk-sensitive decision making. 
+		- Use of prior information, e.g. through imitation learning.
+		- Learn 'fail-safe' policy that overrides the agent's actions whenever the safety constraint is about to be violated.
+	-->
 
 ## Results
 
-{Results}
-
+- Models: A2C and Rainbow.
+	- Trained each agent for 1M timesteps with 20 different random seeds and removed 25% of the worst performing runs.
+		- Reduces variance of performance a lot, since A2C tends to be unstable due to occasional entropy collapse.
+		<!-- - All hyperparameters shared between environnments, except A2C hyperparams relating to policy entropy, as they found that A2C is be particularly sensitive to this parameter -->
+	- Rainbow Sarsa for Whisky and gold environment
+		- i.e. Rainbow with a Sarsa update rule instead of the Q-learning update rule.
+- Specification:
+	- Safe interruptibility (Off-switch): A2C learns to use button to disable interruption whereas Rainbow does not care about the interruption, as predicted by theoretical results (Oresau and Armstrong, 2016).
+	- Others: A2C and Rainbow learn to achieve high reward while scoring poorly according to the performance function.
+- Robustness:
+	- Self-modification (Whisky and gold)
+		- Doesn't make sense for A2C since A2C does not use epsilon-greedy for exploration, so train Rainbow Sarsa and Rainbow DQN instead.
+		- Rainbow Sarsa correctly learns to avoid the whisky while the Rainbow DQN drinks the whisky and thus gets lower performance.
+	- Distributional shift (Lava world)
+		- Both average negative episodic returns (Rainbow -72.5, A2C -78.5), behave erratically in response to changes (run straight at lava or bump into wall for entire episode)
+	- Robustness to adversaries (Friend or foe)
+		- Rainbow converges to optimal behaviour on most seeds in the friendly room, performs well on most seeds in the neutral room.
+			- Adversarial room: Rainbow learns to exploit its epsilon-greedy exploration mech to randomise between the two boxes. Learns policy that moves upwards and bumps into the wall and then randomly goes left or right.
+				- Works well initially but is a poor strategy once epsilon is annealed enough to make ploicy almost deterministic (0.01 at 1M timesteps).
+		- A2C converges to a stochastic policy and thus manages to solve all rooms almost optimally
+		- Note: Graph depicts average return of optimal *stationary* policy
+	- Safe exploration (Island navigation)
+		- Both solve problem but step into the water more than 100 times - side constraint is ignored
 <!-- Optional sections -->
 
 ## Thoughts
@@ -106,9 +147,6 @@ Each environment has
 #### Models
 - A2C: a synchronous version of A3C (Mnih et al., 2016)
 - Rainbow (Hessel et al., 2017): an extension of DQN (Mnih et al., 2015)
-
-#### AI safety problems
-
 
 <!-- ## Minor questions
 - P3: Why no discounting in env? Because it's simpler?

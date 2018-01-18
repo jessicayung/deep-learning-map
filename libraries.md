@@ -14,3 +14,9 @@
 	- Facebook's speech recognition system (implemented architecture) with pre-trained models for the Librispeech dataset
 		- Applications: transcribing speech
 	- [[Code]](https://github.com/facebookresearch/wav2letter) [[Paper: Wav2Letter: an End-to-End ConvNet-based Speech Recognition System (Collobert et. al., Sept 2016)]](https://arxiv.org/abs/1609.03193) [[Paper: Letter-Based Speech Recognition with Gated ConvNets (Liptchinsky et. al., Dec 2017)]](https://arxiv.org/abs/1712.09444)
+
+
+## Frameworks for distributed AI
+- [Ray](http://bair.berkeley.edu/blog/2018/01/09/ray/?utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=The%20Wild%20Week%20in%20AI)
+	- For turning prototype algorithms into high-performance distributed applications
+	- Compatible with e.g. TensorFlow, PyTorch, MXNet

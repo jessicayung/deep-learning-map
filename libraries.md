@@ -20,3 +20,9 @@
 - [Ray](http://bair.berkeley.edu/blog/2018/01/09/ray/?utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=The%20Wild%20Week%20in%20AI)
 	- For turning prototype algorithms into high-performance distributed applications
 	- Compatible with e.g. TensorFlow, PyTorch, MXNet
+
+## Memory
+- [Gradient checkpointing: trading off computation for memory in NNs](https://github.com/openai/gradient-checkpointing)
+	- Result: fit more than 10x larger models onto GPU at only 20% increase in computation time\
+	- Implementation in TensorFlow
+	- [[Paper (Chen et. al., April 2016)]](https://arxiv.org/pdf/1604.06174.pdf) [[Code (Jan 2018)]](https://github.com/openai/gradient-checkpointing)

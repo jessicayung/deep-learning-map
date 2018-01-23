@@ -69,7 +69,9 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 	- Introduced by [He et. al., Dec 2015](https://arxiv.org/pdf/1512.03385.pdf) as part of deep residual networks, winner of ILSVRC 2015.
 		- [Useful Stackexchange post](https://stats.stackexchange.com/questions/56950/neural-network-with-skip-layer-connections)
 	- Also called *residaul connections*, *shortcut connections*.
-
+- R-CNN
+	- Object detection model
+	- [Fast pytorch implementation](https://github.com/jwyang/faster-rcnn.pytorch?utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=The%20Wild%20Week%20in%20AI)
 ### Reinforcement Learning
 - Intuition of RL: 
 	- Loop through two steps:

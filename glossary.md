@@ -48,7 +48,9 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 			- Goal is to maximise advantage: encourages actions that have Q(s,a) > V.
 
 - A2C (Synchronous A3C: Advantage Actor-Critic)
-- Rainbow
+	- A2C tends to be unstable due to occasional entropy collapse. (AI Safety Gridworlds, Nov 2017)
+    - Particularly sensitive to hyperparameter(s) relating to policy entropy
+ Rainbow
 - Neural Turing Machine
 - DQN
 - Capsule Networks

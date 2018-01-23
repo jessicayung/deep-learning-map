@@ -17,6 +17,11 @@
 - [Peephole: Predicting Network Performance Before Training (Deng et. al., Dec 2017)](https://arxiv.org/pdf/1712.03351.pdf)
 - [Mathematics of Deep Learning (Vidal et. al., Dec 2017)](https://arxiv.org/abs/1712.04741)
 	- 'Review of recent work that aims to provide a mathematical justification for several properties of deep networks, such as global optimality, geometric stability, and invariance of the learned representations.''
+- [Symmetric Decomposition of Asymmetric Games](https://www.nature.com/articles/s41598-018-19194-4)
+	- Decomposing asymmetric games into its symmetric counterparts (which consider the reward table of each player as a symmetric 2-player game with eqm points that coincide with the original asymmetric game)
+- [Deep Learning: A Critical Appraisal (Jan 2018)](https://arxiv.org/abs/1801.00631)
+	- Ten concerns for DL
+	- Related: [Innateness, AlphaZero, and Artificial Intelligence (Jan 2018)](https://arxiv.org/abs/1801.05667)
 
 ## Papers to post summaries of (already read)
 - [Deep Reinforcement Learning from Human Preferences]
@@ -47,14 +52,13 @@
 - [A Flexible Approach to Automated RNN Architecture Generation (Schrimpf et. al., Dec 2017)](https://arxiv.org/abs/1712.07316)
 	- Method: 'using a recursive neural network to iteratively predict the performance of new architectures, reducing the need for actual full-blown testing of the models'
 	- Result: 
-	- Summaries from Import AI #74.
-- [Deep Learning: A Critical Appraisal (Marcus, Jan 2018)](https://arxiv.org/abs/1801.00631)
-	- Ten concerns for DL
+	- Summaries from Import AI #74
 - [Recent Advances in Recurrent Neural Networks (Salehinejad et. al., Jan 2018)]
 
 ## Paradigms
 - [Deep Neuroevolution (Uber, Dec 2017)](https://eng.uber.com/deep-neuroevolution/)
 	- Claim: Neuroevolution, where neural networks are optimized through evolutionary algorithms, is also an effective method to train deep neural networks for reinforcement learning (RL) problems.
+	- [[Implementations]](https://github.com/uber-common/deep-neuroevolution)
 
 ## Previous papers to print
 ### General

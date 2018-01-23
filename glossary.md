@@ -72,6 +72,17 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 - R-CNN
 	- Object detection model
 	- [Fast pytorch implementation](https://github.com/jwyang/faster-rcnn.pytorch?utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=The%20Wild%20Week%20in%20AI)
+- ResNets
+	- ['densely gathers features from previous layers in nthe network and combines them using summation'](https://arxiv.org/abs/1801.05895)
+- DenseNets
+	- Dense connection structure where each layer is directly connected to all its predecessors
+		- -> better information flow and feature reuse
+		- -> BUT dense skip connections also bring problems of potential risk of overfitting, parameter redundancy and large memory consumption
+	- ['densely gathers features from previous layers in nthe network and combines them using concatenation'](https://arxiv.org/abs/1801.05895)
+- [SparseNet](https://arxiv.org/abs/1801.05895)
+	- Synthesised from ResNets and DenseNets
+	- [[Paper: Sparsely Connected Convolutional Networks (Zhu and Deng et. al., Jan 2018)]](https://arxiv.org/abs/1801.05895)
+
 ### Reinforcement Learning
 - Intuition of RL: 
 	- Loop through two steps:

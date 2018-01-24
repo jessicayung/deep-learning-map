@@ -54,6 +54,7 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 - Neural Turing Machine
 - DQN
 - Capsule Networks
+	- [TensorFlow implementation](https://github.com/JunYeopLee/capsule-networks)
 - Dilated convolutions
 	- Convolutions with filter cells that are regularly spaced out.
 	- Purpose: Receptive field grows quicker, so can merge more spatial information across input (keeping filter size constant).
@@ -69,9 +70,9 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 	- Introduced by [He et. al., Dec 2015](https://arxiv.org/pdf/1512.03385.pdf) as part of deep residual networks, winner of ILSVRC 2015.
 		- [Useful Stackexchange post](https://stats.stackexchange.com/questions/56950/neural-network-with-skip-layer-connections)
 	- Also called *residaul connections*, *shortcut connections*.
-- R-CNN
+- R-CNN (Region-based CNN)
 	- Object detection model
-	- [Fast pytorch implementation](https://github.com/jwyang/faster-rcnn.pytorch?utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=The%20Wild%20Week%20in%20AI)
+	- [[Fast pytorch implementation]](https://github.com/jwyang/faster-rcnn.pytorch) [[Paper (Faster R-CNN, Ren et. al., Jan 2016)]](https://arxiv.org/abs/1506.01497)
 - ResNets
 	- ['densely gathers features from previous layers in nthe network and combines them using summation'](https://arxiv.org/abs/1801.05895)
 - DenseNets

@@ -22,10 +22,15 @@
 - [Deep Learning: A Critical Appraisal (Jan 2018)](https://arxiv.org/abs/1801.00631)
 	- Ten concerns for DL
 	- Related: [Innateness, AlphaZero, and Artificial Intelligence (Jan 2018)](https://arxiv.org/abs/1801.05667)
+- [Neural Program Synthesis with Priority Queue Training (Abolafia et. al., Jan 2018)](https://arxiv.org/abs/1801.03526)
+	- Method: iterative optimisation
+		- train RNN on dataset of K best programs from a priority queue of programs generated so far.
+		- synthesise new programs and add them to priority queue by sampling from the RNN
+	- Results: 'PQT algorithm significantly outperforms (RL and genetic algorithm) baselines on a simple but expressive Turing complete langauge called  BF'
+		- Synthesises short, human readable programs (by adding program  length penalty to reward function) 
 
 ## Papers to post summaries of (already read)
 - [Deep Reinforcement Learning from Human Preferences]
-- [Gridworlds]
 
 ## Posts to read
 - [Framework to look at ML research](http://blog.evjang.com/2017/11/exp-train-gen.html?utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=The%20Wild%20Week%20in%20AI)
@@ -54,7 +59,14 @@
 	- Result: 
 	- Summaries from Import AI #74
 - [Recent Advances in Recurrent Neural Networks (Salehinejad et. al., Jan 2018)]
-
+- [Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor
+](https://arxiv.org/abs/1801.01290)
+	- tackles problems with model-free deep RL: (1) high sample complexity, (2) brittle convergence properties -> necessitate meticulous parameter tuning
+	- result:
+		- state-of-the-art performance on a range of continuous control benchmark tasks, outperforming prior on-policy and off-policy methods
+		- stable off-policy method
+	- model: combines off-policy updates with a stable stochastic actor-critic formulation
+	- Framework aims to succeed at the task while acting as randomly as possible
 ## Paradigms
 - [Deep Neuroevolution (Uber, Dec 2017)](https://eng.uber.com/deep-neuroevolution/)
 	- Claim: Neuroevolution, where neural networks are optimized through evolutionary algorithms, is also an effective method to train deep neural networks for reinforcement learning (RL) problems.

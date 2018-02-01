@@ -6,7 +6,6 @@ See also the [basics glossary](basics-glossary.md).
 
 ### Frameworks
 
-
 #### Options framework
 - involves abstractions over the space of actions
 - at each step, the agent chooses either a one-step 'primitive' action or a 'multi-step' action policy (option). Each option defines a policy over actions (either primitive or other options) and can be terminated according to a stochastic function of $\beta$.
@@ -83,6 +82,27 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 - [SparseNet](https://arxiv.org/abs/1801.05895)
 	- Synthesised from ResNets and DenseNets
 	- [[Paper: Sparsely Connected Convolutional Networks (Zhu and Deng et. al., Jan 2018)]](https://arxiv.org/abs/1801.05895)
+- Decimation layer
+	- Down-sampling, usually either through max-pooling or average pooling
+- Autoencoders
+- Variational Inference
+- Variational Autoencoder
+	- Variational Lower Bound
+- MCMC (Markov Chain Monte Carlo)
+- Gibbs Sampling
+- Monte Carlo EM
+- EM
+- Wake-sleep
+- MAP
+- Boltzmann Machines
+- Linear Factor Models
+    - Independent Component Analysis (ICA)
+    - Sparse Coding
+- NADE
+- MADE
+- PixelCNN
+	- PixelCNN++
+- PixelRNN
 
 ### Reinforcement Learning
 - Intuition of RL: 
@@ -148,6 +168,8 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 			- Outputs across all actions sum to one
 	- Key is exploration vs exploitation
 		- Agent may find itself stuck in a local maximum (thinks e.g. a positive-reward action $Q_2$ is the best action because it hasn't found the better one $Q_4$.)
+- Policy Gradient Methods
+
 
 #### References:
 - RL: AI A to Z course

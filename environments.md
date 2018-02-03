@@ -21,6 +21,12 @@
 * DeepMind Control Suite
 	- Continuous control tasks with standardised structure and rewards, intended to serve as performance benchmarks for RL agents.
 	- [[Video]](https://www.youtube.com/watch?v=rAai4QzcYbs&feature=youtu.be) [[Paper (Tassa et. al., Jan 2018)]](https://arxiv.org/abs/1801.00690) [[Code]](https://github.com/deepmind/dm_control)
+- PsychLab (Simulated psychology lab)
+	- [[Paper (Leibo et. al., Jan 2018)]](https://arxiv.org/abs/1801.08116)
+	- 'enables implementations of classical laboratory psychological experiments so that they work with both human and artificial agents.'
+	<!-- TODO: add. Also highlight: We also contribute a study of the visual psychophysics of a specific state-of-the-art deep reinforcement learning agent: UNREAL (Jaderberg et al. 2016). This study leads to the surprising conclusion that UNREAL learns more quickly about larger target stimuli than it does about smaller stimuli. In turn, this insight motivates a specific improvement in the form of a simple model of foveal vision that turns out to significantly boost UNREAL's performance, both on Psychlab tasks, and on standard DeepMind Lab tasks.
+	 --> 
+	 - [[Blog post]](https://deepmind.com/blog/open-sourcing-psychlab/)
 
 ## 3D Home Environments
 * HoME (Household Multimodal Environment, 45k 3D houses populated with objects)
@@ -46,9 +52,11 @@
 	- Method: built using much human labour ('constructed the dataset by grabbing the available Open Street Map (OSM) layout data for a 2km x 3km area, then modeled that data using CityEngine, and built the whole environment in the Unity3D engine.' - Import AI #75)
 	- Unity
 
-## Platforms (may not quite be environments)
+## Platforms (may not quite be environments, possibly implementations)
 - [MAgent](https://github.com/geek-ai/MAgent)
 	- Research platform for many-agent reinforcement learning. (hundreds to millions of agents)
+- [Detectron (Facebook FAIR)](https://github.com/facebookresearch/Detectron)
+	- Object detection research, implements algorithms like Mask R-CNN and RetinaNet.
 
 ## Sense of touch
 - [SenseNet (3D Objects Database and Tactile Simulator)](https://arxiv.org/abs/1801.00361)

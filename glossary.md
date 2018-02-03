@@ -71,7 +71,7 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 	- Also called *residaul connections*, *shortcut connections*.
 - R-CNN (Region-based CNN)
 	- Object detection model
-	- [[Fast pytorch implementation]](https://github.com/jwyang/faster-rcnn.pytorch) [[Paper (Faster R-CNN, Ren et. al., Jan 2016)]](https://arxiv.org/abs/1506.01497)
+	- [[Fast pytorch implementation]](https://github.com/jwyang/faster-rcnn.pytorch) [[Paper (Faster R-CNN, Ren et. al., Jan 2016)]](https://arxiv.org/abs/1506.01497) [[Explanatory blog post]](https://tryolabs.com/blog/2018/01/18/faster-r-cnn-down-the-rabbit-hole-of-modern-object-detection/)
 - ResNets
 	- ['densely gathers features from previous layers in nthe network and combines them using summation'](https://arxiv.org/abs/1801.05895)
 - DenseNets
@@ -103,6 +103,8 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 - PixelCNN
 	- PixelCNN++
 - PixelRNN
+- Trust Region Policy Optimisation (TRPO)
+	- [[Implementation in PyTorch]](https://github.com/ikostrikov/pytorch-trpo)
 
 ### Reinforcement Learning
 - Intuition of RL: 

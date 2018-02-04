@@ -23,7 +23,7 @@
 	- [[Video]](https://www.youtube.com/watch?v=rAai4QzcYbs&feature=youtu.be) [[Paper (Tassa et. al., Jan 2018)]](https://arxiv.org/abs/1801.00690) [[Code]](https://github.com/deepmind/dm_control)
 - PsychLab (Simulated psychology lab)
 	- [[Paper (Leibo et. al., Jan 2018)]](https://arxiv.org/abs/1801.08116)
-	- 'enables implementations of classical laboratory psychological experiments so that they work with both human and artificial agents.'
+	- Testing suite to run psychological tests on AI agents
 	<!-- TODO: add. Also highlight: We also contribute a study of the visual psychophysics of a specific state-of-the-art deep reinforcement learning agent: UNREAL (Jaderberg et al. 2016). This study leads to the surprising conclusion that UNREAL learns more quickly about larger target stimuli than it does about smaller stimuli. In turn, this insight motivates a specific improvement in the form of a simple model of foveal vision that turns out to significantly boost UNREAL's performance, both on Psychlab tasks, and on standard DeepMind Lab tasks.
 	 --> 
 	 - [[Blog post]](https://deepmind.com/blog/open-sourcing-psychlab/)

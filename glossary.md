@@ -105,6 +105,12 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 - PixelRNN
 - Trust Region Policy Optimisation (TRPO)
 	- [[Implementation in PyTorch]](https://github.com/ikostrikov/pytorch-trpo)
+- More architectures
+	- VGG16
+	- ResNeXt
+	- Feature Pyramid Networks
+- Evolution Strategies
+	- [[Basic Tutorial]](https://medium.com/@edersantana/mve-series-playing-catch-with-keras-and-an-evolution-strategy-a005b75d0505) [[OpenAI post]](https://blog.openai.com/evolution-strategies/)
 
 ### Reinforcement Learning
 - Intuition of RL: 

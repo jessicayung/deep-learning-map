@@ -49,7 +49,7 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 - A2C (Synchronous A3C: Advantage Actor-Critic)
 	- A2C tends to be unstable due to occasional entropy collapse. (AI Safety Gridworlds, Nov 2017)
     - Particularly sensitive to hyperparameter(s) relating to policy entropy
- Rainbow
+- Rainbow
 - Neural Turing Machine
 - DQN
 - Capsule Networks
@@ -111,6 +111,7 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 	- Feature Pyramid Networks
 - Evolution Strategies
 	- [[Basic Tutorial]](https://medium.com/@edersantana/mve-series-playing-catch-with-keras-and-an-evolution-strategy-a005b75d0505) [[OpenAI post]](https://blog.openai.com/evolution-strategies/)
+- Bayesian NNs
 
 ### Reinforcement Learning
 - Intuition of RL: 

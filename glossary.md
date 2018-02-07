@@ -111,7 +111,14 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 	- Feature Pyramid Networks
 - Evolution Strategies
 	- [[Basic Tutorial]](https://medium.com/@edersantana/mve-series-playing-catch-with-keras-and-an-evolution-strategy-a005b75d0505) [[OpenAI post]](https://blog.openai.com/evolution-strategies/)
+<<<<<<< HEAD
 - Bayesian NNs
+=======
+- Nested LSTM
+	- Use nesting as an approach to constructing temporal hierarchies in memory
+	- **selective access to inner memories** -> frees inner memories to remember and process events on longer time scales
+	- [[Paper (Moniz et. al., Jan 2018)]](https://arxiv.org/abs/1801.10308)
+>>>>>>> 8f1cef5230ae90cf2a43e5ea71f5b807ef806e18
 
 ### Reinforcement Learning
 - Intuition of RL: 

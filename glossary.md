@@ -103,22 +103,17 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 - PixelCNN
 	- PixelCNN++
 - PixelRNN
-- Trust Region Policy Optimisation (TRPO)
-	- [[Implementation in PyTorch]](https://github.com/ikostrikov/pytorch-trpo)
 - More architectures
 	- VGG16
 	- ResNeXt
 	- Feature Pyramid Networks
 - Evolution Strategies
 	- [[Basic Tutorial]](https://medium.com/@edersantana/mve-series-playing-catch-with-keras-and-an-evolution-strategy-a005b75d0505) [[OpenAI post]](https://blog.openai.com/evolution-strategies/)
-<<<<<<< HEAD
 - Bayesian NNs
-=======
 - Nested LSTM
 	- Use nesting as an approach to constructing temporal hierarchies in memory
 	- **selective access to inner memories** -> frees inner memories to remember and process events on longer time scales
 	- [[Paper (Moniz et. al., Jan 2018)]](https://arxiv.org/abs/1801.10308)
->>>>>>> 8f1cef5230ae90cf2a43e5ea71f5b807ef806e18
 
 ### Reinforcement Learning
 - Intuition of RL: 
@@ -185,6 +180,10 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 	- Key is exploration vs exploitation
 		- Agent may find itself stuck in a local maximum (thinks e.g. a positive-reward action $Q_2$ is the best action because it hasn't found the better one $Q_4$.)
 - Policy Gradient Methods
+	- Trust Region Policy Optimisation (TRPO)
+		- [[Implementation in PyTorch]](https://github.com/ikostrikov/pytorch-trpo)
+	- Proximal Policy Optimisation (PPO)
+		- [OpenAI blog post](https://blog.openai.com/openai-baselines-ppo/)
 
 
 #### References:

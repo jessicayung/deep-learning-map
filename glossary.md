@@ -180,11 +180,34 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 	- Key is exploration vs exploitation
 		- Agent may find itself stuck in a local maximum (thinks e.g. a positive-reward action $Q_2$ is the best action because it hasn't found the better one $Q_4$.)
 - Policy Gradient Methods
+	- General Challenges
+		- Sensitive to choice in stepsize
+		- Often have poor sample efficiency, taking millions or billions of steps to learn simple tasks
+		- Approaches:
+			- constraining or optimising size of policy update
 	- Trust Region Policy Optimisation (TRPO)
 		- [[Implementation in PyTorch]](https://github.com/ikostrikov/pytorch-trpo)
+		- Pros
+			- Good for continuous control tasks
+		- Cons
+			- 'isn’t easily compatible with algorithms that share parameters between a policy and value function or auxiliary losses'
 	- Proximal Policy Optimisation (PPO)
+		- Tries to minimise cost while ensuring the deviation from the previous policy is relatively small
+		- Implementation:
+			- $L^{CLIP}(\theta) = \hat{E_t}[\min(r_t(\theta)\hat{A_t},\clip(r_t(\theta),1-\epsilon,1+\epsilon)\hat{A_t})]
+				- $r_t$: ratio of probability under new and old policies respectively (?) check
+				- $\hat{A_t}$: estimated advantage at time t
+				- $\epsilon$: hyperparameter, usually 0.1 or 0.2
+			- Much simpler to implement than ACER 
+			- Trust region update compatible with SGD
 		- [OpenAI blog post](https://blog.openai.com/openai-baselines-ppo/)
-
+	- PPO2
+		- GPU-enabled implementation of PPO by OpenAI.
+	- Actor Critic with Experience Replay (ACER)
+		- Sample-efficient ploicy gradient algorithm
+		- Uses a replay buffer, so it can perform more than one gradient update using each piece of sampled experience, as well as a Q-Function approximate trained with the Retrace algorithm.
+	- References:
+		- [OpenAI blog post on PPO](https://blog.openai.com/openai-baselines-ppo/)
 
 #### References:
 - RL: AI A to Z course

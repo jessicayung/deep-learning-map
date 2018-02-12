@@ -3,6 +3,9 @@
 
 ## Next papers to look at
 - [Feature Visualisation](https://distill.pub/2017/feature-visualization/)
+- [IMPALA: Scalable Distributed Deep-RL with Importance Weighted Actor-Learner Architectures](https://arxiv.org/abs/1802.01561)
+	- Transfer learning, multi-task RL
+	- 30 tasks on DeepMindLab environment (DMLab-30) and 57 Atari games
 - [Mastering Chess and Shogi by Self-Play with a General Reinforcement Learning Algorithm (Silver et. al., Dec 2017)](https://arxiv.org/abs/1712.01815?utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=The%20Wild%20Week%20in%20AI)
 - [The Case for Learned Index Structures (Kraska et. al., Dec 2017)](https://arxiv.org/abs/1712.01208)
 	- Show how to implement neural-network-based 'learned indexes' that can replace B-Tree indexes.
@@ -67,6 +70,7 @@
 		- stable off-policy method
 	- model: combines off-policy updates with a stable stochastic actor-critic formulation
 	- Framework aims to succeed at the task while acting as randomly as possible
+
 ## Paradigms
 - [Deep Neuroevolution (Uber, Dec 2017)](https://eng.uber.com/deep-neuroevolution/)
 	- Claim: Neuroevolution, where neural networks are optimized through evolutionary algorithms, is also an effective method to train deep neural networks for reinforcement learning (RL) problems.

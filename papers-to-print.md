@@ -3,7 +3,7 @@
 
 ## Next papers to look at
 - [Feature Visualisation](https://distill.pub/2017/feature-visualization/)
-- [Regularised Evolution for Image Classifier Architecture Search (Real and Aggarwal et. al., Feb 2018)]
+- [Regularised Evolution for Image Classifier Architecture Search (Real and Aggarwal et. al., Feb 2018)](https://arxiv.org/abs/1802.01548)
 	- Comparing regularised evolution, non-regularised evolution and reinforcement learning for image classifiers
 	- Regularised evolution sets new state-of-the-art ofr CIFAR-10, mobile-size ImageNet and reaches top 5 accuracy for ImageNet
 - [IMPALA: Scalable Distributed Deep-RL with Importance Weighted Actor-Learner Architectures](https://arxiv.org/abs/1802.01561)

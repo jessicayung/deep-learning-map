@@ -25,7 +25,15 @@ Surprisingly, even when neural networks are restricted to learning elliptical de
 
 ![](images/adversarial-sphere-slices.png)
 
-#### Relevance:
+Of the 500 dimensions, 394 have 'adversarial direction' ellipses (see histogram below), i.e. ellipses that don't correctly classify points in their dimension. And yet the error rate of the model is less than 1 in 10 million!
+
+![](images/adversarial-spheres-alpha.png)
+
+This all looks pretty bad. But how bad is it really when the performance is so good?
+
+There are also questions as to how important (/bad) it is that adversarial examples exist, provided we can detect them and so defend against them though. (Yingzhen Li)
+
+## Relevance:
 In state-of-the-art computer vision models, most images in the data distribution are both correctly classified by the model and close to a visually similar misclassified image (and are thus susceptible to adversarial perturbations).
 
 Date updated: 19 Feb 2018

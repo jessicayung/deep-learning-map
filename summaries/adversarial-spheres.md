@@ -11,13 +11,14 @@ Authors: Justin Gilmer, Luke Metz, Fartash Faghri, Samuel S. Schoenholz, Maithra
 
 ## Summary
 
-The authors hypothesise that current computer vision models' vulnerability to small adversarial perturbations of the input is a naturally occurring result of the **high-dimensional geometry of the data manifold**.
+The authors hypothesise that current computer vision models' **vulnerability to small adversarial perturbations of the input is a naturally occurring result of the high-dimensional geometry of the data manifold**.
 
-Specifically, they study a toy problem of classifying between two concentric high-dimensional spheres of radius 1 and R (i.e. there is a simple correct decision boundary). 
+Specifically, they study **a toy problem of classifying between two concentric high-dimensional spheres of radius 1 and R** (i.e. there is a simple correct decision boundary, see max margin boundary in image below). 
 * They show a tradeoff between test error and average distance to nearest error (misclassified datapoint).
 * They prove that any model which misclassifies a small constant fraction of a sphere will be vulnerable to adversarial perturbations of size O(1/\sqrt(d)).
 * Neural networks trained approach this bound.
 
+## Notes
 Note that (1) the adversarial examples lie on the data manifold and (2) the theorem proven is for all models, not just neural networks.
 
 Surprisingly, even when neural networks are restricted to learning elliptical decision boundaries, they often learn strange ones:

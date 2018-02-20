@@ -19,7 +19,7 @@
 		- [Software 2.0: Related article by Andrej Karpathy on how neural networks represent a fundamental shift in how we write sofware (Nov 2017)](https://medium.com/@karpathy/software-2-0-a64152b37c35)
 		- [DeepConfig: Automating Data Center Network Topologies Management with Machine Learning (Streiffer and Chen et. al., Dec 2017)](https://arxiv.org/abs/1712.03890)
 			- TODO: write summary
-- [Efficient Neural Architecture Search via Parameter Sharing (Phan and Guan et. al., Feb 2018)]()
+- [Efficient Neural Architecture Search via Parameter Sharing (Phan and Guan et. al., Feb 2018)](https://arxiv.org/abs/1802.03268)
 	- ENAS: Fast and inexpensive approach for automatic model design. Claim 1000x less computationally expensive than standard Neural Architecture search.
 	- Controller trained with policy gradient to select subgraph (to discover network archis).
 		- Model corresponding to subgraph trained to min cross-entropy loss.

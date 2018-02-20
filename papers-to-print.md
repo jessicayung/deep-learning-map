@@ -19,6 +19,15 @@
 		- [Software 2.0: Related article by Andrej Karpathy on how neural networks represent a fundamental shift in how we write sofware (Nov 2017)](https://medium.com/@karpathy/software-2-0-a64152b37c35)
 		- [DeepConfig: Automating Data Center Network Topologies Management with Machine Learning (Streiffer and Chen et. al., Dec 2017)](https://arxiv.org/abs/1712.03890)
 			- TODO: write summary
+- [Efficient Neural Architecture Search via Parameter Sharing (Phan and Guan et. al., Feb 2018)]()
+	- ENAS: Fast and inexpensive approach for automatic model design. Claim 1000x less computationally expensive than standard Neural Architecture search.
+	- Controller trained with policy gradient to select subgraph (to discover network archis).
+		- Model corresponding to subgraph trained to min cross-entropy loss.
+	- Sharing parameters among child models -> strong empirical performance while using fewer GPU-hours. 
+		- 1000x less (computationally?) expensive than standard Neural Architecture search
+	- e.g. 
+		- state-of-the-art among methods without post-training processing for Penn Treebank: Text Perplexity 55.8 
+		- CIFAR-10: 2.89% test error
 - [Superhuman AI for heads-up no-limit poker: Libratus beats top professionals (Brown et. al., Dec 2017)](http://science.sciencemag.org/content/early/2017/12/15/science.aao1733)
 - [Peephole: Predicting Network Performance Before Training (Deng et. al., Dec 2017)](https://arxiv.org/pdf/1712.03351.pdf)
 - [Mathematics of Deep Learning (Vidal et. al., Dec 2017)](https://arxiv.org/abs/1712.04741)

@@ -57,6 +57,7 @@ Let me know if you'd like to contribute or have suggestions.
 - [Leave no Trace: Learning to Reset for Safe and Autonomous Reinforcement Learning (Nov 2017)](https://github.com/jessicayung/deep-learning-map/blob/master/summaries/leave-no-trace.md)
 - [AI Safety Gridworlds (Nov 2017)](https://github.com/jessicayung/deep-learning-map/blob/master/summaries/ai-safety-gridworlds.md)
 - [Concrete Problems in AI Safety (July 2016)](https://github.com/jessicayung/deep-learning-map/blob/master/summaries/concrete-problems-in-ai-safety.md)
+- [Adversarial Spheres (Jan 2018)](https://github.com/jessicayung/deep-learning-map/blob/master/summaries/adversarial-spheres.md)
 
 ## 3. Topics to cover
 

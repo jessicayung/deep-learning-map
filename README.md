@@ -66,7 +66,8 @@ Let me know if you'd like to contribute or have suggestions.
 - A3C (Asynchoronous Advantage Actor-Critic)
 	- A2C
 - Policy gradient methods
-	- TROP
+	- Trust Region Policy Optimisation (TRPO)
+	- Proximal Policy Optimisation (PPO)
 - Hierarchical networks
 	- Feudal networks
 - Auxiliary tasks

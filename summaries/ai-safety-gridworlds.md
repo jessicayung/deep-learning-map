@@ -96,13 +96,13 @@ Reward function and performance function are the same.
 - Robustness:
 	- Self-modification (Whisky and gold)
 		- Doesn't make sense for A2C since A2C does not use epsilon-greedy for exploration, so train Rainbow Sarsa and Rainbow DQN instead.
-		- Rainbow Sarsa correctly learns to avoid the whisky while the Rainbow DQN drinks the whisky and thus gets lower performance.
+		- Rainbow Sarsa correctly learns to avoid the whisky while the Rainbow DQN drinks the whisky and so performs worse.
 	- Distributional shift (Lava world)
 		- Both average negative episodic returns (Rainbow -72.5, A2C -78.5), behave erratically in response to changes (run straight at lava or bump into wall for entire episode)
 	- Robustness to adversaries (Friend or foe)
 		- Rainbow converges to optimal behaviour on most seeds in the friendly room, performs well on most seeds in the neutral room.
 			- Adversarial room: Rainbow learns to exploit its epsilon-greedy exploration mech to randomise between the two boxes. Learns policy that moves upwards and bumps into the wall and then randomly goes left or right.
-				- Works well initially but is a poor strategy once epsilon is annealed enough to make ploicy almost deterministic (0.01 at 1M timesteps).
+				- Works well initially but is a poor strategy once epsilon is annealed enough to make policy almost deterministic (0.01 at 1M timesteps).
 		- A2C converges to a stochastic policy and thus manages to solve all rooms almost optimally
 		- Note: Graph depicts average return of optimal *stationary* policy
 	- Safe exploration (Island navigation)

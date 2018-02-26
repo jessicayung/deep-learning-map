@@ -179,6 +179,9 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 			- Outputs across all actions sum to one
 	- Key is exploration vs exploitation
 		- Agent may find itself stuck in a local maximum (thinks e.g. a positive-reward action $Q_2$ is the best action because it hasn't found the better one $Q_4$.)
+- On-policy vs off-policy
+	- On-policy: update value with action actually taken
+	- Off-policy: update value with max_a Q(s,a'), i.e. no constraint on next action
 - Policy Gradient Methods
 	- General Challenges
 		- Sensitive to choice in stepsize

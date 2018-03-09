@@ -110,10 +110,18 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 - Evolution Strategies
 	- [[Basic Tutorial]](https://medium.com/@edersantana/mve-series-playing-catch-with-keras-and-an-evolution-strategy-a005b75d0505) [[OpenAI post]](https://blog.openai.com/evolution-strategies/)
 - Bayesian NNs
+	- Laplace's approximation
+	- Metropolis-Hastings
+	- Hamiltonian Monte Carlo
 - Nested LSTM
 	- Use nesting as an approach to constructing temporal hierarchies in memory
 	- **selective access to inner memories** -> frees inner memories to remember and process events on longer time scales
 	- [[Paper (Moniz et. al., Jan 2018)]](https://arxiv.org/abs/1801.10308)
+- Alpha-divergence
+	- Special cases:
+		- Alpha=0: Variational Bayes
+		- Alpha=1: Expectation Propagation
+		- TODO: what is a 'mode' of a posterior p? What does it mean by a solution that aims to cover multiple modes?
 
 ### Reinforcement Learning
 - Intuition of RL: 
@@ -181,7 +189,7 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 		- Agent may find itself stuck in a local maximum (thinks e.g. a positive-reward action $Q_2$ is the best action because it hasn't found the better one $Q_4$.)
 - On-policy vs off-policy
 	- On-policy: update value with action actually taken
-	- Off-policy: update value with max_a Q(s,a'), i.e. no constraint on next action
+	- Off-policy: update value with max_a Q(s,a'), i.e. no constraint on next action.
 - Policy Gradient Methods
 	- General Challenges
 		- Sensitive to choice in stepsize
@@ -211,6 +219,12 @@ Definition from Kulkarni and Narasimhan et. al (2016)
 		- Uses a replay buffer, so it can perform more than one gradient update using each piece of sampled experience, as well as a Q-Function approximate trained with the Retrace algorithm.
 	- References:
 		- [OpenAI blog post on PPO](https://blog.openai.com/openai-baselines-ppo/)
+
+### Other RL
+- Batch reinforcement learning
+	- Do not interact with the system during learning (Used e.g. in real-world industrial settings since unrestricted exploration can damage the system)
+- 
+
 
 #### References:
 - RL: AI A to Z course

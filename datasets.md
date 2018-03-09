@@ -13,6 +13,8 @@ Note: This page is currently more a list than an indicator of which are the 'mai
 
 ## Self-Driving Cars
 - KITTI
+	- New benchmarks (Feb-Mar 2018): 3D object detection, Bird’s eye view object detection, Depth completion, Single image depth prediction, Semantic segmentation, Semantic instance segmentation.
+	- Robust Vision Challenge 2018 at CVPR 
 - [TorontoCity Benchmark](https://arxiv.org/abs/1612.00423) (from U of Toronto, aimed to be released in 2018): 
 	- 712.5km2 of land, 8k km of road, 400k buildings
 

@@ -12,5 +12,6 @@
 ## Neuromorphic computing 
 Attempting to design chips that work like the human brain
 - MIT
-	- artificial synapse in such a way that they can precisely control the strength of an electric current flowing across it, similar to the way ions flow between neurons. The team has built a small chip with artificial synapses, made from silicon germanium. In simulations, the researchers found that the chip and its synapses could be used to recognize samples of handwriting, with 95 percent accuracy.
+	- Designed small chips with artificial synapses (silicon germanium) where they can precisely control the strength of an electric current flowing across it, similar to the way ions flow between neurons. 
+	- Results: In simulations, the researchers found that the chip and its synapses could be used to recognize samples of handwriting, with 95 percent accuracy.
 	- [[Paper: SiGe epitaxial memory for neuromorphic computing with reproducible high performance based on engineered dislocations (Choi et. al., Jan 2018)]](https://www.nature.com/articles/s41563-017-0001-5)[Article](http://news.mit.edu/2018/engineers-design-artificial-synapse-brain-on-a-chip-hardware-0122)

@@ -18,11 +18,17 @@ Estimate posterior dynamics distribution (generally intractable) using variation
 
 ## Method
 
-$\max\limits{\{a_t\}}\sum_t(H(\Theta|\zeta_t, a_t)-H(\Theta|s_{t+1},\zeta_t, a_t))=\max\limits{\{a_t\}}\sum_t(I(s_{t+1},\Theta|\zeta_t, a_t)$, 
+```math
+\max\limits_{\{a_t\}}\sum_t(H(\Theta|\zeta_t, a_t)-H(\Theta|s_{t+1},\zeta_t, a_t))=\max\limits_{\{a_t\}}\sum_tI(s_{t+1},\Theta|\zeta_t, a_t)
+```
 
-where $\zeta_t=\{s_1,a_1,...,s_t\}$ is the history of the agent up till time t. H(.) is entropy, I(.) is mutual information.
+where $`\zeta_t=\{s_1,a_1,...,s_t\}`$ is the history of the agent up till time t. $`H(.)`$ is entropy, $`I(.)`$ is mutual information.
 
-Equivalent to $\max\limits{\{a_t\}}\sum_t(E_{s_{t+1}~P(.|\zeta_t, a_t)}[D_{KL}[p(\theta|\zeta_t, a_t, s_{t+1})||p(\theta|\zeta_t)]]$
+Equivalent to 
+
+```math
+\max\limits_{\{a_t\}}\sum_tE_{s_{t+1}~P(.|\zeta_t, a_t)}[D_{KL}[p(\theta|\zeta_t, a_t, s_{t+1})||p(\theta|\zeta_t)]]
+```
 
 i.e. KL between agent's new belief over dynamic model (posterior) and agent's old belief over dynamics model (prior). Interpret this KL as information gain.
 

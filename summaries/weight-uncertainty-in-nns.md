@@ -19,8 +19,8 @@ Shows:
 
 ## Method
 
-- Minimise variational free energy $\mathcal{F}(\mathcal{D},\theta) = KL(q(\mathbf{w}|\theta)||P(\mathbf{w})) - E_{q(\mathbf{w}|\theta)}[\logP(\mathcal{D}|\mathbf{w})]$.
-- Approximated by $\mathcal{F}(\mathcal{D},\theta) \simeq \sum_{i=1}^n \log q(\mathbf{w}^{(i)}|\theta)-\log P(\mathbf{w}^{(i)})) -\log P(\mathcal{D}|\mathbf{w}^{(i)})$
+- Minimise variational free energy $`\mathcal{F}(\mathcal{D},\theta) = KL(q(\mathbf{w}|\theta)||P(\mathbf{w})) - E_{q(\mathbf{w}|\theta)}[\log P(\mathcal{D}|\mathbf{w})]`$.
+- Approximated by $`\mathcal{F}(\mathcal{D},\theta) \approx \sum_{i=1}^n \log q(\mathbf{w}^{(i)}|\theta)-\log P(\mathbf{w}^{(i)})) -\log P(\mathcal{D}|\mathbf{w}^{(i)})`$
 	- Details in Proposition 1 in the paper
 	- Every term of approximation depends on particular weights drawn from variational posterior, an example of common random numbers (Owen, 2013, a variance reduction technique)
 	- Does not require closed form of the complexity cost (KL of q with simple prior), did not find it to perform better or worse that using closed form
@@ -39,7 +39,7 @@ Shows:
 		- (but worse than dropconnect with ensemble of 5 networks)
 	- Bayes by Backprop uses greatest range of weights (vs dropout, vanilla SGD)
 	- Network still performs well when up to 95% weights removed (test error 1.29% vs 1.24% at best)
-	- Suggest signal-to-noise ratio $|\mu_i|/\sigma_i$ related to test performance (interesting)
+	- Suggest signal-to-noise ratio $`|\mu_i|/\sigma_i`$ related to test performance (interesting)
 - Non-linear Regression curves
 	- Confidence intervals diverge when there is no data vs standard NN which can be overly confident
 - Reinforcement learning (contextual bandits): performs better than simple epsilon-greedy agents, good exploration-exploitation balance.

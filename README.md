@@ -1,6 +1,8 @@
 # deep-learning-map
 Map of deep learning and notes from papers.
 
+Math is rendered in [[KaTeX-friendly version on GitLab]](https://gitlab.com/jessicayung/deep-learning-map). ([[GitHub version]](https://github.com/jessicayung/deep-learning-map))
+
 #### README contents:
 
 0. Contents of this Repo
@@ -38,7 +40,7 @@ Map of deep learning and notes from papers.
 	- `implementations/neural-networks`: implementations of deep learning algorithms (early stages, currently have 2D MLP working)
 
 ## 1. Vision for the Deep Learning Map
-The idea is to write (or link to) paper summaries, blog posts or articles that will help people with limited experience:
+The idea is to write (or link to) paper summaries, blog posts or articles that will help people (especially those starting out):
 
 - Understand what different models or terms mean
 	- Know what the state-of-the-art results are in each domain
@@ -48,6 +50,8 @@ The idea is to write (or link to) paper summaries, blog posts or articles that w
 It is thus crucial that 
 - these summaries are presented in a way that makes the relationships between different concepts clear (hence this being a 'map'), and that
 - materials are chosen selectively so as not to overwhelm the reader.
+
+This is still in early stages - at the moment this is more a collection of paper summaries and definitions of terms than a map.  It also contains material outside of deep learning, mostly in machine learning or neuroscience.
 
 Let me know if you'd like to contribute or have suggestions.
 

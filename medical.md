@@ -5,3 +5,6 @@
 	- Model: Ensemble model: ResNet-152+VGG-19 + feedforward neural networks, 
 	- Data: trained using a dataset of standardised nail images comprising 49k images created using a R-CNN (region-based convolutional neural network) trained to distinguish the nail from the background
 	- 'The CNNs....and the smartphone platform we developed .May be useful for telemedicine where the access to dermatologists is unavailable.'
+
+- [DeepPhys: Predict person's heart rate and breathing rate from RGB or infrared videos (Chen and McDuff, May 2018)]()
+	- uses convolutional attention networks

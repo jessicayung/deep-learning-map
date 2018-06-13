@@ -3,7 +3,7 @@ Map of deep learning and notes from papers.
 
 Math is rendered in [[KaTeX-friendly version on GitLab]](https://gitlab.com/jessicayung/deep-learning-map). ([[GitHub version]](https://github.com/jessicayung/deep-learning-map))
 
-Note (13 June 2018): I am revamping the lists to structure them around more meaningful questions. The lists (previous version) can be found in the directory `previous-lists`.
+**Note (13 June 2018)**: I am revamping the lists to structure them around more meaningful questions. The lists (previous version) can be found in the directory `previous-lists`.
 
 #### README contents:
 

@@ -3,6 +3,8 @@ Map of deep learning and notes from papers.
 
 Math is rendered in [[KaTeX-friendly version on GitLab]](https://gitlab.com/jessicayung/deep-learning-map). ([[GitHub version]](https://github.com/jessicayung/deep-learning-map))
 
+Note (13 June 2018): I am revamping the lists to structure them around more meaningful questions. The lists (previous version) can be found in the directory `previous-lists`.
+
 #### README contents:
 
 0. Contents of this Repo
@@ -26,6 +28,7 @@ Math is rendered in [[KaTeX-friendly version on GitLab]](https://gitlab.com/jess
 	- Will work on `glossary.md` shortly.
 3. Lists
 	- NOTE: Many of these comprise only items I've come across in my reading since Dec 2017, so these lists don't represent my view of e.g. 'the most important datasets'. Though I try to include only items I think are significant.
+	- As of 13 June 2018: Many of these may be in the `previous-lists` directory.
 	- `datasets.md`
 	- `environments.md`: environments for training DL algorithms.
 	- `hardware.md`

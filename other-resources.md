@@ -11,3 +11,8 @@
 	- Supports Python 2, 3
 	- Notebooks stored in Google Drive
 	- Free to use
+
+
+## Tutorials
+- [Building your own AlphaZero AI using Python and Keras](https://medium.com/applied-data-science/how-to-build-your-own-alphazero-ai-using-python-and-keras-7f664945c188)
+<!-- TODO: add AlphaZero paper to DL map -->

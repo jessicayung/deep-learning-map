@@ -1,6 +1,6 @@
 # Datasets
 
-Note: This page is currently more a list than an indicator of which are the 'main datasets' in research.
+Note: This page is currently more a list than an indicator of which are the 'main datasets' in research. (13 Jun 2018: working on adding main datasets and converting format to tables)
 
 ## Speech
 - [Common Voice (Mozilla)](https://voice.mozilla.org/data)
@@ -12,19 +12,15 @@ Note: This page is currently more a list than an indicator of which are the 'mai
 	- [[Paper]](https://arxiv.org/abs/1711.01703) [[Data]](https://bitbucket.org/oliverobst/robocupsimdata/)
 
 ## Self-Driving Cars
-- KITTI
-	- New benchmarks (Feb-Mar 2018): 3D object detection, Bird’s eye view object detection, Depth completion, Single image depth prediction, Semantic segmentation, Semantic instance segmentation.
-	- Robust Vision Challenge 2018 at CVPR 
-- [TorontoCity Benchmark](https://arxiv.org/abs/1612.00423) (from U of Toronto, aimed to be released in 2018): 
-	- 712.5km2 of land, 8k km of road, 400k buildings
-- BDD100K (UC Berkeley's DeepDrive (partners with Honda, Toyota, Ford), Nexar)
-	- 120M images spread across 100k videos, covers different weather conditions. Richly annotated (objects, road lines, drivable areas). Subset of 10k images with full-frame instance segmentation
-	- (Jack Clark opinion: 'multi-modal dataset, could be used to evaluate transfer learning from other systems')
-- [EuroCity](https://arxiv.org/abs/1805.07193)
-	- **diversity** that may help with generalisation: 31 cities in 12 European countries
-	- for object and pedestrian detection, 45k images comprising over 100k pedestrians in different weather settings
-	- pedestrians and vehicle-riders are hand-annotated, confounding images (posters of people, reflections in windows) also annotated
-- CityPersons
+<table>
+	<tr><th>Dataset</th><th>Contents</th><th>Source</th><th>Benchmarks</th><th>Notes</th></tr>
+	<tr><td>[KITTI](http://www.cvlibs.net/datasets/kitti/)</td><td>3D and bird's eye view object detection, Depth completion and prediction, Semantic segmentation + more</td><td>KIT, TTI-C</td><td></td><td></td></tr>
+	<tr><td>[TorontoCity Benchmark](https://arxiv.org/abs/1612.00423)</td><td>712.5km2 of land, 8k km of road, 400k buildings</td><td></td><td></td><td>Aimed to be released in 2018</td></tr>
+	<tr><td>BDD100K</td><td>a</td><td>UC Berkeley's DeepDrive with big industrial partners e.g. Honda, Toyota, Ford</td><td>120M images spread across 100k videos, covers different weather conditions. Richly annotated (objects, road lines, drivable areas). Subset of 10k images with full-frame instance segmentation</td><td>Jack Clark opinion: 'multi-modal dataset, could be used to evaluate transfer learning from other systems'</td></tr>
+	<tr><td>[EuroCity](https://arxiv.org/abs/1805.07193)</td><td>for object and pedestrian detection, 45k hand-annotated images comprising over 100k pedestrians in different weather settings</td><td>source</td><td>benchmarks</td><td>**diversity** that could help with generalisation: 31 cities in 12 European countries</td></tr>
+	<tr><td>[Cityscapes](https://www.cityscapes-dataset.com/)</td><td>5k high qual, 20k coarse annotated images with 30 classes, 50 different cities</td><td>Daimler, Max Planck Institute, TU Darmstadt</td><td></td><td>Has sub-datasets like CityPersons (person annotations on top of CityScapes)</td></tr>
+	<!-- <tr><td>title</td><td>contents</td><td>source</td><td>benchmarks</td><td>notes</td></tr> -->	
+</table>
 
 ## Images
 - CIFAR-10

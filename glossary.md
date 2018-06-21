@@ -5,18 +5,18 @@
 See also the [basics glossary](basics-glossary.md).
 
 #### Contents:
-- Training methods
-- Models
-	- Convolution-related layers
-	- Sequence-related layers
-	- Architectures
-	- Bayesian Inference and Approximate Inference
-	- Black-box optimisation
-	- External memory
-	- Other models
-- Metrics and Measures
-- Reinforcement Learning
-	- Deep Reinforcement Learning
+- [Training methods](#training-methods)
+- [Models](#models)
+	- [Convolution-related layers](#convolution-related-layers)
+	- [Sequence-related layers](#sequence-related-layers)
+	- [Architectures](#architectures)
+	- [Bayesian Inference and Approximate Inference](#bayesian-inference-and-approximate-inference)
+	- [Black-box optimisation](#black-box-optimisation)
+	- [External memory](#external-memory)
+	- [Other models](#other-models)
+- [Metrics and Measures](#metrics-and-measures)
+- [Reinforcement Learning](#reinforcement-learning)
+	- [Deep Reinforcement Learning](#deep-reinforcement-learning)
 
 ## Training methods
 

@@ -59,6 +59,7 @@ See also the [basics glossary](basics-glossary.md).
 	- [[Fast pytorch implementation]](https://github.com/jwyang/faster-rcnn.pytorch) [[Paper (Faster R-CNN, Ren et. al., Jan 2016)]](https://arxiv.org/abs/1506.01497) [[Explanatory blog post]](https://tryolabs.com/blog/2018/01/18/faster-r-cnn-down-the-rabbit-hole-of-modern-object-detection/)
 - ResNets
 	- ['densely gathers features from previous layers in nthe network and combines them using summation'](https://arxiv.org/abs/1801.05895)
+	- [Paper (He et. al., 2015)](https://arxiv.org/abs/1512.03385)
 - DenseNets
 	- Dense connection structure where each layer is directly connected to all its predecessors
 		- -> better information flow and feature reuse

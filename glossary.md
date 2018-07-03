@@ -98,11 +98,15 @@ See also the [basics glossary](basics-glossary.md).
 
 - Evolution Strategies
 	- [[Basic Tutorial]](https://medium.com/@edersantana/mve-series-playing-catch-with-keras-and-an-evolution-strategy-a005b75d0505) [[OpenAI post]](https://blog.openai.com/evolution-strategies/)
+- Guided ES
+	- uses surrogate gradients
 
 ### External memory
-- Neural Turing Machine
-- Differentiable Neural Computers
-- Kanerva Machines
+- [Neural Turing Machine](https://arxiv.org/abs/1410.5401)
+	- Neural network controller with read-write access to an external memory matrix
+- [Differentiable Neural Computers](https://deepmind.com/blog/differentiable-neural-computers/)
+	- Neural network controller with read-write-erase access to an external memory matrix
+- [Kanerva Machine](https://arxiv.org/abs/1804.01756)
 
 ### Other models
 - Boltzmann Machines
@@ -111,6 +115,23 @@ See also the [basics glossary](basics-glossary.md).
     - Independent Component Analysis (ICA)
     - Sparse Coding
 - Wake-sleep
+- [Finite-state machine](https://en.wikipedia.org/wiki/Finite-state_machine) (Abstract model)
+    - can be in one of a finite number of states $$s_t$$ in S
+    - can change from one state to another in response to an input
+    - $$s_{t+1} = f(x_t, s_t), (s_t\in S \forall t, |S|$$ finite) 
+    - memory limited by number of states FSM has, so cannot do some tasks that the Turing machine can.
+- [Turing machine](https://en.wikipedia.org/wiki/Turing_machine) (Abstract model)
+    - Infinite memory tape divided into discrete cells
+    - Finite table of user-specified instructions
+    - HEAD positioned over a cell.
+        - READS symbol from cell, 
+        - LOOKS UP symbol read in finite table of user-specified instructions
+        - WRITES in cell
+        - MOVES 1 left or right 
+        - either CARRIES OUT instruction or HALTS computation (indicated in table of user-specified instructions)
+    - For any algorithm, a Turing machine capable of simulating that algorithm's logic can be constructed. 
+        - (Turing-completeness: ability of sys of instructions to simulate a Turing machine, theoretically able of expressing all tasks accomplishable by computers, nearly all prog langs turing complete if limitations of finite memory are ignored.)
+
 
 ### Metrics and measures
 - Alpha-divergence

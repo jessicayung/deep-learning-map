@@ -1,5 +1,7 @@
 # Hardware
 
+Hardware is important because more compute means you can train models faster and, with that, run more experiments more quickly. Some people also claim that haing more compute can solve some of the problems in ML.
+
 - [NVIDIA's GPUs: TITAN V (Dec 2017)](https://www.nvidia.com/en-us/titan/titan-v/): 110 teraflops
 - [Google's TPU1, TPU2](http://learningsys.org/nips17/assets/slides/dean-nips17.pdf): 180 teraflops per TPU2 unit (four chips chained together)
 - [GraphCore's IPUs](https://www.graphcore.ai/posts/preliminary-ipu-benchmarks-providing-previously-unseen-performance-for-a-range-of-machine-learning-applications)

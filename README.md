@@ -22,23 +22,27 @@ Math is rendered in [[KaTeX-friendly version on GitLab]](https://gitlab.com/jess
 1. Paper summaries: `summaries/`
 	- See 'Summaries' section in this README for details.
 2. Glossaries
+    - `glossary.md`
+        - all works in progress
 	- `basics-glossary.md`
 		- version with LaTeX equations rendered: `basics-glossary.ipynb`
 	- `ai-safety-glossary.md`
-	- Will work on `glossary.md` shortly.
 3. Lists
 	- NOTE: Many of these comprise only items I've come across in my reading since Dec 2017, so these lists don't represent my view of e.g. 'the most important datasets'. Though I try to include only items I think are significant.
 	- As of 13 June 2018: Many of these may be in the `previous-lists` directory.
-	- `datasets.md`
-	- `environments.md`: environments for training DL algorithms.
-	- `hardware.md`
-	- `libraries.md`
-	- `speech.md`
+    - `problem-areas`
+        - 'artificial-general-intelligence.md`
+        - `images.md`
+    - `tools`
+	    - `datasets.md`
+	    - `environments.md`: environments for training DL algorithms.
+	    - `hardware.md`
+	    - `libraries.md`
 	- `papers-to-print.md`: Some papers I'm interested in.
     - `nn-components.md`: List of components of neural networks.
         - A first step towards drawing a 'map' of Deep Learning.
 	- Misc:
-		- `other-news.md`, `other-resources.md`
+		- `other-resources.md`
 4. Implementations
 	- `implementations/neural-networks`: implementations of deep learning algorithms (early stages, currently have 2D MLP working)
 

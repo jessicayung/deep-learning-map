@@ -14,7 +14,8 @@ Math is rendered in [[KaTeX-friendly version on GitLab]](https://gitlab.com/jess
 4. Recommended Deep Learning Resources
 5. Existing repositories with summaries of papers on machine learning 
 6. Newsletters
-7. Development notes
+7. Other Resources
+8. Development notes
 
 ---
 ## 0. Contents of this Repo
@@ -169,8 +170,11 @@ Including these here because they contain fantastic summaries of what's going on
 		- Code, Projects & Data
 	- Links with brief summaries (and occasionally helpful context or opinions).
 
+## 7. Other resources
 
-## 7. Development Notes
+- [Progress in NLP: Datasets and state of the art on tasks (GitHub repo by Sebastian Ruder)](https://github.com/sebastianruder/NLP-progress)
+
+## 8. Development Notes
 
 #### 9 Dec 2017
 - Add brainstormed list of topics to cover. The idea is to write (or link to) paper summaries, good blog posts or articles that will help people with limited experience get a better idea of what is going on in the field. This means:

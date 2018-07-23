@@ -116,9 +116,9 @@ See also the [basics glossary](basics-glossary.md).
     - Sparse Coding
 - Wake-sleep
 - [Finite-state machine](https://en.wikipedia.org/wiki/Finite-state_machine) (Abstract model)
-    - can be in one of a finite number of states $$s_t$$ in S
+    - can be in one of a finite number of states $`s_t`$ in S
     - can change from one state to another in response to an input
-    - $$s_{t+1} = f(x_t, s_t), (s_t\in S \forall t, |S|$$ finite) 
+    - $`s_{t+1} = f(x_t, s_t), (s_t\in S \forall t, |S|`$ finite) 
     - memory limited by number of states FSM has, so cannot do some tasks that the Turing machine can.
 - [Turing machine](https://en.wikipedia.org/wiki/Turing_machine) (Abstract model)
     - Infinite memory tape divided into discrete cells
@@ -149,10 +149,10 @@ See also the [basics glossary](basics-glossary.md).
 	- Actions involve time
 	- Don't pre-program procedures in agent, but agent knows list of actions
 - Bellman Equation
-	- $V(s) = \max{a}(R(s,a)+\gamma E[V(s')])$
-		- where $\gamma$ is the discount factor.
-		- Deterministic version: $V(s) = \max{a}(R(s,a)+\gamma V(s'))$
-		- Expanded for MDPs: $V(s) = \max{a}(R(s,a)+\gamma \sum_{s'} P(s,a,s')V(s'))$
+	- $`V(s) = \max{a}(R(s,a)+\gamma E[V(s')])`$
+		- where $`\gamma`$ is the discount factor.
+		- Deterministic version: $`V(s) = \max{a}(R(s,a)+\gamma V(s'))`$
+		- Expanded for MDPs: $`V(s) = \max{a}(R(s,a)+\gamma \sum_{s'} P(s,a,s')V(s'))`$
 - Plans vs Policies: 
 	- Plans comprise the optimal action for each state, with no stochasticity. Policies incorporate stochasticity.
 - Deterministic vs non-deterministic search:
@@ -162,19 +162,19 @@ See also the [basics glossary](basics-glossary.md).
 	- Mathematical framework for modelling decision-making where outcomes are partly random and partly under the control of a decision-maker
 	- Markov Property: 
 		- Memorylessness: Conditional P(X) dist depends only on present state
-	- Associated Bellman eqn: $V(s) = \max{a}(R(s,a)+\gamma E[V(s')])$
-		- aka $V(s) = \max{a}(R(s,a)+\gamma \sum_{s'} P(s,a,s')V(s'))$
+	- Associated Bellman eqn: $`V(s) = \max{a}(R(s,a)+\gamma E[V(s')])`$
+		- aka $`V(s) = \max{a}(R(s,a)+\gamma \sum_{s'} P(s,a,s')V(s'))`$
 - Q-learning
-	- Give values to actions $Q(s_0,a_i)$ instead of states
-		- $Q(s,a) = R(s,a)+\gamma \sum_{s'} P(s,a,s')V(s')$
-			- i.e. $Q(s,a) = R(s,a)+\gamma \sum_{s'} P(s,a,s')\max{a'}Q(s',a')$
+	- Give values to actions $`Q(s_0,a_i)`$ instead of states
+		- $`Q(s,a) = R(s,a)+\gamma \sum_{s'} P(s,a,s')V(s')`$
+			- i.e. $`Q(s,a) = R(s,a)+\gamma \sum_{s'} P(s,a,s')\max{a'}Q(s',a')`$
 - Temporal Difference
 	- TODO: refine
 	- (Consider Q-learning under deterministic search for convenienc)
-	- $TD_t(a,s) = Q_t(s,a) - Q_{t-1}(s,a) = R(s,a)+\gamma\max{a'}Q(s',a') - Q_{t-1}(s,a)$
-	- $TD(a,s)$ may be nonzero because of randomness. (Though we've *written* the deterministic search version of )
-- Update eqn: $Q_t(s,a) = Q_{t-1}(s,a) + \alpha TD_t(a,s)$
-	- $\alpha$ is the learning rate.
+	- $`TD_t(a,s) = Q_t(s,a) - Q_{t-1}(s,a) = R(s,a)+\gamma\max{a'}Q(s',a') - Q_{t-1}(s,a)`$
+	- $`TD(a,s)`$ may be nonzero because of randomness. (Though we've *written* the deterministic search version of )
+- Update eqn: $`Q_t(s,a) = Q_{t-1}(s,a) + \alpha TD_t(a,s)`$
+	- $`\alpha`$ is the learning rate.
 	- Hope: algorithm will converge to the 'correct' Q-value, unless the environment is constantly changing.
 - Living penalty
     - e.g. small negative reward when entering each non-terminal state to motivate agent to finish the game quickly
@@ -182,13 +182,13 @@ See also the [basics glossary](basics-glossary.md).
 
 - Options framework
 	- involves abstractions over the space of actions
-	- at each step, the agent chooses either a one-step 'primitive' action or a 'multi-step' action policy (option). Each option defines a policy over actions (either primitive or other options) and can be terminated according to a stochastic function of $\beta$.
+	- at each step, the agent chooses either a one-step 'primitive' action or a 'multi-step' action policy (option). Each option defines a policy over actions (either primitive or other options) and can be terminated according to a stochastic function of $`\beta`$.
 	- Paper: Sutton et. al. Definition from Kulkarni and Narasimhan et. al (2016)
 
 ### Deep Reinforcement Learning
 - Deep Q-learning
 	- **Learning**: Feed in state to NN, final layer gives q-values for each action
-		- Compares predicted value to previous observed value: loss $L = \sum(Q_{prev_observed} - Q_{pred})
+		- Compares predicted value to previous observed value: loss $`L = \sum(Q_{prev_observed} - Q_{pred})`$
 <!--			- TODO: but what if you haven't seen this state before?
 			- TODO: What if you've seen it multiple times?
 -->
@@ -196,20 +196,20 @@ See also the [basics glossary](basics-glossary.md).
 	- **Acting**: Put final layer through softmax (or some other action selection policy, see below) and select the corresponding action.
 - Experience replay
 	- Problem: Update after every action, so consecutive states that are similar may bias the neural network.
-	- Solution: Save state information. Start updating after some initial time period, and update with states drawn uniformly from memory in the interval $(t-k_1, t-k_2)$.
+	- Solution: Save state information. Start updating after some initial time period, and update with states drawn uniformly from memory in the interval $`(t-k_1, t-k_2)`$.
 	- [Schaul et al. (2016), Prioritized Experience Replay](#)
 - Action selection policies
 	- Most commonly used:
-		- $\epsilon$-greedy
-			- Select highest q-value action $(1-\epsilon)$ of the time, randomly otherwise.
-				- Tokic (2010): can adapt $\epsilon$ depending on the state (smaller $\epsilon$ if the agent is certain about its state)
-		- $\epsilon$-soft $(1-\epsilon)$
-			- Opposite of $\epsilon$-greedy: select highest q-value action $\epsilon$ of the time, randomly otherwise.
+		- $`\epsilon`$-greedy
+			- Select highest q-value action $`(1-\epsilon)`$ of the time, randomly otherwise.
+				- Tokic (2010): can adapt $\epsilon$ depending on the state (smaller $`\epsilon`$ if the agent is certain about its state)
+		- $`\epsilon`$-soft $`(1-\epsilon)`$
+			- Opposite of $`\epsilon`$-greedy: select highest q-value action $`\epsilon`$ of the time, randomly otherwise.
 		- Softmax
-			- $\sigma(\textbf{z})_j = \frac{e^{z_j}}{\sum_k e^{z_k}}$ for $j=1,...,K$.
+			- $`\sigma(\textbf{z})_j = \frac{e^{z_j}}{\sum_k e^{z_k}}`$ for $`j=1,...,K`$.
 			- Outputs across all actions sum to one
 	- Key is exploration vs exploitation
-		- Agent may find itself stuck in a local maximum (thinks e.g. a positive-reward action $Q_2$ is the best action because it hasn't found the better one $Q_4$.)
+		- Agent may find itself stuck in a local maximum (thinks e.g. a positive-reward action $`Q_2`$ is the best action because it hasn't found the better one $`Q_4`$.)
 - On-policy vs off-policy
 	- On-policy: update value with action actually taken
 	- Off-policy: update value with max_a Q(s,a'), i.e. no constraint on next action.
@@ -228,10 +228,10 @@ See also the [basics glossary](basics-glossary.md).
 	- Proximal Policy Optimisation (PPO)
 		- Tries to minimise cost while ensuring the deviation from the previous policy is relatively small
 		- Implementation:
-			- $L^{CLIP}(\theta) = \hat{E_t}[\min(r_t(\theta)\hat{A_t},\clip(r_t(\theta),1-\epsilon,1+\epsilon)\hat{A_t})]
-				- $r_t$: ratio of probability under new and old policies respectively (?) check
-				- $\hat{A_t}$: estimated advantage at time t
-				- $\epsilon$: hyperparameter, usually 0.1 or 0.2
+			- $`L^{CLIP}(\theta) = \hat{E_t}[\min(r_t(\theta)\hat{A_t},\clip(r_t(\theta),1-\epsilon,1+\epsilon)\hat{A_t})]`$
+				- $`r_t`$: ratio of probability under new and old policies respectively (?) check
+				- $`\hat{A_t}`$: estimated advantage at time t
+				- $`\epsilon`$: hyperparameter, usually 0.1 or 0.2
 			- Much simpler to implement than ACER 
 			- Trust region update compatible with SGD
 		- [OpenAI blog post](https://blog.openai.com/openai-baselines-ppo/)
@@ -245,8 +245,8 @@ See also the [basics glossary](basics-glossary.md).
 - A3C (Asynchoronous Advantage Actor-Critic)
 	- Actor-critic: 
 		- Two outputs: 
-			1. Actor: outputs Policy, i.e. Q-values $Q(s,a_i)$ for all $a_i$, possible actions via Softmax
-			2. Critic: outputs Value of state we're in $V(s)$
+			1. Actor: outputs Policy, i.e. Q-values $`Q(s,a_i)`$ for all $`a_i`$, possible actions via Softmax
+			2. Critic: outputs Value of state we're in $`V(s)`$
 	- Asynchronous
 		- Multiple agents tackling the same environment, each initalised differently (diff random seed)
 			- More experience to learn from

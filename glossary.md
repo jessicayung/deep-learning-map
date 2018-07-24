@@ -107,6 +107,18 @@ See also the [basics glossary](basics-glossary.md).
 - [Differentiable Neural Computers](https://deepmind.com/blog/differentiable-neural-computers/)
 	- Neural network controller with read-write-erase access to an external memory matrix
 - [Kanerva Machine](https://arxiv.org/abs/1804.01756)
+- Differentiable Neural Dictionary (DND)
+    - from Neural Episodic Control (Pritzel et. al., 2017)
+    - $`M_a = (K_a, V_a)`$, $`K_a, V_a`$ dynamically sized arrays of vectors, each containing the same number of vectors (1-1 correspondence, like a dictionary)
+    - Operations
+        1. Lookup: map key h to output o:
+            - weighted sum of values in memory, weights give by normalised closeness (kernels) between lookup key and corresponding key in memory. Closer match = higher weight.
+        2. Write (after query/lookup)
+            - key = lookup key
+            - value = 'application-specific', e.g. Q-value for RL
+            - (k, v) appended to $`K_a, V_a`$. If key already exists, entry is updated instead of being duplicated.
+    - Use approximations in practice: kNN-like
+
 
 ### Other models
 - Boltzmann Machines
